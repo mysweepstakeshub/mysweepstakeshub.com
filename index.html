@@ -3,292 +3,380 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MySweepstakesHub.com - Free Sweepstakes, Contests & Giveaways</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<title>MySweepstakesHub.com - Free Sweepstakes, Contests and Giveaways Updated Daily!</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Verdana, Arial, sans-serif; font-size: 12px; background: #fff; color: #000; }
-a { color: #00c; } a:visited { color: #609; } a:hover { color: #c00; text-decoration: underline; }
-#header { background: #003580; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-#logo { color: #aadeff; font-size: 26px; font-family: 'Dancing Script', Georgia, cursive; text-decoration: none; font-weight: 700; letter-spacing: 0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-#logo span { color: #cceeff; }
-#tagline { color: #aaccff; font-size: 11px; flex: 1; padding-left: 14px; }
-#search-box { display: flex; gap: 4px; align-items: center; }
-#search-box input[type=text] { padding: 3px 5px; font-size: 11px; border: 1px solid #ccc; width: 160px; font-family: Verdana, Arial, sans-serif; }
-#search-box input[type=submit] { padding: 3px 8px; font-size: 11px; background: #ff9900; border: 1px solid #cc6600; color: #000; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, sans-serif; }
-#nav { background: #cc0000; padding: 4px 10px; display: flex; flex-wrap: wrap; gap: 2px; }
-#nav a { color: #fff; font-size: 11px; font-weight: bold; padding: 3px 8px; text-decoration: none; border-right: 1px solid rgba(255,255,255,0.3); }
-#nav a:hover { background: #ff9900; color: #000; text-decoration: none; }
-#nav a:last-child { border-right: none; }
-#nav a.hi { color: #ffff99; }
-#wrap { max-width: 800px; margin: 0 auto; padding: 6px 8px; }
-#cols { display: grid; grid-template-columns: 155px 1fr; gap: 10px; margin-top: 6px; }
-#left { font-size: 11px; }
-.sb { border: 1px solid #99aacc; margin-bottom: 8px; background: #fff; }
-.sb-head { background: #003580; color: #fff; font-size: 11px; font-weight: bold; padding: 3px 6px; text-transform: uppercase; }
-.sb-body { padding: 4px 6px; }
-.sb-body a { display: block; padding: 2px 0; font-size: 11px; border-bottom: 1px dotted #ddd; color: #00c; }
-.sb-body a:last-child { border-bottom: none; }
-.sb-body a:hover { color: #c00; }
-.cnt { float: right; color: #666; font-size: 10px; }
-.sb-body p { font-size: 11px; color: #444; line-height: 1.5; padding: 2px 0 4px; }
-.sb-body input[type=text], .sb-body input[type=email] { width: 100%; padding: 2px 4px; font-size: 11px; border: 1px solid #aaa; margin-bottom: 3px; font-family: Verdana, Arial, sans-serif; }
-.sb-body input[type=submit] { width: 100%; padding: 3px; font-size: 11px; background: #cc0000; border: 1px solid #880000; color: #fff; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, sans-serif; }
-.stat-row { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px dotted #eee; font-size: 11px; }
-.stat-row:last-child { border-bottom: none; }
-.stat-val { font-weight: bold; color: #cc0000; }
-.infobar { background: #f0f4ff; border: 1px solid #99aacc; padding: 4px 8px; font-size: 11px; color: #333; margin-bottom: 6px; display: flex; justify-content: space-between; }
-.sec-title { background: #003580; color: #fff; font-size: 12px; font-weight: bold; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; }
-.sec-title a { color: #ffcc66; font-size: 10px; font-weight: normal; }
-.filters { background: #f5f5f5; border: 1px solid #ddd; border-top: none; padding: 4px 6px; display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 4px; }
-.filters a { font-size: 10px; padding: 1px 5px; border: 1px solid #aac; background: #fff; color: #00c; text-decoration: none; }
-.filters a:hover, .filters a.on { background: #cc0000; border-color: #880000; color: #fff; }
-.listings { border: 1px solid #ddd; border-top: none; }
-.col-head { display: grid; grid-template-columns: 44px 1fr 90px 72px 72px; background: #dde8f0; border-bottom: 1px solid #ccc; padding: 3px 6px; font-size: 10px; font-weight: bold; color: #333; text-transform: uppercase; gap: 6px; }
-.row { display: grid; grid-template-columns: 44px 1fr 90px 72px 72px; padding: 3px 6px; border-bottom: 1px solid #eee; gap: 6px; align-items: center; text-decoration: none; color: inherit; }
-.row:nth-child(even) { background: #f9f9f9; }
-.row:hover { background: #fffde8; }
-.badge { font-size: 9px; font-weight: bold; padding: 1px 3px; border-radius: 1px; text-align: center; display: inline-block; min-width: 36px; }
-.b-new { background: #009900; color: #fff; }
-.b-daily { background: #0055cc; color: #fff; }
-.b-ending { background: #cc6600; color: #fff; }
-.b-instant { background: #660099; color: #fff; }
-.row-title { font-size: 11.5px; color: #00c; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.row:hover .row-title { color: #c00; text-decoration: underline; }
-.row-sponsor { font-size: 10px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.row-date { font-size: 10px; color: #555; white-space: nowrap; }
-.row-date.hot { color: #cc0000; font-weight: bold; }
-.row-prize { font-size: 11px; font-weight: bold; color: #003580; text-align: right; white-space: nowrap; }
-.pages { padding: 4px 6px; font-size: 11px; border: 1px solid #ddd; border-top: none; background: #f9f9f9; }
-.pages a { border: 1px solid #aac; padding: 1px 5px; margin-right: 2px; font-size: 11px; background: #fff; }
-.pages a:hover { background: #cc0000; color: #fff; border-color: #880000; text-decoration: none; }
-.pages .cur { background: #003580; color: #fff; border: 1px solid #003580; padding: 1px 5px; margin-right: 2px; font-size: 11px; }
-.iw { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; padding: 5px; border: 1px solid #ddd; border-top: none; margin-bottom: 8px; }
-.iw a { border: 1px solid #aac; padding: 5px 4px; text-align: center; text-decoration: none; background: #f5f8ff; display: block; }
-.iw a:hover { background: #fffde8; border-color: #cc0000; text-decoration: none; }
-.iw-name { font-size: 10.5px; font-weight: bold; color: #00c; display: block; }
-.iw a:hover .iw-name { color: #c00; }
+body { font-family: Tahoma, Arial, Verdana, sans-serif; font-size: 12px; background: #d4e4f7; color: #000; }
+a { color: #00008b; text-decoration: none; } a:hover { color: #cc0000; text-decoration: underline; } a:visited { color: #551a8b; }
+#toputil { background: #003399; color: #fff; font-size: 11px; padding: 3px 6px; display: flex; justify-content: space-between; align-items: center; }
+#toputil a { color: #ffff99; }
+#header { background: linear-gradient(180deg, #003399 0%, #0055cc 50%, #0044aa 100%); padding: 6px 8px; display: flex; align-items: center; gap: 10px; border-bottom: 3px solid #ffcc00; }
+#logo { font-family: Arial Black, Impact, sans-serif; font-size: 26px; font-weight: 900; color: #ffff00; text-shadow: 2px 2px 0 #000, 1px 1px 0 #cc6600; letter-spacing: -1px; white-space: nowrap; text-decoration: none; }
+#logo span { color: #ff6600; }
+#tagline { color: #cce4ff; font-size: 11px; font-style: italic; line-height: 1.4; }
+#header-search { margin-left: auto; display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.15); border: 1px solid #99bbff; padding: 4px 6px; border-radius: 3px; }
+#header-search input[type=text] { width: 175px; padding: 3px 5px; font-size: 11px; border: 1px solid #aaa; font-family: Tahoma, Arial, sans-serif; }
+#header-search input[type=submit] { background: #ffcc00; border: 1px solid #cc8800; color: #000; font-size: 11px; font-weight: bold; padding: 3px 8px; cursor: pointer; font-family: Tahoma, Arial, sans-serif; }
+#mainnav { background: #cc0000; border-bottom: 2px solid #880000; padding: 0 6px; display: flex; flex-wrap: wrap; }
+#mainnav a { color: #fff; font-size: 11.5px; font-weight: bold; padding: 5px 9px; display: inline-block; border-right: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
+#mainnav a:hover, #mainnav a.active { background: #ffcc00; color: #000; text-decoration: none; }
+#mainnav a.new { color: #ffff66; }
+#subnav { background: #336699; padding: 3px 6px; display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid #1a4470; max-width: 980px; margin: 0 auto; }
+#subnav a { color: #cce4ff; font-size: 10.5px; padding: 2px 6px; border-right: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
+#subnav a:hover { color: #ffff99; text-decoration: none; }
+.banner-728 { background: #fff; border: 1px solid #aaa; margin: 4px auto; width: 100%; max-width: 728px; height: 90px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #999; text-align: center; }
+#outer { max-width: 980px; margin: 4px auto; padding: 0 4px; }
+#banner-wrap { text-align: center; margin-bottom: 4px; }
+#layout { display: grid; grid-template-columns: 148px 1fr 152px; gap: 5px; }
+.lsb-box { background: #fff; border: 1px solid #7ba3d0; margin-bottom: 5px; }
+.lsb-title { background: linear-gradient(180deg, #0055cc, #003399); color: #fff; font-size: 11px; font-weight: bold; padding: 4px 6px; text-transform: uppercase; letter-spacing: 0.3px; }
+.lsb-body { padding: 4px 5px; }
+.lsb-body a { display: block; padding: 2px 3px; font-size: 11px; border-bottom: 1px dotted #ccc; color: #00008b; }
+.lsb-body a:hover { background: #ffffcc; color: #cc0000; }
+.lsb-body a:last-child { border-bottom: none; }
+.cat-cnt { float: right; background: #e8e8e8; border: 1px solid #bbb; font-size: 9px; padding: 0 3px; color: #555; border-radius: 2px; }
+.lsb-body p { font-size: 11px; color: #555; padding: 3px 0; line-height: 1.5; }
+.lsb-body input[type=email], .lsb-body input[type=text] { width: 100%; padding: 3px 4px; font-size: 11px; border: 1px solid #aaa; margin-bottom: 3px; font-family: Tahoma, Arial, sans-serif; }
+.lsb-body input[type=submit] { background: #cc0000; border: 1px solid #880000; color: #fff; font-size: 11px; font-weight: bold; padding: 3px 8px; cursor: pointer; width: 100%; font-family: Tahoma, Arial, sans-serif; }
+.lsb-stat { display: flex; justify-content: space-between; padding: 2px 3px; font-size: 11px; border-bottom: 1px dotted #ddd; }
+.lsb-stat .val { font-weight: bold; color: #cc0000; }
+.ad-125 { background: #fff; border: 1px solid #aac4e0; width: 125px; height: 125px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #aaa; text-align: center; margin-bottom: 4px; }
+.ad-160 { background: #fff; border: 1px solid #aac4e0; width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #aaa; text-align: center; margin-bottom: 4px; }
+.sec-box { background: #fff; border: 1px solid #7ba3d0; margin-bottom: 5px; }
+.sec-head { background: linear-gradient(180deg, #cc0000, #990000); color: #fff; font-size: 12px; font-weight: bold; padding: 5px 8px; display: flex; align-items: center; justify-content: space-between; }
+.sec-head a { color: #ffff99; font-size: 10px; font-weight: normal; }
+.sec-head .badge { background: #ffcc00; color: #000; font-size: 10px; padding: 1px 5px; border-radius: 2px; }
+.featured-entry { background: linear-gradient(135deg, #fffae6, #fff3cc); border: 2px solid #ffcc00; padding: 8px 10px; margin: 5px; display: flex; align-items: center; gap: 10px; position: relative; }
+.featured-entry::before { content: "★ FEATURED"; position: absolute; top: 0; right: 0; background: #cc0000; color: #fff; font-size: 9px; font-weight: bold; padding: 2px 6px; }
+.fe-prize { font-family: Arial Black, Impact, sans-serif; font-size: 28px; color: #cc0000; font-weight: 900; white-space: nowrap; text-shadow: 1px 1px 0 #ffcc00; }
+.fe-info h3 { font-size: 13px; color: #003399; margin-bottom: 3px; }
+.fe-info p { font-size: 11px; color: #555; margin-bottom: 5px; }
+.fe-info a.enter-btn { background: #cc0000; color: #fff; font-weight: bold; font-size: 12px; padding: 4px 14px; border: 1px solid #880000; display: inline-block; }
+.fe-info a.enter-btn:hover { background: #ff0000; text-decoration: none; }
+.filter-tabs { padding: 4px 6px; background: #eef4fb; border-bottom: 1px solid #cdd9e8; display: flex; flex-wrap: wrap; gap: 3px; }
+.filter-tabs a { background: #fff; border: 1px solid #aac4e0; color: #003399; font-size: 10.5px; padding: 2px 6px; white-space: nowrap; }
+.filter-tabs a:hover, .filter-tabs a.active { background: #cc0000; border-color: #880000; color: #fff; text-decoration: none; }
+.listing-row { display: flex; align-items: center; padding: 4px 6px; border-bottom: 1px solid #dde8f5; gap: 6px; text-decoration: none; color: inherit; }
+.listing-row:nth-child(even) { background: #f5f9ff; }
+.listing-row:hover { background: #fffff0; }
+.lr-type { font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 1px; white-space: nowrap; min-width: 38px; text-align: center; flex-shrink: 0; }
+.type-new { background: #009900; color: #fff; }
+.type-daily { background: #0055cc; color: #fff; }
+.type-ending { background: #cc6600; color: #fff; }
+.type-instant { background: #660099; color: #fff; }
+.lr-title { flex: 1; min-width: 0; font-size: 12px; color: #00008b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: bold; }
+.lr-title:hover { color: #cc0000; }
+.lr-sponsor { font-size: 10px; color: #666; white-space: nowrap; min-width: 80px; }
+.lr-date { font-size: 10px; color: #888; white-space: nowrap; min-width: 70px; }
+.lr-prize { font-weight: bold; font-size: 12px; color: #003399; white-space: nowrap; min-width: 70px; text-align: right; flex-shrink: 0; }
+.pagination { padding: 5px 6px; font-size: 11px; border-top: 1px solid #dde8f5; }
+.pagination a { border: 1px solid #aac4e0; padding: 2px 6px; margin-right: 2px; background: #fff; }
+.pagination a:hover { background: #cc0000; color: #fff; border-color: #880000; text-decoration: none; }
+.pagination .cur { background: #003399; color: #fff; border: 1px solid #003399; padding: 2px 6px; margin-right: 2px; }
+.iw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 5px; }
+.iw-cell { background: #eef4fb; border: 1px solid #aac4e0; padding: 5px; text-align: center; text-decoration: none; color: inherit; }
+.iw-cell:hover { background: #ffffcc; border-color: #ffcc00; text-decoration: none; }
+.iw-icon { font-size: 20px; display: block; margin-bottom: 2px; }
+.iw-name { font-size: 10.5px; font-weight: bold; color: #003399; display: block; }
 .iw-prize { font-size: 10px; color: #660099; }
-.forum-row { display: flex; gap: 6px; padding: 4px 6px; border-bottom: 1px solid #eee; align-items: center; text-decoration: none; color: inherit; }
-.forum-row:hover { background: #fffde8; }
-.forum-row:last-child { border-bottom: none; }
-.ftag { font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 1px; flex-shrink: 0; }
-.f-win { background: #009900; color: #fff; }
-.f-hot { background: #cc0000; color: #fff; }
-.f-tip { background: #003580; color: #fff; }
-.f-new { background: #660099; color: #fff; }
-.ftitle { flex: 1; font-size: 11px; color: #00c; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.forum-row:hover .ftitle { color: #c00; text-decoration: underline; }
-.fmeta { font-size: 10px; color: #888; white-space: nowrap; }
-.freplies { font-size: 10px; color: #cc0000; font-weight: bold; white-space: nowrap; }
-.ticker { background: #fffbe6; border: 1px solid #ffcc00; padding: 3px 8px; font-size: 11px; color: #553300; margin-bottom: 5px; }
-.ticker strong { color: #cc0000; }
-#footer { background: #003580; color: #aaccff; font-size: 10px; padding: 8px 10px; margin-top: 10px; text-align: center; line-height: 1.8; }
-#footer a { color: #ffcc66; }
-#footer a:hover { color: #fff; }
+.rsb-box { background: #fff; border: 1px solid #7ba3d0; margin-bottom: 5px; }
+.rsb-title { background: linear-gradient(180deg, #336600, #224400); color: #fff; font-size: 11px; font-weight: bold; padding: 4px 6px; text-transform: uppercase; }
+.rsb-title.orange { background: linear-gradient(180deg, #ff6600, #cc4400); }
+.rsb-title.purple { background: linear-gradient(180deg, #660099, #440066); }
+.rsb-body { padding: 4px 5px; }
+.rsb-body a { display: block; padding: 3px 3px; font-size: 10.5px; border-bottom: 1px dotted #ddd; }
+.rsb-body a:last-child { border-bottom: none; }
+.winner-row { font-size: 10.5px; padding: 3px 3px; border-bottom: 1px dotted #ddd; color: #444; }
+.winner-row strong { color: #006600; }
+.winner-row span { color: #888; }
+.ticker-strip { background: #fffbe6; border: 1px solid #ffcc00; padding: 3px 8px; font-size: 11px; color: #663300; margin-bottom: 5px; }
+.tips-ul { list-style: none; padding: 0; }
+.tips-ul li { font-size: 10.5px; padding: 2px 3px; border-bottom: 1px dotted #ddd; color: #444; }
+.tips-ul li:before { content: "✓ "; color: #006600; font-weight: bold; }
+.tips-ul li:last-child { border-bottom: none; }
+#footer { background: #003399; color: #cce4ff; font-size: 10.5px; padding: 10px 8px 6px; margin-top: 6px; }
+.footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 14px; margin-bottom: 8px; }
+.footer-col h4 { color: #ffff99; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; margin-bottom: 5px; }
+.footer-col a { display: block; color: #aac4e0; margin-bottom: 2px; font-size: 10.5px; }
+.footer-col a:hover { color: #ffff99; }
+#footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 6px; font-size: 10px; color: #88aacc; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; }
 </style>
 </head>
 <body>
 
+<div id="toputil">
+  <span>📅 <strong style="color:#ffff99;">Monday, March 23, 2026</strong> &nbsp;|&nbsp; <strong style="color:#ffff00;">1,247</strong> active sweepstakes &nbsp;|&nbsp; <strong style="color:#ffff00;">89</strong> added today</span>
+  <span><a href="login.html">[ Login ]</a> &nbsp;<a href="login.html">[ Register FREE ]</a> &nbsp;<a href="submit.html">[ Submit a Sweepstakes ]</a> &nbsp;<a href="#">[ Newsletter ]</a></span>
+</div>
+
 <div id="header">
-  <a href="index.html" id="logo">My<span>Sweepstakes</span>Hub.com</a>
-  <div id="tagline">Free Sweepstakes, Contests &amp; Giveaways — Updated Daily — No Purchase Necessary</div>
-  <div id="search-box">
+  <a href="index.html" id="logo">My<span>Sweepstakes</span>Hub<span style="color:#fff;font-size:14px;">.com</span></a>
+  <div id="tagline"><strong style="color:#ffff99;">Your #1 Source for FREE Sweepstakes, Contests &amp; Giveaways!</strong><br>Updated Daily — No Purchase Necessary — 100% Free to Enter</div>
+  <div id="header-search">
     <input type="text" placeholder="Search sweepstakes...">
-    <input type="submit" value="Go">
+    <input type="submit" value="Go!">
   </div>
 </div>
 
-<div id="nav">
-  <a href="index.html">Home</a>
-  <a href="category.html" class="hi">New Today (89)</a>
-  <a href="category.html">Cash</a>
-  <a href="category.html">Cars</a>
-  <a href="category.html">Travel</a>
-  <a href="category.html">Gift Cards</a>
-  <a href="category.html">Electronics</a>
-  <a href="category.html">Instant Win</a>
-  <a href="ending-soon.html">Ending Soon</a>
-  <a href="category.html">By State</a>
-  <a href="winners.html">Winners</a>
-  <a href="forum.html">Forum</a>
-  <a href="tips.html">Tips &amp; FAQ</a>
-  <a href="submit.html">Submit</a>
+<div id="mainnav">
+  <a href="index.html" class="active">🏠 Home</a>
+  <a href="category.html" class="new">★ New Today (89)</a>
+  <a href="category.html">🔥 Hot Picks</a>
+  <a href="category.html">💵 Cash &amp; Money</a>
+  <a href="category.html">🚗 Cars &amp; Trucks</a>
+  <a href="category.html">✈️ Travel</a>
+  <a href="category.html">⚡ Instant Win</a>
+  <a href="ending-soon.html">⏰ Ending Soon</a>
+  <a href="category.html">🗺️ By State</a>
+  <a href="forum.html">💬 Forum</a>
+  <a href="winners.html">🏆 Winners</a>
+  <a href="tips.html">💡 Tips &amp; FAQ</a>
+</div>
+<div id="subnav">
+  <a href="category.html">All Sweeps</a><a href="category.html">Gift Cards</a><a href="category.html">Electronics</a><a href="category.html">Home &amp; Garden</a><a href="category.html">Food &amp; Bev</a><a href="category.html">Sports</a><a href="category.html">Entertainment</a><a href="category.html">Kids &amp; Family</a><a href="category.html">Beauty &amp; Health</a><a href="category.html">Pets</a><a href="category.html">Daily Entry</a><a href="category.html">One-Time Entry</a>
 </div>
 
-<div id="wrap">
-  <div class="ticker">
-    <strong>Recent Winners:</strong> Linda M. (FL) won $10,000 Best Buy card &nbsp;·&nbsp; Carlos R. (TX) won a 2025 Ford Mustang &nbsp;·&nbsp; Sarah K. (OH) won Disney World trip for 4 &nbsp;·&nbsp; <a href="winners.html">See all winners »</a>
-  </div>
+<div id="outer">
+<div id="banner-wrap"><div class="banner-728">[ 728 × 90 Leaderboard Ad — Google AdSense / Sponsor ]</div></div>
 
-  <div id="cols">
-    <div id="left">
+<div class="ticker-strip">
+  <strong>🏆 RECENT WINNERS:</strong> Linda M. (FL) won $10,000 Best Buy Gift Card! &nbsp;•&nbsp; Carlos R. (TX) won a 2025 Ford Mustang! &nbsp;•&nbsp; Sarah K. (OH) won a Disney World Trip for 4! &nbsp;•&nbsp;
+  <a href="winners.html">View all winners »</a>
+</div>
 
-      <div class="sb">
-        <div class="sb-head">Site Stats</div>
-        <div class="sb-body">
-          <div class="stat-row"><span>Active sweeps:</span><span class="stat-val">1,247</span></div>
-          <div class="stat-row"><span>Added today:</span><span class="stat-val">89</span></div>
-          <div class="stat-row"><span>Ending soon:</span><span class="stat-val">62</span></div>
-          <div class="stat-row"><span>Instant win:</span><span class="stat-val">248</span></div>
-          <div class="stat-row"><span>Members:</span><span class="stat-val">8,412</span></div>
-        </div>
-      </div>
+<div style="background:#003399;color:#cce4ff;font-size:10px;padding:3px 8px;display:flex;justify-content:space-between;margin-bottom:5px;">
+  <span>Showing sweepstakes updated <strong style="color:#ffff00;">March 23, 2026</strong></span>
+  <span>Total prizes available: <strong style="color:#ffff00;">$14.2 Million+</strong> &nbsp;|&nbsp; <a href="category.html" style="color:#ffff99;">Browse all 1,247 sweepstakes »</a></span>
+</div>
 
-      <div class="sb">
-        <div class="sb-head">Categories</div>
-        <div class="sb-body">
-          <a href="category.html">Cash &amp; Money <span class="cnt">184</span></a>
-          <a href="category.html">Cars &amp; Trucks <span class="cnt">67</span></a>
-          <a href="category.html">Travel <span class="cnt">143</span></a>
-          <a href="category.html">Gift Cards <span class="cnt">201</span></a>
-          <a href="category.html">Electronics <span class="cnt">118</span></a>
-          <a href="category.html">Home &amp; Garden <span class="cnt">95</span></a>
-          <a href="category.html">Food &amp; Bev <span class="cnt">162</span></a>
-          <a href="category.html">Sports <span class="cnt">88</span></a>
-          <a href="category.html">Entertainment <span class="cnt">109</span></a>
-          <a href="category.html">Kids &amp; Family <span class="cnt">77</span></a>
-          <a href="category.html">Beauty &amp; Health <span class="cnt">93</span></a>
-          <a href="category.html">Pets <span class="cnt">41</span></a>
-        </div>
-      </div>
+<div id="layout">
 
-      <div class="sb">
-        <div class="sb-head">Free Email Alert</div>
-        <div class="sb-body">
-          <p>New sweepstakes in your inbox every morning — free!</p>
-          <input type="email" placeholder="your@email.com">
-          <input type="submit" value="Subscribe Free">
-        </div>
-      </div>
-
-      <div class="sb">
-        <div class="sb-head">Browse by State</div>
-        <div class="sb-body">
-          <select style="width:100%;padding:2px;font-size:11px;margin-bottom:3px;font-family:Verdana,Arial,sans-serif;border:1px solid #aaa;" onchange="if(this.value)window.location='category.html'">
-            <option>-- Select State --</option>
-            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
-          </select>
-          <input type="submit" value="Go" style="width:100%;padding:2px;font-size:11px;background:#003580;border:1px solid #001a4d;color:#fff;font-weight:bold;cursor:pointer;font-family:Verdana,Arial,sans-serif;">
-        </div>
-      </div>
-
-      <div class="sb">
-        <div class="sb-head">Ending Soon</div>
-        <div class="sb-body">
-          <a href="detail.html" style="color:#cc0000;font-weight:bold;">Tropicana Beach Sweep<br><span style="color:#888;font-weight:normal;">Ends TODAY</span></a>
-          <a href="detail.html" style="color:#cc0000;font-weight:bold;">Kellogg's Giveaway<br><span style="color:#888;font-weight:normal;">Ends TODAY</span></a>
-          <a href="detail.html">Jeep Cherokee Giveaway<br><span style="color:#888;">Ends Mar 28</span></a>
-          <a href="detail.html">PayPal $25K Cash<br><span style="color:#888;">Ends Mar 29</span></a>
-          <a href="detail.html">HGTV Dream Home<br><span style="color:#888;">Ends Mar 31</span></a>
-          <a href="ending-soon.html" style="color:#cc0000;">See all ending soon »</a>
-        </div>
-      </div>
-
-      <div class="sb">
-        <div class="sb-head">Recent Winners</div>
-        <div class="sb-body">
-          <p><b>Linda M.</b> – FL<br>Won $10,000 Best Buy card</p>
-          <p><b>Carlos R.</b> – TX<br>Won 2025 Ford Mustang</p>
-          <p><b>Sarah K.</b> – OH<br>Won Disney Trip for 4</p>
-          <a href="winners.html" style="color:#cc0000;">More winners »</a>
-        </div>
-      </div>
-
-      <div class="sb">
-        <div class="sb-head">Quick Tips</div>
-        <div class="sb-body">
-          <a href="tips.html">Use a dedicated email</a>
-          <a href="tips.html">Enter daily sweeps daily</a>
-          <a href="tips.html">Set phone reminders</a>
-          <a href="tips.html">Always read official rules</a>
-          <a href="tips.html">Never pay to enter!</a>
-          <a href="tips.html">All sweeping tips »</a>
-        </div>
-      </div>
-
-    </div>
-
-    <div id="main">
-
-      <div class="infobar">
-        <span>Updated <b>March 24, 2026</b> &nbsp;·&nbsp; 1,247 total active sweepstakes</span>
-        <span>Total prizes: <b>$14.2 Million+</b> &nbsp;<a href="category.html">Browse all »</a></span>
-      </div>
-
-      <div class="sec-title">Latest Sweepstakes &amp; Contests <a href="category.html">View all 1,247 »</a></div>
-
-      <div class="filters">
-        <a href="category.html" class="on">All</a>
-        <a href="category.html">Cash</a><a href="category.html">Cars</a><a href="category.html">Travel</a>
-        <a href="category.html">Electronics</a><a href="category.html">Gift Cards</a><a href="category.html">Food</a>
-        <a href="category.html">Home</a><a href="category.html">Sports</a><a href="category.html">Kids</a>
-        <a href="category.html">Instant Win</a><a href="category.html">Daily Only</a>
-      </div>
-
-      <div class="listings">
-        <div class="col-head"><span>Type</span><span>Sweepstakes Name</span><span>Sponsor</span><span>Ends</span><span style="text-align:right;">Prize</span></div>
-        <a href="detail.html" class="row"><span class="badge b-new">NEW</span><span class="row-title">PCH $500,000 SuperPrize Spring Giveaway</span><span class="row-sponsor">Publishers Clearing House</span><span class="row-date">Apr 30, 2026</span><span class="row-prize">$500,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-ending">ENDING</span><span class="row-title">HGTV Dream Home 2026 — Win a $1.2M Furnished Home!</span><span class="row-sponsor">HGTV</span><span class="row-date hot">Mar 31!</span><span class="row-prize">$1,200,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-new">NEW</span><span class="row-title">Coca-Cola Summer of Fun Sweepstakes 2026</span><span class="row-sponsor">Coca-Cola</span><span class="row-date">Jun 30, 2026</span><span class="row-prize">$50,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-daily">DAILY</span><span class="row-title">McDonald's Monopoly App Instant Win &amp; Sweepstakes</span><span class="row-sponsor">McDonald's</span><span class="row-date">May 15, 2026</span><span class="row-prize">$1,000,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-ending">ENDING</span><span class="row-title">Jeep Wave 2026 Grand Cherokee Giveaway</span><span class="row-sponsor">Jeep</span><span class="row-date hot">Mar 28!</span><span class="row-prize">$54,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-new">NEW</span><span class="row-title">Amazon Spring $25,000 Shopping Spree Sweepstakes</span><span class="row-sponsor">Amazon</span><span class="row-date">Apr 15, 2026</span><span class="row-prize">$25,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-daily">DAILY</span><span class="row-title">Pepsi x NFL — Win Super Bowl LXI VIP Trip for 2</span><span class="row-sponsor">Pepsi / NFL</span><span class="row-date">Sep 1, 2026</span><span class="row-prize">$15,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-new">NEW</span><span class="row-title">Best Buy $5,000 Electronics Shopping Spree</span><span class="row-sponsor">Best Buy</span><span class="row-date">Apr 30, 2026</span><span class="row-prize">$5,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-instant">INSTANT</span><span class="row-title">7-Eleven Slurpee Days Instant Win — Play Daily!</span><span class="row-sponsor">7-Eleven</span><span class="row-date">Aug 31, 2026</span><span class="row-prize">$7,777</span></a>
-        <a href="detail.html" class="row"><span class="badge b-daily">DAILY</span><span class="row-title">Disney World Family Vacation Sweepstakes 2026</span><span class="row-sponsor">Walt Disney World</span><span class="row-date">Jun 15, 2026</span><span class="row-prize">$8,500</span></a>
-        <a href="detail.html" class="row"><span class="badge b-new">NEW</span><span class="row-title">Chase Bank $10,000 Everyday Sweepstakes</span><span class="row-sponsor">Chase Bank</span><span class="row-date">Apr 15, 2026</span><span class="row-prize">$10,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-daily">DAILY</span><span class="row-title">Walmart Weekly $1,000 Shopping Spree — Enter Daily!</span><span class="row-sponsor">Walmart</span><span class="row-date">Dec 31, 2026</span><span class="row-prize">$1,000/wk</span></a>
-        <a href="detail.html" class="row"><span class="badge b-instant">INSTANT</span><span class="row-title">Visa Gift Card Instant Win — Up to $5,000!</span><span class="row-sponsor">Visa</span><span class="row-date">Jun 30, 2026</span><span class="row-prize">$5,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-ending">ENDING</span><span class="row-title">PayPal Spring Cash Giveaway — $25,000 Direct Deposit</span><span class="row-sponsor">PayPal</span><span class="row-date hot">Mar 29!</span><span class="row-prize">$25,000</span></a>
-        <a href="detail.html" class="row"><span class="badge b-new">NEW</span><span class="row-title">American Family Insurance Dream Vacation Giveaway</span><span class="row-sponsor">Am. Family Insurance</span><span class="row-date">May 31, 2026</span><span class="row-prize">$10,000</span></a>
-      </div>
-
-      <div class="pages">
-        Pages: <span class="cur">1</span>
-        <a href="category.html">2</a><a href="category.html">3</a><a href="category.html">4</a><a href="category.html">5</a><a href="category.html">...</a><a href="category.html">125</a>
-        <a href="category.html">Next »</a>
-        &nbsp; Showing 1–15 of 1,247
-      </div>
-
-      <div class="sec-title" style="margin-top:10px;">Instant Win Games <a href="category.html">All instant win »</a></div>
-      <div class="iw">
-        <a href="detail.html"><span class="iw-name">Spin to Win Cash</span><span class="iw-prize">Up to $500</span></a>
-        <a href="detail.html"><span class="iw-name">Scratch-Off of the Day</span><span class="iw-prize">Up to $1,000</span></a>
-        <a href="detail.html"><span class="iw-name">Prize Box Reveal</span><span class="iw-prize">Gift Cards</span></a>
-        <a href="detail.html"><span class="iw-name">Lucky Clover Match</span><span class="iw-prize">Up to $250</span></a>
-        <a href="detail.html"><span class="iw-name">Daily Trivia Win</span><span class="iw-prize">Up to $100</span></a>
-        <a href="detail.html"><span class="iw-name">Dream Car Reveal</span><span class="iw-prize">Car or $30,000</span></a>
-      </div>
-
-      <div class="sec-title" style="margin-top:2px;">Community Forum — Latest Posts <a href="forum.html">All posts »</a></div>
-      <div class="listings" style="border-top:none;">
-        <a href="forum.html" class="forum-row"><span class="ftag f-win">WIN</span><span class="ftitle">I WON!! — $10,000 Best Buy Gift Card! Can't believe it!!</span><span class="fmeta">LuckyLinda_FL · 2hrs ago</span><span class="freplies">84 replies</span></a>
-        <a href="forum.html" class="forum-row"><span class="ftag f-hot">HOT</span><span class="ftitle">HGTV Dream Home — 8 days left, enter NOW (2x daily!)</span><span class="fmeta">SweepQueen · Today</span><span class="freplies">128 replies</span></a>
-        <a href="forum.html" class="forum-row"><span class="ftag f-tip">TIPS</span><span class="ftitle">My sweeping routine — how I won 6 things in 12 months</span><span class="fmeta">AlwaysEntering_Ann</span><span class="freplies">212 replies</span></a>
-        <a href="forum.html" class="forum-row"><span class="ftag f-new">NEW</span><span class="ftitle">New member here — already won a $50 gift card after 2 weeks!</span><span class="fmeta">NewbieSweeper_Nikki</span><span class="freplies">18 replies</span></a>
-      </div>
-
+<!-- LEFT SIDEBAR -->
+<div id="leftsidebar">
+  <div class="lsb-box">
+    <div class="lsb-title">📊 Site Stats</div>
+    <div class="lsb-body">
+      <div class="lsb-stat"><span>Active Sweeps:</span><span class="val">1,247</span></div>
+      <div class="lsb-stat"><span>Added Today:</span><span class="val">89</span></div>
+      <div class="lsb-stat"><span>Ending Soon:</span><span class="val">62</span></div>
+      <div class="lsb-stat"><span>Instant Win:</span><span class="val">248</span></div>
+      <div class="lsb-stat"><span>Members:</span><span class="val">8,412</span></div>
+      <div class="lsb-stat"><span>Winners 2026:</span><span class="val">312</span></div>
     </div>
   </div>
+  <div class="lsb-box">
+    <div class="lsb-title">📂 Categories</div>
+    <div class="lsb-body">
+      <a href="category.html">💵 Cash &amp; Money <span class="cat-cnt">184</span></a>
+      <a href="category.html">🚗 Cars &amp; Trucks <span class="cat-cnt">67</span></a>
+      <a href="category.html">✈️ Travel <span class="cat-cnt">143</span></a>
+      <a href="category.html">🎁 Gift Cards <span class="cat-cnt">201</span></a>
+      <a href="category.html">📱 Electronics <span class="cat-cnt">118</span></a>
+      <a href="category.html">🏠 Home &amp; Garden <span class="cat-cnt">95</span></a>
+      <a href="category.html">🍕 Food &amp; Bev <span class="cat-cnt">162</span></a>
+      <a href="category.html">⚽ Sports <span class="cat-cnt">88</span></a>
+      <a href="category.html">🎬 Entertainment <span class="cat-cnt">109</span></a>
+      <a href="category.html">👶 Kids &amp; Family <span class="cat-cnt">77</span></a>
+      <a href="category.html">💄 Beauty &amp; Health <span class="cat-cnt">93</span></a>
+      <a href="category.html">🐾 Pets <span class="cat-cnt">41</span></a>
+    </div>
+  </div>
+  <div class="lsb-box">
+    <div class="lsb-title">📧 Free Email Alert</div>
+    <div class="lsb-body">
+      <p>Get new sweepstakes FREE every morning!</p>
+      <input type="email" placeholder="your@email.com">
+      <input type="submit" value="Subscribe FREE »">
+    </div>
+  </div>
+  <div class="lsb-box">
+    <div class="lsb-title">🗺️ By State</div>
+    <div class="lsb-body">
+      <select style="width:100%;padding:3px 4px;font-size:11px;margin-bottom:3px;font-family:Tahoma,Arial,sans-serif;border:1px solid #aaa;" onchange="if(this.value)window.location='category.html'">
+        <option>-- Select State --</option>
+        <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+      </select>
+      <input type="submit" value="Find Sweepstakes »" style="background:#336699;border:1px solid #1a4470;color:#fff;font-size:11px;font-weight:bold;padding:3px 8px;cursor:pointer;width:100%;font-family:Tahoma,Arial,sans-serif;">
+    </div>
+  </div>
+  <div class="lsb-box">
+    <div class="lsb-title">💡 Quick Tips</div>
+    <div class="lsb-body">
+      <ul class="tips-ul">
+        <li>Use a dedicated sweeper email</li>
+        <li>Enter daily sweeps every day</li>
+        <li>Set phone reminders</li>
+        <li>Always read official rules</li>
+        <li>Never pay to enter!</li>
+        <li>Try local sweeps for better odds</li>
+      </ul>
+      <a href="tips.html" style="display:block;margin-top:4px;font-size:10.5px;text-align:right;">More tips »</a>
+    </div>
+  </div>
+  <div class="ad-125">[ 125×125<br>Advertise Here<br><a href="submit.html" style="color:#00008b;font-size:9px;">$49/month</a> ]</div>
+  <div class="ad-125">[ 125×125<br>Advertise Here<br><a href="submit.html" style="color:#00008b;font-size:9px;">$49/month</a> ]</div>
 </div>
 
-<div id="footer">
-  <a href="index.html">Home</a> &nbsp;|&nbsp;
-  <a href="category.html">New Sweepstakes</a> &nbsp;|&nbsp;
-  <a href="ending-soon.html">Ending Soon</a> &nbsp;|&nbsp;
-  <a href="winners.html">Winners</a> &nbsp;|&nbsp;
-  <a href="forum.html">Forum</a> &nbsp;|&nbsp;
-  <a href="tips.html">Tips &amp; FAQ</a> &nbsp;|&nbsp;
-  <a href="submit.html">Submit a Sweepstakes</a> &nbsp;|&nbsp;
-  <a href="#">About</a> &nbsp;|&nbsp;
-  <a href="#">Contact</a> &nbsp;|&nbsp;
-  <a href="#">Privacy Policy</a>
-  <br><br>
-  © 2026 MySweepstakesHub.com — All Rights Reserved<br>
-  No purchase necessary. Always read official rules before entering.
+<!-- MAIN CENTER -->
+<div id="main">
+  <div class="sec-box">
+    <div class="sec-head">⭐ Featured Sweepstakes <a href="submit.html">[ Sponsor a Listing ]</a></div>
+    <div class="featured-entry">
+      <div class="fe-prize">$500,000</div>
+      <div class="fe-info">
+        <h3><a href="detail.html">Publishers Clearing House — Spring SuperPrize Giveaway 2026</a></h3>
+        <p>Enter daily for your chance to win $500,000! Ends April 30, 2026. Open to US residents 18+. No purchase necessary.</p>
+        <a href="detail.html" class="enter-btn">ENTER NOW — FREE! »</a>
+      </div>
+    </div>
+    <div class="featured-entry" style="background:linear-gradient(135deg,#eeffee,#ccffcc);border-color:#009900;">
+      <div class="fe-prize" style="color:#006600;font-size:22px;">$1,200,000</div>
+      <div class="fe-info">
+        <h3><a href="detail.html">HGTV Dream Home 2026 — ⚠️ Ends in 8 Days! Enter 2× Daily!</a></h3>
+        <p>Win a fully furnished dream home in St. Augustine, FL + $100K cash + new Mercedes! Ends March 31, 2026.</p>
+        <a href="detail.html" class="enter-btn" style="background:#006600;border-color:#004400;">ENTER 2× DAILY »</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-tabs">
+    <a href="category.html" class="active">All</a><a href="category.html">Cash</a><a href="category.html">Cars</a><a href="category.html">Travel</a><a href="category.html">Electronics</a><a href="category.html">Gift Cards</a><a href="category.html">Food</a><a href="category.html">Home</a><a href="category.html">Sports</a><a href="category.html">Entertainment</a><a href="category.html">Kids</a><a href="category.html">Instant Win</a><a href="category.html">Daily Entry</a>
+  </div>
+
+  <div class="sec-box">
+    <div class="sec-head">📋 Latest Sweepstakes &amp; Contests <span class="badge">1,247 Active</span></div>
+    <div style="display:flex;background:#dce8f5;border-bottom:1px solid #aac4e0;padding:3px 6px;gap:6px;font-size:10px;font-weight:bold;color:#003399;text-transform:uppercase;">
+      <span style="min-width:42px;">Type</span><span style="flex:1;">Sweepstakes Name</span><span style="min-width:80px;">Sponsor</span><span style="min-width:70px;">Ends</span><span style="min-width:70px;text-align:right;">Prize</span>
+    </div>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-new">NEW</span><span class="lr-title">Coca-Cola Summer of Fun Sweepstakes 2026</span><span class="lr-sponsor">Coca-Cola</span><span class="lr-date">Jun 30, 2026</span><span class="lr-prize">$50,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-daily">DAILY</span><span class="lr-title">McDonald's Monopoly App Instant Win &amp; Sweepstakes</span><span class="lr-sponsor">McDonald's</span><span class="lr-date">May 15, 2026</span><span class="lr-prize">$1,000,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-ending">ENDING</span><span class="lr-title">HGTV Dream Home 2026 — Win a $1.2 Million Fully Furnished Home!</span><span class="lr-sponsor">HGTV</span><span class="lr-date" style="color:#cc0000;font-weight:bold;">Mar 31!</span><span class="lr-prize">$1,200,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-new">NEW</span><span class="lr-title">American Family Insurance Dream Vacation Giveaway</span><span class="lr-sponsor">Am. Family Ins.</span><span class="lr-date">May 31, 2026</span><span class="lr-prize">$10,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-daily">DAILY</span><span class="lr-title">Pepsi x NFL — Win Super Bowl LXI VIP Trip for 2</span><span class="lr-sponsor">Pepsi / NFL</span><span class="lr-date">Sep 1, 2026</span><span class="lr-prize">$15,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-new">NEW</span><span class="lr-title">Best Buy $5,000 Electronics Shopping Spree Sweepstakes</span><span class="lr-sponsor">Best Buy</span><span class="lr-date">Apr 30, 2026</span><span class="lr-prize">$5,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-ending">ENDING</span><span class="lr-title">Jeep Wave Sweepstakes — Win a 2026 Jeep Grand Cherokee!</span><span class="lr-sponsor">Jeep / Stellantis</span><span class="lr-date" style="color:#cc0000;font-weight:bold;">Mar 28!</span><span class="lr-prize">$54,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-instant">INSTANT</span><span class="lr-title">7-Eleven Slurpee Days Instant Win Game — Play Free Daily!</span><span class="lr-sponsor">7-Eleven</span><span class="lr-date">Aug 31, 2026</span><span class="lr-prize">$7,777</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-new">NEW</span><span class="lr-title">Amazon Spring Sweepstakes — Win a $25,000 Shopping Spree</span><span class="lr-sponsor">Amazon</span><span class="lr-date">Apr 15, 2026</span><span class="lr-prize">$25,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-daily">DAILY</span><span class="lr-title">Disney World Family Vacation Sweepstakes 2026</span><span class="lr-sponsor">Walt Disney World</span><span class="lr-date">Jun 15, 2026</span><span class="lr-prize">$8,500</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-new">NEW</span><span class="lr-title">Chase Bank $10,000 Everyday Sweepstakes</span><span class="lr-sponsor">Chase Bank</span><span class="lr-date">Apr 15, 2026</span><span class="lr-prize">$10,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-daily">DAILY</span><span class="lr-title">Walmart $1,000 Weekly Shopping Spree — Enter Every Day!</span><span class="lr-sponsor">Walmart</span><span class="lr-date">Dec 31, 2026</span><span class="lr-prize">$1,000/wk</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-instant">INSTANT</span><span class="lr-title">Visa Gift Card Instant Win — Win Up to $5,000 Cash!</span><span class="lr-sponsor">Visa</span><span class="lr-date">Jun 30, 2026</span><span class="lr-prize">$5,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-ending">ENDING</span><span class="lr-title">PayPal Spring Cash Giveaway — Win $25,000 Direct Deposit</span><span class="lr-sponsor">PayPal</span><span class="lr-date" style="color:#cc0000;font-weight:bold;">Mar 29!</span><span class="lr-prize">$25,000</span></a>
+    <a href="detail.html" class="listing-row"><span class="lr-type type-new">NEW</span><span class="lr-title">Fidelity Investments $100,000 Retirement Sweepstakes</span><span class="lr-sponsor">Fidelity</span><span class="lr-date">Jun 15, 2026</span><span class="lr-prize">$100,000</span></a>
+    <div class="pagination">Pages: <span class="cur">1</span><a href="category.html">2</a><a href="category.html">3</a><a href="category.html">4</a><a href="category.html">5</a><a href="category.html">...</a><a href="category.html">125</a><a href="category.html">Next »</a>&nbsp;&nbsp;Showing 1–15 of 1,247 sweepstakes</div>
+  </div>
+
+  <div class="sec-box">
+    <div class="sec-head">⚡ Instant Win Games — Find Out Instantly If You Won!</div>
+    <div class="iw-grid">
+      <a href="detail.html" class="iw-cell"><span class="iw-icon">🎰</span><span class="iw-name">Spin to Win Cash</span><span class="iw-prize">Up to $500</span></a>
+      <a href="detail.html" class="iw-cell"><span class="iw-icon">🎟️</span><span class="iw-name">Scratch-Off of the Day</span><span class="iw-prize">Up to $1,000</span></a>
+      <a href="detail.html" class="iw-cell"><span class="iw-icon">🎁</span><span class="iw-name">Prize Box Reveal</span><span class="iw-prize">Gift Cards</span></a>
+      <a href="detail.html" class="iw-cell"><span class="iw-icon">🍀</span><span class="iw-name">Lucky Clover Match</span><span class="iw-prize">Up to $250</span></a>
+      <a href="detail.html" class="iw-cell"><span class="iw-icon">🎯</span><span class="iw-name">Trivia Instant Win</span><span class="iw-prize">Up to $100</span></a>
+      <a href="detail.html" class="iw-cell"><span class="iw-icon">🚗</span><span class="iw-name">Dream Car Reveal</span><span class="iw-prize">Car or $30,000</span></a>
+    </div>
+    <div style="padding:4px 6px;border-top:1px solid #dde8f5;font-size:11px;text-align:right;"><a href="category.html">View all 248 instant win games »</a></div>
+  </div>
+
+  <div class="sec-box">
+    <div class="sec-head">💬 Community Forum — Latest Posts <a href="forum.html">[ View All Forum Posts ]</a></div>
+    <a href="forum.html" class="listing-row" style="padding:5px 8px;">
+      <span style="font-size:10px;background:#009900;color:#fff;padding:1px 4px;border-radius:1px;white-space:nowrap;flex-shrink:0;">WIN!</span>
+      <span style="flex:1;font-size:11.5px;color:#00008b;font-weight:bold;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">I WON!! — $10,000 Best Buy Gift Card!! Can't believe it!!</span>
+      <span style="font-size:10px;color:#888;white-space:nowrap;">LuckyLinda_FL — 2 hrs ago</span>
+      <span style="font-size:10px;color:#cc0000;font-weight:bold;white-space:nowrap;">84 replies</span>
+    </a>
+    <a href="forum.html" class="listing-row" style="padding:5px 8px;background:#f5f9ff;">
+      <span style="font-size:10px;background:#cc0000;color:#fff;padding:1px 4px;border-radius:1px;white-space:nowrap;flex-shrink:0;">HOT</span>
+      <span style="flex:1;font-size:11.5px;color:#00008b;font-weight:bold;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">HGTV Dream Home — only 8 days left, enter NOW (2x daily!)</span>
+      <span style="font-size:10px;color:#888;white-space:nowrap;">SweepQueen — Today</span>
+      <span style="font-size:10px;color:#cc0000;font-weight:bold;white-space:nowrap;">128 replies</span>
+    </a>
+    <a href="forum.html" class="listing-row" style="padding:5px 8px;">
+      <span style="font-size:10px;background:#003399;color:#fff;padding:1px 4px;border-radius:1px;white-space:nowrap;flex-shrink:0;">TIPS</span>
+      <span style="flex:1;font-size:11.5px;color:#00008b;font-weight:bold;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">My sweeping routine — how I won 6 things in 12 months</span>
+      <span style="font-size:10px;color:#888;white-space:nowrap;">AlwaysEntering_Ann</span>
+      <span style="font-size:10px;color:#cc0000;font-weight:bold;white-space:nowrap;">212 replies</span>
+    </a>
+    <a href="forum.html" class="listing-row" style="padding:5px 8px;background:#f5f9ff;">
+      <span style="font-size:10px;background:#660099;color:#fff;padding:1px 4px;border-radius:1px;white-space:nowrap;flex-shrink:0;">NEW</span>
+      <span style="flex:1;font-size:11.5px;color:#00008b;font-weight:bold;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">New member here — already won a $50 gift card after 2 weeks!</span>
+      <span style="font-size:10px;color:#888;white-space:nowrap;">NewbieSweeper_Nikki</span>
+      <span style="font-size:10px;color:#cc0000;font-weight:bold;white-space:nowrap;">18 replies</span>
+    </a>
+  </div>
 </div>
 
+<!-- RIGHT SIDEBAR -->
+<div id="rightsidebar">
+  <div class="ad-160">[ 160 × 600<br>Skyscraper Ad<br>Google AdSense<br>or Direct Sponsor ]</div>
+  <div class="rsb-box">
+    <div class="rsb-title orange">⏰ Ending Soon</div>
+    <div class="rsb-body">
+      <a href="detail.html" style="color:#cc0000;font-weight:bold;">🚨 Tropicana Beach Sweep<br><small style="color:#888;">Ends TODAY Mar 23</small></a>
+      <a href="detail.html" style="color:#cc0000;font-weight:bold;">🚨 Kellogg's Family Giveaway<br><small style="color:#888;">Ends TODAY Mar 23</small></a>
+      <a href="detail.html">Pepsi $10K Sweepstakes<br><small style="color:#888;">Ends Mar 26</small></a>
+      <a href="detail.html">Jeep Cherokee Giveaway<br><small style="color:#888;">Ends Mar 28</small></a>
+      <a href="detail.html">PayPal $25K Cash Sweep<br><small style="color:#888;">Ends Mar 29</small></a>
+      <a href="detail.html">HGTV Dream Home 2026<br><small style="color:#888;">Ends Mar 31 (2x daily!)</small></a>
+      <a href="ending-soon.html" style="color:#cc0000;font-weight:bold;text-align:right;display:block;margin-top:3px;">See all ending soon »</a>
+    </div>
+  </div>
+  <div class="rsb-box">
+    <div class="rsb-title">🏆 Recent Winners</div>
+    <div class="rsb-body">
+      <div class="winner-row"><strong>Linda M.</strong> – FL<br><span>Won $10,000 Best Buy Card</span></div>
+      <div class="winner-row"><strong>Carlos R.</strong> – TX<br><span>Won 2025 Ford Mustang</span></div>
+      <div class="winner-row"><strong>Sarah K.</strong> – OH<br><span>Won Disney Trip for 4</span></div>
+      <div class="winner-row"><strong>James P.</strong> – CA<br><span>Won $500 Amazon Credit</span></div>
+      <div class="winner-row"><strong>Maria G.</strong> – FL<br><span>Won $25,000 Cash (PCH)</span></div>
+      <a href="winners.html" style="color:#cc0000;font-weight:bold;display:block;margin-top:3px;font-size:10.5px;">See all 1,847 winners »</a>
+    </div>
+  </div>
+  <div class="rsb-box">
+    <div class="rsb-title purple">🔥 Most Popular</div>
+    <div class="rsb-body">
+      <a href="detail.html">PCH $500,000 SuperPrize</a>
+      <a href="detail.html">HGTV Dream Home 2026</a>
+      <a href="detail.html">Amazon $25,000 Sweeps</a>
+      <a href="detail.html">Disney World Family Trip</a>
+      <a href="detail.html">Jeep Grand Cherokee Win</a>
+      <a href="detail.html">Walmart Weekly $1,000</a>
+      <a href="detail.html">7-Eleven Slurpee Days</a>
+    </div>
+  </div>
+  <div class="rsb-box">
+    <div class="rsb-title" style="background:linear-gradient(180deg,#006699,#004466);">📰 Sweeping News</div>
+    <div class="rsb-body">
+      <a href="tips.html">📌 HGTV Dream Home location revealed — St. Augustine, FL</a>
+      <a href="tips.html">📌 PCH announces $500K prize April 2026</a>
+      <a href="tips.html">📌 McDonald's Monopoly is BACK for 2026!</a>
+      <a href="tips.html">📌 Best sweeps to enter right now</a>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+    <div style="background:#fff;border:1px solid #aac4e0;height:90px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#aaa;text-align:center;">[ 125×90 Ad ]</div>
+    <div style="background:#fff;border:1px solid #aac4e0;height:90px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#aaa;text-align:center;">[ 125×90 Ad ]</div>
+  </div>
+</div>
+
+</div><!-- /layout -->
+
+<div id="banner-wrap"><div class="banner-728">[ 728 × 90 Leaderboard Ad — Bottom of Page ]</div></div>
+</div><!-- /outer -->
+
+<div id="footer" style="max-width:980px;margin:0 auto;">
+  <div class="footer-cols">
+    <div class="footer-col"><h4>MySweepstakesHub.com</h4><p style="font-size:10.5px;line-height:1.6;color:#aac4e0;">Your trusted daily resource for free sweepstakes, contests, and instant win games. We list only legitimate, no-purchase-necessary sweepstakes. Updated every day.</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="category.html">New Sweepstakes</a><a href="ending-soon.html">Ending Soon</a><a href="category.html">Instant Win Games</a><a href="winners.html">Winners Circle</a><a href="submit.html">Submit a Sweepstakes</a></div>
+    <div class="footer-col"><h4>Community</h4><a href="forum.html">Community Forum</a><a href="tips.html">Sweeping Tips &amp; FAQ</a><a href="winners.html">Winners Stories</a><a href="login.html">Register Free</a></div>
+    <div class="footer-col"><h4>Info</h4><a href="#">About Us</a><a href="#">Advertise / Sponsor</a><a href="#">Contact Us</a><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a></div>
+  </div>
+  <div id="footer-bottom">
+    <span>© 2026 MySweepstakesHub.com — All Rights Reserved &nbsp;|&nbsp; <a href="#" style="color:#aac4e0;">Privacy</a> &nbsp;|&nbsp; <a href="#" style="color:#aac4e0;">Terms</a></span>
+    <span>Sweepstakes are for entertainment. Always read official rules. No purchase necessary to enter or win.</span>
+  </div>
+</div>
 </body>
 </html>

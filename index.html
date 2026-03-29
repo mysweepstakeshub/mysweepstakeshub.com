@@ -236,24 +236,31 @@ a { color: #00c; } a:visited { color: #609; } a:hover { color: #c00; text-decora
           </div>
         </div>
       </div>
+<div id="sweeps-container">Loading today's best prizes...</div>
 
-      <div class="sec-title" style="margin-top:10px;">Instant Win Games <a href="category.html">All instant win »</a></div>
-      <div class="iw">
-        <a href="detail.html"><span class="iw-name">Spin to Win Cash</span><span class="iw-prize">Up to $500</span></a>
-        <a href="detail.html"><span class="iw-name">Scratch-Off of the Day</span><span class="iw-prize">Up to $1,000</span></a>
-        <a href="detail.html"><span class="iw-name">Prize Box Reveal</span><span class="iw-prize">Gift Cards</span></a>
-        <a href="detail.html"><span class="iw-name">Lucky Clover Match</span><span class="iw-prize">Up to $250</span></a>
-        <a href="detail.html"><span class="iw-name">Daily Trivia Win</span><span class="iw-prize">Up to $100</span></a>
-        <a href="detail.html"><span class="iw-name">Dream Car Reveal</span><span class="iw-prize">Car or $30,000</span></a>
-      </div>
-
-      <div class="sec-title" style="margin-top:2px;">Community Forum — Latest Posts <a href="forum.html">All posts »</a></div>
-      <div class="listings" style="border-top:none;">
-        <a href="forum.html" class="forum-row"><span class="ftag f-win">WIN</span><span class="ftitle">I WON!! — $10,000 Best Buy Gift Card! Can't believe it!!</span><span class="fmeta">LuckyLinda_FL · 2hrs ago</span><span class="freplies">84 replies</span></a>
-        <a href="forum.html" class="forum-row"><span class="ftag f-hot">HOT</span><span class="ftitle">HGTV Dream Home — 8 days left, enter NOW (2x daily!)</span><span class="fmeta">SweepQueen · Today</span><span class="freplies">128 replies</span></a>
-        <a href="forum.html" class="forum-row"><span class="ftag f-tip">TIPS</span><span class="ftitle">My sweeping routine — how I won 6 things in 12 months</span><span class="fmeta">AlwaysEntering_Ann</span><span class="freplies">212 replies</span></a>
-        <a href="forum.html" class="forum-row"><span class="ftag f-new">NEW</span><span class="ftitle">New member here — already won a $50 gift card after 2 weeks!</span><span class="fmeta">NewbieSweeper_Nikki</span><span class="freplies">18 replies</span></a>
-      </div>
+<script>
+    // This script tells the website to read your scraper's file
+    fetch('sweepstakes_db.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('sweeps-container');
+            container.innerHTML = ''; // Clear the loading message
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.style = "border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; background: white;";
+                card.innerHTML = `
+                    <h3 style="margin-top: 0;">${item.title}</h3>
+                    <a href="${item.url}" target="_blank" style="background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Enter to Win!</a>
+                `;
+                container.appendChild(card);
+            });
+        })
+        .catch(err => {
+            console.error('Error loading sweeps:', err);
+            document.getElementById('sweeps-container').innerHTML = 'Check back soon for new prizes!';
+        });
+</script>      </div>
 
     </div>
   </div>

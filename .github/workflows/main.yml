@@ -1,0 +1,25 @@
+name: Daily Auto-Update
+on:
+  schedule:
+    - cron: '0 13 * * *' # Runs every day (approx 8am-9am US time)
+  workflow_dispatch: # This adds a "Run Now" button so you can test it
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Tools
+        run: pip install requests beautifulsoup4
+      - name: Run Scraper
+        run: python myscraper.py
+      - name: Save Changes
+        run: |
+          git config --global user.name "Sweepstakes-Bot"
+          git config --global user.email "bot@github.com"
+          git add .
+          git commit -m "Auto-update sweeps" || exit 0
+          git push

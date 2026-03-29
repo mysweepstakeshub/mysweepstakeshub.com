@@ -1,542 +1,517 @@
-!DOCTYPE HTML>
-<!--
-Copyright 2012 The Chromium Authors
-Use of this source code is governed by a BSD-style license that can be
-found in the LICENSE file.
--->
-<html dir="ltr" lang="en">
-  <head>
-    <title>Files</title>
-    <script src="chrome://file-manager/init_globals.js"></script>
-    <script type="module" src="chrome://file-manager/strings.m.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MySweepstakesHub.com - Free Sweepstakes, Contests and Giveaways</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Verdana, Arial, sans-serif;
+      font-size: 12px;
+      background: #fff;
+      color: #000;
+    }
+    a { color: #00008b; text-decoration: none; }
+    a:visited { color: #551a8b; }
+    a:hover { color: #cc0000; text-decoration: underline; }
 
-    <meta charset="utf-8" name="google" value="notranslate">
-    <meta charset="utf-8" name="color-scheme" content="light dark">
+    #header {
+      background: #fff;
+      padding: 8px 12px 6px;
+      border-bottom: 2px solid #0000aa;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    #logo-wrap { display: flex; flex-direction: column; }
+    #logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #4a86c5;
+      line-height: 1;
+    }
+    #logo span { color: #7aa7d8; }
+    #logo-sub {
+      font-size: 10px;
+      color: #666;
+      margin-top: 3px;
+    }
 
-    <link rel="stylesheet" href="chrome://resources/css/text_defaults.css">
-    <link rel="stylesheet" href="chrome://resources/chromeos/colors/cros_styles.css">
-    <link rel="stylesheet" href="chrome://theme/colors.css?sets=legacy,sys">
-    <link rel="stylesheet" href="chrome://theme/typography.css">
-    <link rel="stylesheet" href="foreground/css/list.css">
-    <link rel="stylesheet" href="foreground/css/table.css">
-    <link rel="stylesheet" href="foreground/css/menu.css">
-    <link rel="stylesheet" href="foreground/css/combobutton.css">
-    <link rel="stylesheet" href="foreground/css/file_manager.css">
-    <link rel="stylesheet" href="foreground/css/file_types.css">
-    <link rel="stylesheet" href="foreground/css/common.css">
+    #header-right { text-align: right; }
+    #header-date {
+      font-size: 11px;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    #search-form {
+      display: flex;
+      gap: 4px;
+      justify-content: flex-end;
+    }
+    #search-form input[type="text"] {
+      width: 180px;
+      padding: 2px 4px;
+      font-size: 11px;
+      border: 1px solid #aaa;
+    }
+    #search-form input[type="submit"] {
+      padding: 2px 10px;
+      font-size: 11px;
+      border: 1px solid #aaa;
+      background: #f0f0f0;
+      cursor: pointer;
+    }
 
-    <script type="module" src="chrome://file-manager/foreground/js/main.js"></script>
-  </head>
+    #navlinks {
+      background: #fff;
+      border-bottom: 1px solid #aaa;
+      padding: 3px 12px;
+      font-size: 11px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    #navlinks a {
+      padding: 2px 8px;
+      border-right: 1px solid #ccc;
+    }
+    #navlinks a:first-child { padding-left: 0; }
+    #navlinks a:last-child { border-right: none; }
+    #navlinks a.hi {
+      color: #cc0000;
+      font-weight: bold;
+    }
 
-  <body aria-label="Files" tabindex="-1" class="files-ng">
-    <commands>
-      <command id="cut" label="Cut"
-               shortcut="x|Ctrl">
-      <command id="copy" label="Copy"
-               shortcut="c|Ctrl">
-      <command id="paste" label="Paste"
-               shortcut="v|Ctrl">
-      <command id="paste-into-current-folder" label="Paste"
-               shortcut="v|Ctrl">
-      <command id="paste-into-folder"
-               label="Paste into folder">
-      <command id="get-info" label="Get info"
-               shortcut="Space">
-      <command id="dlp-restriction-details" label="Review admin policy">
-      <command id="rename" label="Rename"
-               shortcut="Enter|Ctrl">
-      <command id="move-to-trash" shortcut="Backspace|Alt Delete" label="Move to trash">
-      <command id="restore-from-trash" shortcut="Backspace|Alt Delete" label="Restore from trash">
-      <command id="delete" shortcut="Backspace|Alt|Shift Delete|Shift Backspace|Alt Delete ">
-      <command id="empty-trash" shortcut="Backspace|Alt|Ctrl|Shift Delete|Ctrl|Shift" shortcut="" label="Empty trash now">
-      <command id="refresh" label="Refresh"
-               shortcut="b|Ctrl" hidden>
-      <command id="pin-folder"
-               label="Add to sidebar">
-      <command id="unpin-folder"
-               label="Remove from sidebar">
-      <command id="new-folder" label="New folder"
-               shortcut="e|Ctrl">
-      <command id="new-window" label="New window"
-               shortcut="n|Ctrl">
-      <command id="show-providers-submenu" label="Services">
-      </command>
-      <!-- Note that actual shortcut Ctrl/Meta+A is handled in
-               ListSelectionController.handleKeyDown -->
-      <command id="select-all"
-               label="Select all"
-               shortcut="a|Ctrl">
-      <command id="drive-sync-settings"
-               label="Allow sync on metered networks">
-      <command id="search" shortcut="f|Ctrl /">
+    #wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8px 12px;
+    }
 
-      <!-- Shortcuts for toggling between volumes (CTRL-1..CTRL-9). -->
-      <command id="volume-switch-1" shortcut="1|Ctrl">
-      <command id="volume-switch-2" shortcut="2|Ctrl">
-      <command id="volume-switch-3" shortcut="3|Ctrl">
-      <command id="volume-switch-4" shortcut="4|Ctrl">
-      <command id="volume-switch-5" shortcut="5|Ctrl">
-      <command id="volume-switch-6" shortcut="6|Ctrl">
-      <command id="volume-switch-7" shortcut="7|Ctrl">
-      <command id="volume-switch-8" shortcut="8|Ctrl">
-      <command id="volume-switch-9" shortcut="9|Ctrl">
+    .freq-bar {
+      background: #eeeeff;
+      border: 1px solid #aaaacc;
+      padding: 4px 8px;
+      margin-bottom: 8px;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .freq-bar b { color: #000088; }
+    .freq-bar a { margin: 0 4px; }
+    .freq-bar a.on {
+      color: #cc0000;
+      font-weight: bold;
+      text-decoration: underline;
+    }
 
-      <command id="unmount" label="Eject device"
-               shortcut="E|Shift|Ctrl">
-      <command id="format" label="Format device">
-      <command id="erase-device" label="Format device">
-      <command id="configure" label="Configure">
+    #cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 180px;
+      gap: 20px;
+    }
 
-      <command id="files-settings" label="Files settings">
-      <command id="volume-help" label="Help">
-      <command id="send-feedback" label="Send feedback">
-      <command id="volume-storage">
-      <command id="drive-buy-more-space"
-               label="Buy more storage…">
-      <command id="drive-go-to-drive"
-               label="Go to drive.google.com…">
+    .sec-h {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 4px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid #aaa;
+    }
+    .sec-h a {
+      float: right;
+      font-size: 11px;
+      font-weight: normal;
+    }
 
-      <command id="toggle-pinned" label="Available offline">
-      <command id="toggle-hidden-files"
-               label="Show hidden files"
-               shortcut=".|Ctrl" hide-shortcut-text>
-      <command id="toggle-hidden-android-folders"
-               label="Show all Play folders">
+    .link-list,
+    .cat-links {
+      list-style: disc;
+      padding-left: 18px;
+      margin-bottom: 6px;
+    }
+    .link-list li,
+    .cat-links li {
+      padding: 2px 0;
+      font-size: 12px;
+    }
+    .link-list li span,
+    .cat-links li span {
+      color: #666;
+      font-size: 11px;
+    }
 
-      <command id="default-task">
-      <command id="open-with" label="Open with…">
-      <command id="invoke-sharesheet" label="Share">
-      <command id="toggle-holding-space">
-      <command id="go-to-file-location"
-               label="Go to file location">
-      <command id="zip-selection"
-               label="Zip">
-      <command id="extract-all"
-               label="Extract all">
-      <command id="set-wallpaper"
-               label="Set as wallpaper">
+    .sweep-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+    }
+    .sweep-table th,
+    .sweep-table td {
+      padding: 4px 3px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+      text-align: left;
+      font-size: 11px;
+    }
+    .sweep-table th {
+      color: #000;
+      background: #f8f8f8;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #bbb;
+    }
+    .sweep-title {
+      font-size: 12px;
+      font-weight: normal;
+    }
 
-      <command id="manage-in-drive"
-               label="Manage in Drive" disabled hidden>
-      <command id="manage-mirrorsync"
-               label="Manage synced folders" disabled hidden>
-      <command id="share-with-linux" label="Share with Linux" disabled hidden>
-      <command id="manage-linux-sharing" label="Manage Linux sharing" disabled hidden>
-      <command id="manage-linux-sharing-gear" label="Manage Linux sharing" disabled hidden>
-      <command id="share-with-plugin-vm" label="Share with Parallels Desktop" disabled hidden>
-      <command id="manage-plugin-vm-sharing" label="Manage Parallels Desktop sharing" disabled hidden>
-      <command id="manage-plugin-vm-sharing-gear" label="Manage Parallels Desktop sharing" disabled hidden>
-      <command id="share-with-bruschetta" label="Share with Managed Development Environment" disabled hidden>
-      <command id="manage-bruschetta-sharing" label="Manage Managed Development Environment sharing" disabled hidden>
-      <command id="manage-bruschetta-sharing-gear" label="Manage Managed Development Environment sharing" disabled hidden>
+    #right {
+      border-left: 1px solid #ccc;
+      padding-left: 14px;
+    }
+    .sb-box { margin-bottom: 14px; }
+    .sb-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #000;
+      border-bottom: 1px solid #aaa;
+      margin-bottom: 4px;
+      padding-bottom: 2px;
+    }
+    .sb-box a {
+      display: block;
+      font-size: 11px;
+      padding: 1px 0;
+    }
+    .sb-box p {
+      font-size: 11px;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .sb-box input[type="email"],
+    .sb-box select {
+      width: 100%;
+      padding: 2px 3px;
+      font-size: 11px;
+      border: 1px solid #aaa;
+      margin-bottom: 3px;
+    }
+    .sb-box input[type="submit"] {
+      padding: 2px 8px;
+      font-size: 11px;
+      border: 1px solid #aaa;
+      background: #f0f0f0;
+      cursor: pointer;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      padding: 1px 0;
+      border-bottom: 1px dotted #ddd;
+    }
+    .stat-row b { color: #00008b; }
 
-      <command id="zoom-in" shortcut="=|Ctrl">
-      <command id="zoom-out" shortcut="-|Ctrl">
-      <command id="zoom-reset" shortcut="0|Ctrl">
+    .coming-box {
+      background: #f5f8ff;
+      border: 1px solid #aabbdd;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .coming-box h3 {
+      font-size: 13px;
+      color: #000088;
+      margin-bottom: 6px;
+    }
+    .coming-box p {
+      font-size: 11px;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .coming-box a.btn {
+      background: #0000aa;
+      color: #fff;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-block;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      border: 1px solid #000077;
+      text-decoration: none;
+    }
+    .coming-box a.btn:hover {
+      background: #000077;
+      color: #fff;
+      text-decoration: none;
+    }
+    .coming-note {
+      background: #fffce0;
+      border: 1px solid #cccc00;
+      padding: 5px 8px;
+      font-size: 11px;
+      color: #555500;
+      margin-top: 8px;
+    }
 
-      <command id="sort-by-name" label="Name">
-      <command id="sort-by-size" label="Size">
-      <command id="sort-by-type" label="Type">
-      <command id="sort-by-date" label="Date modified">
+    #footer {
+      border-top: 2px solid #0000aa;
+      margin-top: 12px;
+      padding: 6px 12px;
+      font-size: 10px;
+      color: #555;
+      text-align: center;
+      line-height: 1.8;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-      <!-- Shortcuts to open inspector. (Ctrl+Shift+I/J/C/B) -->
-      <command id="inspect-normal" shortcut="I|Shift|Ctrl">
-      <command id="inspect-console" shortcut="J|Shift|Ctrl">
-      <command id="inspect-element" shortcut="C|Shift|Ctrl">
+    @media (max-width: 800px) {
+      #header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #header-right {
+        text-align: left;
+        width: 100%;
+      }
+      #search-form {
+        justify-content: flex-start;
+      }
+      #cols {
+        grid-template-columns: 1fr;
+      }
+      #right {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
 
-      <command id="open-gear-menu" shortcut="e|Alt f|Alt">
-      <command id="browser-back" shortcut="BrowserBack">
-      <command id="focus-action-bar" shortcut="a|Alt">
-    </commands>
-
-    <menus>
-      <cr-menu id="disabled-context-menu" class="chrome-menu files-menu">
-      </cr-menu>
-
-      <cr-menu id="file-context-menu" class="chrome-menu files-menu"
-               menu-item-selector="cr-menu-item,hr" showShortcuts
-               aria-label="Context">
-        <cr-menu-item id="default-task-menu-item" command="#default-task"
-                  visibleif="full-page" class="hide-on-toolbar" hidden></cr-menu-item>
-        <cr-menu-item command="#open-with"
-                  visibleif="full-page" class="hide-on-toolbar" sub-menu="#tasks-menu" hidden></cr-menu-item>
-        <cr-menu-item command="#invoke-sharesheet"
-                  visibleif="full-page" class="hide-on-toolbar">Share</cr-menu-item>
-        <cr-menu-item command="#go-to-file-location"
-                  visibleif="full-page" class="hide-on-toolbar" hidden></cr-menu-item>
-        <hr id="tasks-separator" visibleif="full-page" class="hide-on-toolbar" hidden>
-        <hr id="actions-separator" hidden>
-        <cr-menu-item command="#cut" visibleif="full-page"></cr-menu-item>
-        <cr-menu-item command="#copy" visibleif="full-page"></cr-menu-item>
-        <cr-menu-item command="#paste" visibleif="full-page"></cr-menu-item>
-        <cr-menu-item command="#paste-into-folder" visibleif="full-page"></cr-menu-item>
-        <hr visibleif="full-page">
-        <cr-menu-item command="#get-info"></cr-menu-item>
-        <cr-menu-item command="#dlp-restriction-details"></cr-menu-item>
-        <cr-menu-item command="#rename"></cr-menu-item>
-        <cr-menu-item command="#pin-folder"></cr-menu-item>
-        <cr-menu-item command="#move-to-trash"></cr-menu-item>
-        <cr-menu-item command="#delete" class="hide-on-toolbar">Delete</cr-menu-item>
-        <cr-menu-item command="#restore-from-trash"></cr-menu-item>
-        <cr-menu-item command="#zip-selection"></cr-menu-item>
-        <cr-menu-item command="#extract-all"></cr-menu-item>
-        <cr-menu-item command="#toggle-holding-space" visibleif="full-page">
-            </cr-menu-item>
-        <cr-menu-item command="#share-with-linux"></cr-menu-item>
-        <cr-menu-item command="#manage-linux-sharing"></cr-menu-item>
-        <cr-menu-item command="#share-with-plugin-vm"></cr-menu-item>
-        <cr-menu-item command="#manage-plugin-vm-sharing"></cr-menu-item>
-        <cr-menu-item command="#share-with-bruschetta"></cr-menu-item>
-        <cr-menu-item command="#manage-bruschetta-sharing"></cr-menu-item>
-        <cr-menu-item command="#set-wallpaper"></cr-menu-item>
-        <hr visibleif="saveas-file full-page" class="hide-on-toolbar">
-        <cr-menu-item command="#new-folder" visibleif="saveas-file full-page"
-                  class="hide-on-toolbar"></cr-menu-item>
-      </cr-menu>
-
-      <cr-menu id="roots-context-menu" class="chrome-menu files-menu"
-               menu-item-selector="cr-menu-item"
-               aria-label="Context">
-        <cr-menu-item command="#configure"></cr-menu-item>
-        <cr-menu-item command="#unmount"></cr-menu-item>
-        <cr-menu-item command="#format"></cr-menu-item>
-        <cr-menu-item command="#erase-device"></cr-menu-item>
-        <cr-menu-item command="#rename"></cr-menu-item>
-        <cr-menu-item command="#unpin-folder"></cr-menu-item>
-        <cr-menu-item command="#share-with-linux"></cr-menu-item>
-        <cr-menu-item command="#manage-linux-sharing"></cr-menu-item>
-        <cr-menu-item command="#share-with-plugin-vm"></cr-menu-item>
-        <cr-menu-item command="#manage-plugin-vm-sharing"></cr-menu-item>
-        <cr-menu-item command="#share-with-bruschetta"></cr-menu-item>
-        <cr-menu-item command="#manage-bruschetta-sharing"></cr-menu-item>
-      </cr-menu>
-
-      <cr-menu id="directory-tree-context-menu" class="chrome-menu files-menu"
-               menu-item-selector="cr-menu-item,hr"
-               aria-label="Context">
-        <cr-menu-item command="#cut" visibleif="full-page"></cr-menu-item>
-        <cr-menu-item command="#copy" visibleif="full-page"></cr-menu-item>
-        <cr-menu-item command="#paste-into-folder" visibleif="full-page"></cr-menu-item>
-        <cr-menu-item command="#share-with-linux"></cr-menu-item>
-        <cr-menu-item command="#manage-linux-sharing"></cr-menu-item>
-        <cr-menu-item command="#share-with-plugin-vm"></cr-menu-item>
-        <cr-menu-item command="#manage-plugin-vm-sharing"></cr-menu-item>
-        <cr-menu-item command="#share-with-bruschetta"></cr-menu-item>
-        <cr-menu-item command="#manage-bruschetta-sharing"></cr-menu-item>
-        <hr visibleif="full-page">
-        <cr-menu-item command="#format"></cr-menu-item>
-        <cr-menu-item command="#rename"></cr-menu-item>
-        <cr-menu-item command="#pin-folder"></cr-menu-item>
-        <cr-menu-item command="#move-to-trash"></cr-menu-item>
-        <cr-menu-item command="#delete">Delete</cr-menu-item>
-        <cr-menu-item command="#empty-trash"></cr-menu-item>
-        <hr visibleif="saveas-file full-page">
-        <cr-menu-item command="#new-folder" visibleif="saveas-file full-page"></cr-menu-item>
-      </cr-menu>
-
-      <cr-menu id="sort-menu" class="chrome-menu files-menu"
-               aria-label="Sort options"
-               menu-item-selector="cr-menu-item">
-        <cr-menu-item id="sort-menu-sort-by-name"
-                      command="#sort-by-name"></cr-menu-item>
-        <cr-menu-item id="sort-menu-sort-by-size"
-                      command="#sort-by-size"></cr-menu-item>
-        <cr-menu-item id="sort-menu-sort-by-type"
-                      command="#sort-by-type"></cr-menu-item>
-        <cr-menu-item id="sort-menu-sort-by-date"
-                      command="#sort-by-date"></cr-menu-item>
-      </cr-menu>
-
-      <cr-menu id="gear-menu" class="chrome-menu files-menu" showShortcuts
-               aria-label="More options"
-               menu-item-selector="cr-menu-item, hr">
-        <cr-menu-item command="#paste-into-current-folder" visibleif="full-page"></cr-menu-item>
-        <hr visibleif="full-page">
-        <cr-menu-item id="gear-menu-newwindow" command="#new-window"></cr-menu-item>
-        <cr-menu-item id="gear-menu-newfolder" command="#new-folder"></cr-menu-item>
-        <hr>
-        <cr-menu-item command="#configure"></cr-menu-item>
-        <cr-menu-item id="gear-menu-select-all"
-                      command="#select-all"></cr-menu-item>
-        <cr-menu-item id="gear-menu-toggle-hidden-files"
-                      command="#toggle-hidden-files"></cr-menu-item>
-        <cr-menu-item id="gear-menu-toggle-hidden-android-folders"
-                      command="#toggle-hidden-android-folders"></cr-menu-item>
-        <cr-menu-item id="gear-menu-manage-linux-sharing"
-                      command="#manage-linux-sharing-gear"></cr-menu-item>
-        <cr-menu-item id="gear-menu-manage-plugin-vm-sharing"
-                      command="#manage-plugin-vm-sharing-gear"></cr-menu-item>
-        <cr-menu-item id="gear-menu-drive-sync-settings"
-                      command="#drive-sync-settings"></cr-menu-item>
-        <cr-menu-item id="gear-menu-manage-mirrorsync"
-                      command="#manage-mirrorsync"></cr-menu-item>
-        <hr id="help-separator">
-        <cr-menu-item id="gear-menu-files-settings"
-                      command="#files-settings"></cr-menu-item>
-        <cr-menu-item id="gear-menu-drive-buy-more-space"
-                      command="#drive-buy-more-space"></cr-menu-item>
-        <cr-menu-item id="gear-menu-drive-go-to-drive"
-                      command="#drive-go-to-drive"></cr-menu-item>
-        <cr-menu-item id="gear-menu-volume-help"
-                      command="#volume-help"></cr-menu-item>
-        <cr-menu-item id="gear-menu-send-feedback"
-                      command="#send-feedback"></cr-menu-item>
-        <hr id="volume-space-info-separator">
-        <cr-menu-item id="gear-menu-providers" command="#show-providers-submenu"
-            sub-menu="#providers-menu"></cr-menu-item>
-        <cr-menu-item id="gear-menu-format" command="#format"></cr-menu-item>
-        <cr-menu-item id="gear-menu-erase" command="#erase-device"></cr-menu-item>
-        <cr-menu-item id="volume-space-info" command="#volume-storage">
-          <div id="volume-space-info-contents">
-            <span id="volume-space-info-label"></span>
-            <div class="progress-bar" aria-hidden="true">
-              <div class="progress-track" id="volume-space-info-bar"></div>
-            </div>
-            <div id="volume-space-info-warning" class="menu-warning"></div>
-          </div>
-        </cr-menu-item>
-      </cr-menu>
-
-      <cr-menu id="tasks-menu" class="chrome-menu files-menu has-icon-start"
-               aria-label="Open with…"
-               menu-item-selector="cr-menu-item, hr">
-      </cr-menu>
-
-      <cr-menu id="providers-menu"
-               class="chrome-menu files-menu has-icon-start"
-               menu-item-selector="cr-menu-item, hr">
-      </cr-menu>
-
-      <cr-menu id="text-context-menu" class="chrome-menu files-menu" showShortcuts
-               menu-item-selector="cr-menu-item"
-               aria-label="Context">
-        <cr-menu-item command="#cut"></cr-menu-item>
-        <cr-menu-item command="#copy"></cr-menu-item>
-        <cr-menu-item command="#paste"></cr-menu-item>
-        <cr-menu-item command="#delete">Delete</cr-menu-item>
-      </cr-menu>
-
-      </cr-menu>
-
-      <xf-cloud-panel></xf-cloud-panel>
-    </menus>
-
-    <div class="dialog-container">
-      <xf-splitter class="splitter" id="navigation-list-splitter">
-        <div class="dialog-navigation-list" slot="splitter-before">
-          <div class="dialog-navigation-list-contents" role="navigation">
-          </div>
-        </div>
-        <div class="dialog-main" slot="splitter-after">
-          <div class="dialog-header files-ng" role="contentinfo">
-            <div id="location-breadcrumbs" class="breadcrumbs"></div>
-            <div id="read-only-indicator" role="tooltip" aria-label="The contents of this folder are read-only. Some activities are not supported." hidden
-                has-tooltip show-card-tooltip>
-              <span id="read-only-icon"></span>
-              <span id="read-only-label">Read-only</span>
-            </div>
-            <div id="cancel-selection-button-wrapper">
-              <cr-button id="cancel-selection-button" class="menu-button" tabindex="0"
-                    aria-label="Cancel selection" has-tooltip>
-                <span class="icon-arrow-back"></span>
-                <span id="cancel-selection-label">Cancel selection</span>
-              </cr-button>
-            </div>
-            <div id="files-selected-label"></div>
-            <div class="spacer"></div>
-            <div id="action-bar">
-              <div id="pinned-toggle-wrapper" hidden>
-                <span id="pinned-toggle-label">Available offline</span>
-                <xf-jellybean>
-                  <cros-switch
-                      slot="jelly"
-                      id="pinned-toggle-jelly"
-                      command="#toggle-pinned"
-                      aria-label="Available offline">
-                  </cros-switch>
-                  <cr-toggle
-                      slot="old"
-                      id="pinned-toggle"
-                      command="#toggle-pinned"
-                      aria-labelledby="pinned-toggle-label">
-                  </cr-toggle>
-                </xf-jellybean>
-              </div>
-              <cr-button id="tasks" class="combobutton menu-button" menu="#tasks-menu"
-                      tabindex="0" hidden
-                      aria-label="Open">
-              </cr-button>
-              <cr-button id="sharesheet-button" class="icon-button menu-button" tabindex="0" hidden
-                      aria-label="Share"
-                      visibleif="full-page"
-                      command="#invoke-sharesheet"
-                      has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <cr-button id="move-to-trash-button" class="icon-button menu-button" tabindex="0" hidden
-                      aria-label="Move to trash"
-                      visibleif="full-page"
-                      has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <cr-button id="delete-button" class="icon-button menu-button" tabindex="0" hidden
-                      aria-label="Delete"
-                      visibleif="full-page"
-                      has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <cr-button id="restore-from-trash-button" class="icon-button menu-button" tabindex="0" hidden
-                      aria-label="Restore from trash"
-                      visibleif="full-page"
-                      has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <div id="search-wrapper">
-                <cr-button id="search-button" class="icon-button menu-button" tabindex="0"
-                        aria-label="Search"
-                        has-tooltip>
-                  <div class="icon"></div>
-                </cr-button>
-                <div id="search-box">
-                  <cr-input type="search" disabled
-                      aria-label="Search" placeholder="Search">
-                    <cr-button class="clear" slot="suffix" tabindex="0"
-                      aria-label="Clear" has-tooltip>
-                      <div class="icon"></div>
-                    </cr-button>
-                  </cr-input>
-                </div>
-              </div>
-              <cr-button id="cloud-button" class="icon-button menu-button"
-                      hidden
-                      tabindex="0"
-                      aria-haspopup="true"
-                      aria-label="Cloud Placeholder"
-                      has-tooltip>
-                <xf-icon type="cloud" size="small" slot="prefix-icon"></xf-icon>
-                <xf-icon type="blank" slot="suffix-icon"></xf-icon>
-              </cr-button>
-              <cr-button id="refresh-button" class="icon-button menu-button" tabindex="0" hidden
-                      aria-label="Refresh"
-                      command="#refresh" has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <cr-button id="view-button" class="icon-button menu-button" tabindex="0"
-                      aria-label="Switch to thumbnail view"
-                      has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <cr-button id="sort-button" class="icon-button menu-button" tabindex="0"
-                      menu="#sort-menu"
-                      aria-haspopup="true"
-                      aria-label="Sort options"
-                      aria-activedescendant="sort-menu"
-                      has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <cr-button id="gear-button" class="icon-button menu-button" tabindex="0"
-                      menu="#gear-menu"
-                      aria-label="More options"
-                      aria-haspopup="true"
-                      aria-activedescendant="gear-menu"
-                      has-tooltip>
-                <div class="icon"></div>
-              </cr-button>
-              <cr-button id="selection-menu-button" class="icon-button menu-button" tabindex="0"
-                      menu="#file-context-menu"
-                      aria-label="More options"
-                      aria-activedescendant="file-context-menu"
-                      has-tooltip hidden>
-                <div class="icon"></div>
-              </cr-button>
-            </div>
-          </div>
-          <div id="search-options-container"></div>
-          <div class="dialog-body">
-            <div id="a11y-msg" aria-live="polite" style="display: inline-block; position: fixed; clip: rect(0, 0, 0, 0);"></div>
-            <div class="main-panel">
-              <div class="filelist-panel">
-                <div id="banners"></div>
-                <div id="file-type-filter-container" hidden></div>
-                <div id="list-container" role="main">
-                  <div id="more-actions-info" hidden>More options available on the action bar. Press Alt + A to focus the action bar.</div>
-                  <div id="sort-column-asc" hidden>Click to sort the column in ascending order.</div>
-                  <div id="sort-column-desc" hidden>Click to sort the column in descending order.</div>
-                  <div id="external-link-label" hidden>External link</div>
-                  <div id="empty-folder" hidden>
-                    <div class="image">
-                      <svg>
-                        <use></use>
-                      </svg>
-                    </div>
-                    <span class="label"></span>
-                  </div>
-                  <div class="detail-table" id="detail-table" tabindex="0">
-                  </div>
-                  <grid class="thumbnail-grid" tabindex="0" hidden></grid>
-                  <files-spinner class="loading-indicator" hidden></files-spinner>
-                  <div class="drive-welcome page"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="path-display-container"></div>
-          <div class="files-feedback-panels" visibleif="full-page">
-            <xf-display-panel id="progress-panel" role="complementary"
-                              aria-label="Files feedback window">
-            </xf-display-panel>
-          </div>
-        </div>
-      </xf-splitter>
+  <div id="header">
+    <div id="logo-wrap">
+      <a href="index.html" id="logo">My<span>Sweepstakes</span>Hub.com</a>
+      <div id="logo-sub">Your source for free sweepstakes, contests &amp; giveaways — updated daily</div>
     </div>
-    <div class="dialog-footer progressable" tabindex="-1"
-         visibleif="saveas-file open-file open-multi-file folder upload-folder">
-      <div class="left">
-        <!-- TODO(fukino): Turn this button into paper-button when the CommandButton supports paper-button. -->
-        <button id="new-folder-button" class="primary"
-                visibleif="saveas-file folder" tabindex="0" disabled>
-          <div class="hover-layer"></div>
-          <paper-ripple fit></paper-ripple>
-          <span>New folder</span>
-        </button>
-        <select class="file-type select" hidden tabindex="0"></select>
-        <div class="file-type select body2-primary" role="combobox"
-          aria-haspopup="listbox"
-          hidden tabindex="0">
-          <span></span>
-          <div class="options" id="file-type-options" role="listbox"></div>
-        </div>
-        <div id="filename-input-box" visibleif="saveas-file">
-          <cr-input id="filename-input-textbox" class="entry-name"
-              type="text" spellcheck="false"
-              placeholder="File name"></cr-input>
-        </div>
-        <div class="preparing-label">Preparing</div>
-        <div class="progress-bar"><div class="progress-track"></div></div>
-      </div>
-      <div class="right buttonbar">
-        <button id="cancel-button" class="cancel secondary" tabindex="0">
-          <div class="hover-layer"></div>
-          <paper-ripple fit></paper-ripple>
-          <span>Cancel</span>
-        </button>
-        <button id="ok-button" class="ok primary" disabled tabindex="0">
-          <div class="hover-layer"></div>
-          <paper-ripple fit></paper-ripple>
-          <span></span>
-        </button>
-      </div>
+    <div id="header-right">
+      <div id="header-date"></div>
+      <form id="search-form" onsubmit="return false;">
+        <input type="text" placeholder="Search sweepstakes..." />
+        <input type="submit" value="Search" />
+      </form>
     </div>
-    <div id="drag-container"></div>
-    <files-tooltip></files-tooltip>
-    <files-quick-view tabindex="-1" id="quick-view"
-                      no-playback-text="No playback available" no-preview-text="No preview available">
-    </files-quick-view>
-    <iframe id="command-dispatcher" hidden aria-hidden="true"></iframe>
-    <div id="drop-label"></div>
-    <files-toast id="toast"></files-toast>
-    <files-format-dialog id="format-dialog"></files-format-dialog>
-    <xf-bulk-pinning-dialog></xf-bulk-pinning-dialog>
-    <xf-nudge></xf-nudge>
-  </body>
+  </div>
+
+  <div id="navlinks">
+    <a href="index.html" class="hi">Home</a>
+    <a href="daily.html">Daily Entry</a>
+    <a href="instant-win.html">Instant Win</a>
+    <a href="ending-soon.html">Ending Soon</a>
+    <a href="cash.html">Cash</a>
+    <a href="travel.html">Travel</a>
+    <a href="electronics.html">Electronics</a>
+    <a href="submit.html">Submit</a>
+    <a href="tracker.html">MySweeps</a>
+    <a href="forum.html">Forum</a>
+    <a href="winners.html">Winners</a>
+  </div>
+
+  <div id="wrap">
+
+    <div class="freq-bar">
+      <b>Browse by frequency:</b>
+      <a href="index.html" class="on">All</a>
+      <a href="daily.html">Daily Entry</a>
+      <a href="single-entry.html">Single Entry</a>
+      <a href="weekly-entry.html">Weekly Entry</a>
+      <a href="instant-win.html">Instant Win</a>
+      &nbsp;&nbsp;
+      <b>Browse by prize:</b>
+      <a href="cash.html">Cash</a>
+      <a href="cars.html">Cars</a>
+      <a href="travel.html">Travel</a>
+      <a href="electronics.html">Electronics</a>
+      <a href="gift-cards.html">Gift Cards</a>
+    </div>
+
+    <div id="cols">
+
+      <div>
+        <div class="sec-h">New Sweepstakes <a href="#">more</a></div>
+        <table class="sweep-table">
+          <thead>
+            <tr>
+              <th>Sweepstakes</th>
+              <th>Ends</th>
+              <th>Entry</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sweep-title"><a href="#">Win $1,000 Cash Giveaway</a></td>
+              <td>Apr 30</td>
+              <td><a href="#">Enter</a></td>
+            </tr>
+            <tr>
+              <td class="sweep-title"><a href="#">$500 Visa Gift Card Sweepstakes</a></td>
+              <td>May 5</td>
+              <td><a href="#">Enter</a></td>
+            </tr>
+            <tr>
+              <td class="sweep-title"><a href="#">Amazon $100 Gift Card Giveaway</a></td>
+              <td>Apr 25</td>
+              <td><a href="#">Enter</a></td>
+            </tr>
+            <tr>
+              <td class="sweep-title"><a href="#">Free Vacation for Two</a></td>
+              <td>May 10</td>
+              <td><a href="#">Enter</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="sec-h">Expires Soon <a href="ending-soon.html">more</a></div>
+        <table class="sweep-table">
+          <thead>
+            <tr>
+              <th>Sweepstakes</th>
+              <th>Ends</th>
+              <th>Entry</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sweep-title"><a href="#">Win a New Laptop</a></td>
+              <td>Today</td>
+              <td><a href="#">Enter</a></td>
+            </tr>
+            <tr>
+              <td class="sweep-title"><a href="#">$250 Grocery Gift Card</a></td>
+              <td>Tomorrow</td>
+              <td><a href="#">Enter</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="sec-h">Community Forum <a href="forum.html">more</a></div>
+        <ul class="link-list">
+          <li><a href="forum.html">Welcome to MySweepstakesHub.com! Introduce yourself here</a></li>
+          <li><a href="forum.html">New sweepers: tips for getting started</a></li>
+          <li><a href="forum.html">Share new sweepstakes with the community</a></li>
+          <li><a href="tracker.html">How to use the MySweeps tracker</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sec-h">Frequency</div>
+        <ul class="cat-links">
+          <li><a href="daily.html">Daily Entry</a> <span>(24)</span></li>
+          <li><a href="single-entry.html">Single Entry</a> <span>(12)</span></li>
+          <li><a href="weekly-entry.html">Weekly Entry</a> <span>(8)</span></li>
+          <li><a href="monthly-entry.html">Monthly Entry</a> <span>(5)</span></li>
+          <li><a href="instant-win.html">Instant Win</a> <span>(11)</span></li>
+        </ul>
+
+        <div class="sec-h" style="margin-top:14px;">Prizes</div>
+        <ul class="cat-links">
+          <li><a href="cash.html">Cash</a> <span>(14)</span></li>
+          <li><a href="cars.html">Cars &amp; Trucks</a> <span>(2)</span></li>
+          <li><a href="travel.html">Travel &amp; Vacations</a> <span>(7)</span></li>
+          <li><a href="electronics.html">Computers &amp; Electronics</a> <span>(10)</span></li>
+          <li><a href="gift-cards.html">Gift Cards</a> <span>(9)</span></li>
+          <li><a href="home.html">For the Home</a> <span>(6)</span></li>
+          <li><a href="food.html">Food &amp; Drink</a> <span>(4)</span></li>
+        </ul>
+
+        <div class="sec-h" style="margin-top:14px;">Coming Soon</div>
+        <div class="coming-box">
+          <h3>Real sweeps + tracker tools coming next</h3>
+          <p>
+            This layout is ready for your daily sweep listings, categories,
+            entry links, and a MySweeps tracking tool.
+          </p>
+          <a href="submit.html" class="btn">Submit a Sweepstakes</a>
+          <a href="tracker.html" class="btn">My Free Tracker</a>
+          <div class="coming-note">
+            Add your scraper later to auto-fill these sections.
+          </div>
+        </div>
+      </div>
+
+      <div id="right">
+        <div class="sb-box">
+          <div class="sb-title">Site Stats</div>
+          <div class="stat-row"><span>Sweepstakes:</span><b>49</b></div>
+          <div class="stat-row"><span>Members:</span><b>Coming soon</b></div>
+          <div class="stat-row"><span>Updated:</span><b>Daily</b></div>
+        </div>
+
+        <div class="sb-box">
+          <div class="sb-title">Free Email Alert</div>
+          <p>Get new sweepstakes in your inbox every morning.</p>
+          <input type="email" placeholder="your@email.com" />
+          <input type="submit" value="Subscribe Free" />
+        </div>
+
+        <div class="sb-box">
+          <div class="sb-title">Browse by State</div>
+          <select>
+            <option>-- Select State --</option>
+            <option>Arizona</option>
+            <option>California</option>
+            <option>Florida</option>
+            <option>New York</option>
+            <option>Texas</option>
+          </select>
+          <input type="submit" value="Go" />
+        </div>
+
+        <div class="sb-box">
+          <div class="sb-title">My Sweep Tracker</div>
+          <p>Track entries, daily streaks and wins — free.</p>
+          <a href="tracker.html">Open My Tracker &raquo;</a>
+        </div>
+
+        <div class="sb-box">
+          <div class="sb-title">Quick Links</div>
+          <a href="submit.html">Submit a Sweepstakes</a>
+          <a href="tips.html">Tips &amp; FAQ</a>
+          <a href="forum.html">Community Forum</a>
+          <a href="winners.html">Winners Circle</a>
+          <a href="tracker.html">MySweeps Tracker</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="footer">
+    <a href="index.html">Home</a> |
+    <a href="daily.html">Daily Entry</a> |
+    <a href="instant-win.html">Instant Win</a> |
+    <a href="ending-soon.html">Ending Soon</a> |
+    <a href="tracker.html">MySweeps</a> |
+    <a href="forum.html">Forum</a> |
+    <a href="submit.html">Submit</a>
+    <br><br>
+    &copy; 2026 MySweepstakesHub.com — All Rights Reserved —
+    No purchase necessary to enter or win any sweepstakes listed on this site.
+    Always read official rules before entering.
+  </div>
+
+  <script>
+    const d = new Date();
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('header-date').textContent =
+      days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  </script>
+
+</body>
 </html>

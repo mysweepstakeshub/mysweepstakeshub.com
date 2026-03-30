@@ -7,12 +7,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:Verdana,Arial,sans-serif; font-size:12px; background:#fff; color:#000; }
+ body {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12px;
+    background: #fff;
+    max-width: 1100px; /* This keeps the site from being too wide */
+    margin: 0 auto;    /* This centers the site on your screen */
+    padding: 10px;     /* Gives a little space on the edges */
+}
 a { color:#00008b; text-decoration:none; }
 a:visited { color:#551a8b; }
 a:hover { color:#cc0000; text-decoration:underline; }
+#left {
+    float: left;
+    width: 70%;
+    padding-right: 20px;
+}
 
-/* HEADER */
+#right {
+    float: right;
+    width: 25%;
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
+
+section::after {
+    content: "";
+    display: table;
+    clear: both;
+}/* HEADER */
 #header { background:#fff; padding:8px 12px 6px; border-bottom:2px solid #0000aa; display:flex; align-items:flex-start; justify-content:space-between; }
 #logo { font-family:'Dancing Script', cursive; font-size:38px; font-weight:700; color:#4488cc; text-decoration:none; display:block; line-height:1; }
 #logo span { color:#6699dd; }
@@ -108,7 +131,18 @@ a:hover { color:#cc0000; text-decoration:underline; }
 .cat-links li span { color:#666; font-size:11px; }
 
 /* RIGHT SIDEBAR */
-#right { border-left:1px solid #ccc; padding-left:14px; }
+#left {
+    float: left;
+    width: 70%;
+    padding-right: 20px;
+}
+
+#right {
+    float: right;
+    width: 25%;
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
 .sb-box { margin-bottom:14px; }
 .sb-title { font-size:12px; font-weight:bold; color:#000; border-bottom:1px solid #aaa; margin-bottom:4px; padding-bottom:2px; }
 .sb-box a { display:block; font-size:11px; color:#00008b; padding:1px 0; }
@@ -119,8 +153,11 @@ a:hover { color:#cc0000; text-decoration:underline; }
 .sb-box select { width:100%; padding:2px; font-size:11px; border:1px solid #aaa; margin-bottom:3px; font-family:Verdana,Arial,sans-serif; }
 .stat-row { display:flex; justify-content:space-between; font-size:11px; padding:1px 0; border-bottom:1px dotted #ddd; }
 .stat-row b { color:#00008b; }
-
-/* COMING SOON */
+section::after {
+    content: "";
+    display: table;
+    clear: both;
+}/* COMING SOON */
 .coming-box { background:#f5f8ff; border:1px solid #aabbdd; padding:12px; margin-bottom:10px; }
 .coming-box h3 { font-size:13px; color:#000088; margin-bottom:6px; }
 .coming-box p { font-size:11px; color:#444; line-height:1.7; margin-bottom:8px; }

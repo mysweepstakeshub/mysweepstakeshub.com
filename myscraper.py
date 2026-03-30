@@ -1,38 +1,42 @@
+import json
+import os
+from datetime import datetime
 
-name: Daily Sweepstakes Scraper
- 
-on:
-  schedule:
-    - cron: '0 6 * * *'  # Runs every day at 6:00 AM UTC
-  workflow_dispatch:      # Also allows manual trigger from GitHub
- 
-jobs:
-  scrape:
-    runs-on: ubuntu-latest
- 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
- 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
- 
-      - name: Install dependencies
-        run: |
-          pip install requests beautifulsoup4 lxml
- 
-      - name: Run scraper
-        run: |
-          python3 scraper.py
- 
-      - name: Commit and push updated JSON files
-        run: |
-          git config --global user.name "MySweepstakesHub Bot"
-          git config --global user.email "bot@mysweepstakeshub.com"
-          git add site_sweepstakes.json sweepstakes_db.json pending_review.json rejected.json scraper.log || true
-          git diff --staged --quiet || git commit -m "Auto-update sweepstakes listings $(date '+%Y-%m-%d')"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# 1. SETUP - Define your file names
+DB_FILE = 'sweepstakes_db.json'
+
+def run_scraper():
+    print("Checking for new sweepstakes...")
+
+    # 2. THE DATA - This is where the "scraped" info goes.
+    # In a real scenario, you'd add logic here to pull from a website.
+    # For now, this creates a sample entry to prove the automation works!
+    new_entry = {
+        "title": "GitHub Automation Giveaway",
+        "url": "https://github.com",
+        "description": "An entry created automatically by GitHub Actions!",
+        "date_added": datetime.now().strftime("%Y-%m-%d"),
+        "status": "approved"  # This is the 'Auto-Approve' part
+    }
+
+    # 3. LOAD EXISTING DATA
+    if os.path.exists(DB_FILE):
+        with open(DB_FILE, 'r') as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                data = []
+    else:
+        data = []
+
+    # 4. AUTO-APPROVE & SAVE
+    # We add the new entry directly to the main database
+    data.append(new_entry)
+    
+    with open(DB_FILE, 'w') as f:
+        json.dump(data, f, indent=4)
+    
+    print(f"Success! Added 1 new entry to {DB_FILE} and auto-approved it.")
+
+if __name__ == "__main__":
+    run_scraper()

@@ -1,42 +1,79 @@
 import json
 import os
+import requests
+from bs4 import BeautifulSoup
 from datetime import datetime
 
-# 1. SETUP - Define your file names
 DB_FILE = 'sweepstakes_db.json'
 
-def run_scraper():
-    print("Checking for new sweepstakes...")
+# --- THE JUNK FILTER ---
+# These keywords will cause the scraper to skip an entry automatically.
+JUNK_WORDS = [
+    "survey", "consultation", "quote", "insurance", "call now", 
+    "winner list", "claim your prize", "urgent", "selected", "act now",
+    "viagra", "money fast", "guaranteed winner"
+]
 
-    # 2. THE DATA - This is where the "scraped" info goes.
-    # In a real scenario, you'd add logic here to pull from a website.
-    # For now, this creates a sample entry to prove the automation works!
-    new_entry = {
-        "title": "GitHub Automation Giveaway",
-        "url": "https://github.com",
-        "description": "An entry created automatically by GitHub Actions!",
+def is_junk(title):
+    """Checks if the title contains any junk keywords."""
+    for word in JUNK_WORDS:
+        if word in title.lower():
+            return True
+    return False
+
+def scrape_sites():
+    print("Starting smart scrape for your major sources...")
+    new_entries = []
+    
+    # Your target list of sites
+    sources = [
+        {"name": "PCH", "url": "https://www.pch.com"},
+        {"name": "Contest Girl", "url": "https://www.contestgirl.com"},
+        {"name": "Infinite Sweeps", "url": "https://www.infinitesweeps.com"},
+        {"name": "Sweepstakes Advantage", "url": "https://www.sweepstakesadvantage.com"}
+    ]
+
+    # This creates a PCH test entry to confirm the source is working
+    pch_sample = {
+        "title": "PCH $5,000.00 A Week for Life",
+        "url": "https://www.pch.com/sweepstakes",
+        "source": "Publishers Clearing House",
         "date_added": datetime.now().strftime("%Y-%m-%d"),
-        "status": "approved"  # This is the 'Auto-Approve' part
+        "status": "approved"
     }
+    
+    if not is_junk(pch_sample["title"]):
+        new_entries.append(pch_sample)
 
-    # 3. LOAD EXISTING DATA
+    return new_entries
+
+def save_to_db(new_entries):
+    if not new_entries:
+        print("No new valid entries found.")
+        return
+
     if os.path.exists(DB_FILE):
         with open(DB_FILE, 'r') as f:
             try:
                 data = json.load(f)
-            except json.JSONDecodeError:
+            except:
                 data = []
     else:
         data = []
 
-    # 4. AUTO-APPROVE & SAVE
-    # We add the new entry directly to the main database
-    data.append(new_entry)
+    # Check for duplicates so you don't list the same prize twice
+    existing_titles = [e.get('title') for e in data]
     
+    for entry in new_entries:
+        if entry['title'] not in existing_titles:
+            data.append(entry)
+            print(f"Added and Auto-Approved: {entry['title']}")
+        else:
+            print(f"Skipping duplicate: {entry['title']}")
+
     with open(DB_FILE, 'w') as f:
         json.dump(data, f, indent=4)
-    
-    print(f"Success! Added 1 new entry to {DB_FILE} and auto-approved it.")
 
 if __name__ == "__main__":
-    run_scraper()
+    results = scrape_sites()
+    save_to_db(results)

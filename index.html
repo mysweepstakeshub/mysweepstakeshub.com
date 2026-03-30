@@ -342,8 +342,33 @@ a:hover { color:#cc0000; text-decoration:underline; }
   No purchase necessary to enter or win any sweepstakes listed on this site.
   Always read official rules before entering.
 </div>
+<!-- THE SWEEPSTAKES BUCKET -->
+<div id="sweeps-list" style="max-width: 800px; margin: 30px auto; padding: 15px; border-top: 2px solid #c00000; background: #f9f9f9; border-radius: 10px;">
+  <p style="text-align: center; font-weight: bold; color: #333;">🎰 Loading Today's Latest Sweepstakes...</p>
+</div>
 
 <script>
+  // This script grabs the data from your automated scraper
+  fetch('sweeps.json')
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('sweeps-list');
+      if (!data || data.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>New prizes coming soon! Check back in an hour.</p>";
+        return;
+      }
+      // This builds the list of prizes for your visitors
+      container.innerHTML = data.map(item => `
+        <div style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 12px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+          <h3 style="margin-top: 0; color: #333; font-family: sans-serif;">${item.title}</h3>
+          <a href="${item.url}" target="_blank" style="background: #28a745; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block; font-size: 1.1em; transition: 0.3s;">ENTER TO WIN</a>
+        </div>
+      `).join('');
+    })
+    .catch(err => {
+      document.getElementById('sweeps-list').innerHTML = "<p style='text-align:center;'>Updating our prize vault... Please refresh in 60 seconds!</p>";
+    });
+</script><script>
 // Show current date like original site
 const d = new Date();
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];

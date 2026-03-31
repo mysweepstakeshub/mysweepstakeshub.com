@@ -1,234 +1,164 @@
+Here is the complete, final code for your index.html.
+
+I have combined your classic professional layout with the automated logic that reads from your sweepstakes_db.json. I also added the specific links for Cash, Cars, Travel, and Electronics so they actually work with your category.html file.
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cash & Money Sweepstakes - MySweepstakesHub.com</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Verdana, Arial, sans-serif; font-size: 12px; background: #fff; color: #000; }
-a { color: #00c; } a:visited { color: #609; } a:hover { color: #c00; text-decoration: underline; }
-#header { background: #003580; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-#logo { color: #ffff00; font-size: 20px; font-weight: bold; font-family: Arial Black, Arial, sans-serif; text-decoration: none; }
-#logo span { color: #cceeff; }
-#tagline { color: #aaccff; font-size: 11px; flex: 1; padding-left: 14px; }
-#search-box { display: flex; gap: 4px; }
-#search-box input[type=text] { padding: 3px 5px; font-size: 11px; border: 1px solid #ccc; width: 160px; font-family: Verdana, Arial, sans-serif; }
-#search-box input[type=submit] { padding: 3px 8px; font-size: 11px; background: #ff9900; border: 1px solid #cc6600; color: #000; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, sans-serif; }
-#nav { background: #cc0000; padding: 4px 10px; display: flex; flex-wrap: wrap; gap: 2px; }
-#nav a { color: #fff; font-size: 11px; font-weight: bold; padding: 3px 8px; text-decoration: none; border-right: 1px solid rgba(255,255,255,0.3); }
-#nav a:hover, #nav a.active { background: #ff9900; color: #000; text-decoration: none; }
-#nav a.hi { color: #ffff99; }
-#subnav { background: #336699; padding: 3px 10px; display: flex; flex-wrap: wrap; gap: 2px; max-width: 800px; margin: 0 auto; }
-#subnav a { color: #cce4ff; font-size: 10.5px; padding: 2px 7px; text-decoration: none; border-right: 1px solid rgba(255,255,255,0.2); }
-#subnav a:hover, #subnav a.on { color: #ffff99; }
-#wrap { max-width: 800px; margin: 0 auto; padding: 6px 8px; }
-#cols { display: grid; grid-template-columns: 155px 1fr; gap: 10px; margin-top: 6px; }
-.sb { border: 1px solid #99aacc; margin-bottom: 8px; }
-.sb-head { background: #003580; color: #fff; font-size: 11px; font-weight: bold; padding: 3px 6px; text-transform: uppercase; }
-.sb-body { padding: 4px 6px; }
-.sb-body a { display: block; padding: 2px 0; font-size: 11px; border-bottom: 1px dotted #ddd; color: #00c; }
-.sb-body a:hover { color: #c00; }
-.sb-body a:last-child { border-bottom: none; }
-.cnt { float: right; color: #666; font-size: 10px; }
-.sb-body input[type=email] { width: 100%; padding: 2px 4px; font-size: 11px; border: 1px solid #aaa; margin-bottom: 3px; font-family: Verdana, Arial, sans-serif; }
-.sb-body input[type=submit] { width: 100%; padding: 3px; font-size: 11px; background: #cc0000; border: 1px solid #880000; color: #fff; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, sans-serif; }
-.sb-body p { font-size: 11px; color: #444; line-height: 1.5; padding: 2px 0 4px; }
-.stat-row { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px dotted #eee; font-size: 11px; }
-.stat-val { font-weight: bold; color: #cc0000; }
-.sec-title { background: #003580; color: #fff; font-size: 12px; font-weight: bold; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; }
-.sec-title a { color: #ffcc66; font-size: 10px; font-weight: normal; }
-.filter-bar { background: #f5f5f5; border: 1px solid #ddd; border-top: none; padding: 4px 6px; display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
-.filter-bar span { font-size: 10px; color: #555; font-weight: bold; margin-right: 2px; }
-.filter-bar a { font-size: 10px; padding: 1px 5px; border: 1px solid #aac; background: #fff; color: #00c; text-decoration: none; }
-.filter-bar a:hover, .filter-bar a.on { background: #cc0000; border-color: #880000; color: #fff; }
-.filter-bar .sep { color: #bbb; font-size: 10px; margin: 0 2px; }
-.listings { border: 1px solid #ddd; border-top: none; }
-.col-head { display: grid; grid-template-columns: 52px 1fr 85px 68px 68px; background: #dde8f0; border-bottom: 1px solid #ccc; padding: 3px 6px; font-size: 10px; font-weight: bold; color: #333; text-transform: uppercase; gap: 4px; }
-.row { display: grid; grid-template-columns: 52px 1fr 85px 68px 68px; padding: 3px 6px; border-bottom: 1px solid #eee; gap: 4px; align-items: center; text-decoration: none; color: inherit; }
-.row:nth-child(even) { background: #f9f9f9; }
-.row:hover { background: #fffde8; }
-.badge { font-size: 9px; font-weight: bold; padding: 1px 3px; border-radius: 1px; text-align: center; display: inline-block; min-width: 44px; }
-.b-new { background: #009900; color: #fff; }
-.b-daily { background: #0055cc; color: #fff; }
-.b-weekly { background: #006666; color: #fff; }
-.b-single { background: #884400; color: #fff; }
-.b-ending { background: #cc6600; color: #fff; }
-.b-instant { background: #660099; color: #fff; }
-.row-title { font-size: 11.5px; color: #00c; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.row:hover .row-title { color: #c00; text-decoration: underline; }
-.row-sponsor { font-size: 10px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.row-date { font-size: 10px; color: #555; white-space: nowrap; }
-.row-date.hot { color: #cc0000; font-weight: bold; }
-.row-prize { font-size: 11px; font-weight: bold; color: #003580; text-align: right; white-space: nowrap; }
-.pages { padding: 4px 6px; font-size: 11px; border: 1px solid #ddd; border-top: none; background: #f9f9f9; }
-.pages a { border: 1px solid #aac; padding: 1px 5px; margin-right: 2px; font-size: 11px; background: #fff; }
-.pages a:hover { background: #cc0000; color: #fff; border-color: #880000; text-decoration: none; }
-.pages .cur { background: #003580; color: #fff; border: 1px solid #003580; padding: 1px 5px; margin-right: 2px; font-size: 11px; }
-.infobar { background: #f0f4ff; border: 1px solid #99aacc; padding: 4px 8px; font-size: 11px; color: #333; margin-bottom: 6px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; }
-.breadcrumb { font-size: 11px; color: #666; margin-bottom: 5px; }
-.breadcrumb a { color: #00c; }
-#footer { background: #003580; color: #aaccff; font-size: 10px; padding: 8px 10px; margin-top: 10px; text-align: center; line-height: 1.8; }
-#footer a { color: #ffcc66; }
-/* category grid */
-.cat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; padding: 5px; border: 1px solid #ddd; border-top: none; margin-bottom: 8px; }
-.cat-cell { border: 1px solid #aac; padding: 4px 5px; background: #f5f8ff; text-align: center; text-decoration: none; display: block; }
-.cat-cell:hover { background: #fffde8; border-color: #cc0000; text-decoration: none; }
-.cat-name { font-size: 10.5px; font-weight: bold; color: #00c; display: block; }
-.cat-cell:hover .cat-name { color: #c00; }
-.cat-n { font-size: 10px; color: #666; }
-/* legend */
-.legend { background: #f5f5f5; border: 1px solid #ddd; padding: 4px 8px; font-size: 10px; color: #555; margin-bottom: 6px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.legend span { font-weight: bold; margin-right: 2px; }
-.leg { display: flex; align-items: center; gap: 3px; }
-.lbadge { font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 1px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySweepstakesHub - Your #1 Source for Free Sweepstakes & Contests</title>
+    <style>
+        /* CLASSIC DIRECTORY STYLING */
+        body { font-family: Arial, sans-serif; font-size: 13px; margin: 0; padding: 0; background-color: #fff; color: #333; }
+        header { padding: 20px; text-align: center; border-bottom: 3px solid #000080; }
+        .logo { font-family: 'Times New Roman', serif; font-size: 38px; color: #336699; font-style: italic; font-weight: bold; text-decoration: none; }
+        .tagline { font-size: 11px; color: #666; margin-top: 5px; }
+
+        /* NAVIGATION BAR */
+        nav { background-color: #f2f2f2; border-top: 1px solid #000080; border-bottom: 1px solid #000080; padding: 8px; text-align: center; }
+        nav a { color: #0000cd; text-decoration: none; font-weight: bold; padding: 0 15px; font-size: 12px; text-transform: uppercase; }
+        nav a:hover { text-decoration: underline; color: #ff0000; }
+
+        /* MAIN LAYOUT */
+        #main-wrapper { width: 1000px; margin: 20px auto; display: flex; gap: 25px; }
+        
+        /* LEFT COLUMN (The Content) */
+        #left-content { width: 700px; }
+        .section-header { background-color: #000080; color: white; padding: 8px 12px; font-size: 16px; font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; }
+        .section-header a { color: #fff; font-size: 11px; text-decoration: none; font-weight: normal; }
+
+        /* PRIZE LISTINGS */
+        .sweep-entry { padding: 12px; border-bottom: 1px dotted #ccc; transition: background 0.2s; }
+        .sweep-entry:hover { background-color: #f9f9f9; }
+        .sweep-title { font-size: 16px; color: #0000cd; font-weight: bold; text-decoration: none; display: block; margin-bottom: 4px; }
+        .sweep-title:hover { text-decoration: underline; }
+        .sweep-meta { font-size: 11px; color: #666; }
+        .cat-tag { color: #006400; font-weight: bold; text-transform: capitalize; }
+
+        /* RIGHT COLUMN (The Sidebar) */
+        #sidebar { width: 275px; }
+        .sidebar-box { border: 1px solid #000080; margin-bottom: 20px; }
+        .sidebar-head { background-color: #000080; color: white; padding: 6px 10px; font-weight: bold; font-size: 14px; }
+        .sidebar-content { padding: 10px; }
+        
+        .cat-list { list-style: none; padding: 0; margin: 0; }
+        .cat-list li { padding: 5px 0; border-bottom: 1px solid #eee; }
+        .cat-list a { color: #0000cd; text-decoration: none; font-size: 13px; }
+        .cat-list a:hover { color: #ff0000; }
+
+        /* MONEY MAKING SPOTS (ADS) */
+        .ad-placeholder { background: #fdfdfd; border: 1px dashed #bbb; color: #999; text-align: center; padding: 20px; margin-bottom: 20px; font-style: italic; }
+
+        /* SEARCH BAR */
+        .search-container { text-align: right; margin-bottom: 10px; }
+        .search-container input { padding: 4px; width: 180px; border: 1px solid #ccc; }
+    </style>
 </head>
 <body>
-<div id="header">
-  <a href="index.html" id="logo">My<span>Sweepstakes</span>Hub.com</a>
-  <div id="tagline">Free Sweepstakes, Contests &amp; Giveaways — Updated Daily</div>
-  <div id="search-box"><input type="text" placeholder="Search sweepstakes..."><input type="submit" value="Go"></div>
-</div>
-<div id="nav">
-  <a href="index.html">Home</a><a href="category.html" class="hi active">New Today (89)</a>
-  <a href="category.html">Cash</a><a href="category.html">Cars</a><a href="category.html">Travel</a>
-  <a href="category.html">Gift Cards</a><a href="category.html">Electronics</a>
-  <a href="category.html">Instant Win</a><a href="ending-soon.html">Ending Soon</a>
-  <a href="category.html">By State</a><a href="winners.html">Winners</a>
-  <a href="forum.html">Forum</a><a href="tips.html">Tips &amp; FAQ</a><a href="submit.html">Submit</a>
-</div>
-<div style="background:#336699;padding:3px 10px;display:flex;flex-wrap:wrap;gap:2px;">
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">All Sweeps</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">Gift Cards</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">Electronics</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">Home &amp; Garden</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">Food &amp; Bev</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">Sports</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">Entertainment</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.2);">Kids &amp; Family</a>
-  <a href="category.html" style="color:#cce4ff;font-size:10.5px;padding:2px 7px;text-decoration:none;">Beauty &amp; Pets</a>
-</div>
 
-<div id="wrap">
-<div class="breadcrumb"><a href="index.html">Home</a> &rsaquo; <a href="category.html">Categories</a> &rsaquo; Cash &amp; Money</div>
+<header>
+    <a href="index.html" class="logo">MySweepstakesHub.com</a>
+    <div class="tagline">Your #1 Source for FREE Sweepstakes, Contests & Giveaways — Updated Daily!</div>
+</header>
 
-<!-- ALL CATEGORIES GRID -->
-<div class="sec-title">Browse All Categories</div>
-<div class="cat-grid">
-  <a href="category.html" class="cat-cell" style="border-color:#cc0000;background:#fff5f5;"><span class="cat-name" style="color:#cc0000;">Cash &amp; Money</span><span class="cat-n">184 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Cars &amp; Trucks</span><span class="cat-n">67 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Travel &amp; Vacations</span><span class="cat-n">143 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Gift Cards</span><span class="cat-n">201 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Electronics</span><span class="cat-n">118 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Home &amp; Garden</span><span class="cat-n">95 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Food &amp; Beverages</span><span class="cat-n">162 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Sports &amp; Outdoors</span><span class="cat-n">88 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Entertainment</span><span class="cat-n">109 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Kids &amp; Family</span><span class="cat-n">77 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Beauty &amp; Health</span><span class="cat-n">93 active</span></a>
-  <a href="category.html" class="cat-cell"><span class="cat-name">Pets</span><span class="cat-n">41 active</span></a>
-</div>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="category.html?type=new">New Today</a>
+    <a href="category.html?type=daily">Daily Entry</a>
+    <a href="category.html?type=cash">Cash & Cards</a>
+    <a href="category.html?type=instant">Instant Win</a>
+</nav>
 
-<div id="cols">
-<div id="left">
-  <div class="sb"><div class="sb-head">Categories</div><div class="sb-body">
-    <a href="category.html" style="color:#cc0000;font-weight:bold;">Cash &amp; Money <span class="cnt">184</span></a>
-    <a href="category.html">Cars &amp; Trucks <span class="cnt">67</span></a>
-    <a href="category.html">Travel <span class="cnt">143</span></a>
-    <a href="category.html">Gift Cards <span class="cnt">201</span></a>
-    <a href="category.html">Electronics <span class="cnt">118</span></a>
-    <a href="category.html">Home &amp; Garden <span class="cnt">95</span></a>
-    <a href="category.html">Food &amp; Bev <span class="cnt">162</span></a>
-    <a href="category.html">Sports <span class="cnt">88</span></a>
-    <a href="category.html">Entertainment <span class="cnt">109</span></a>
-    <a href="category.html">Kids &amp; Family <span class="cnt">77</span></a>
-    <a href="category.html">Beauty &amp; Health <span class="cnt">93</span></a>
-    <a href="category.html">Pets <span class="cnt">41</span></a>
-  </div></div>
-  <div class="sb"><div class="sb-head">Entry Type</div><div class="sb-body">
-    <a href="category.html">All Types <span class="cnt">1,247</span></a>
-    <a href="category.html" style="color:#0055cc;font-weight:bold;">Daily Entry <span class="cnt">487</span></a>
-    <a href="category.html" style="color:#006666;font-weight:bold;">Weekly Entry <span class="cnt">134</span></a>
-    <a href="category.html" style="color:#884400;font-weight:bold;">Single Entry <span class="cnt">378</span></a>
-    <a href="category.html" style="color:#660099;font-weight:bold;">Instant Win <span class="cnt">248</span></a>
-  </div></div>
-  <div class="sb"><div class="sb-head">Free Email Alert</div><div class="sb-body">
-    <p>New sweepstakes free every morning!</p>
-    <input type="email" placeholder="your@email.com">
-    <input type="submit" value="Subscribe Free">
-  </div></div>
-  <div class="sb"><div class="sb-head">Recent Winners</div><div class="sb-body">
-    <p><b>Linda M.</b> – FL<br>Won $10,000 Best Buy card</p>
-    <p><b>Carlos R.</b> – TX<br>Won 2025 Ford Mustang</p>
-    <a href="winners.html" style="color:#cc0000;">More winners »</a>
-  </div></div>
-</div>
+<div id="main-wrapper">
+    
+    <div id="left-content">
+        <div class="search-container">
+            <input type="text" placeholder="Search prizes...">
+            <button>Search</button>
+        </div>
 
-<div id="main">
-  <div class="infobar">
-    <span><b>Cash &amp; Money Sweepstakes</b> &nbsp;·&nbsp; 184 active</span>
-    <span>Sort: <a href="#">Newest</a> | <a href="#">Ending Soon</a> | <a href="#">Highest Prize</a></span>
-  </div>
+        <div class="ad-placeholder">-- Advertisement: Sponsored Giveaway --</div>
 
-  <div class="sec-title">Cash &amp; Money Sweepstakes <a href="#">184 listings</a></div>
+        <div class="section-header">
+            Newest Sweepstakes 
+            <a href="category.html?type=new">more »</a>
+        </div>
 
-  <!-- FILTER BAR WITH ENTRY FREQUENCY -->
-  <div class="filter-bar">
-    <span>Category:</span>
-    <a href="category.html" class="on">Cash</a>
-    <a href="category.html">Cars</a><a href="category.html">Travel</a>
-    <a href="category.html">Gift Cards</a><a href="category.html">Electronics</a>
-    <a href="category.html">All</a>
-    <span class="sep">|</span>
-    <span>Entry type:</span>
-    <a href="category.html" class="on">All</a>
-    <a href="category.html">Daily</a>
-    <a href="category.html">Weekly</a>
-    <a href="category.html">Single Entry</a>
-    <a href="category.html">Instant Win</a>
-  </div>
+        <div id="sweeps-injection-point">
+            <p style="padding: 20px; text-align: center;">Loading the latest prizes...</p>
+        </div>
+    </div>
 
-  <div class="legend">
-    <div class="leg"><span class="lbadge b-new" style="background:#009900;color:#fff;">NEW</span> Added today</div>
-    <div class="leg"><span class="lbadge b-daily" style="background:#0055cc;color:#fff;">DAILY</span> Enter every day</div>
-    <div class="leg"><span class="lbadge b-weekly" style="background:#006666;color:#fff;">WEEKLY</span> Enter once/week</div>
-    <div class="leg"><span class="lbadge b-single" style="background:#884400;color:#fff;">SINGLE</span> One-time entry</div>
-    <div class="leg"><span class="lbadge b-instant" style="background:#660099;color:#fff;">INSTANT</span> Know instantly</div>
-    <div class="leg"><span class="lbadge b-ending" style="background:#cc6600;color:#fff;">ENDING</span> Ends this week</div>
-  </div>
+    <div id="sidebar">
+        
+        <div class="sidebar-box">
+            <div class="sidebar-head">Free Email Alert</div>
+            <div class="sidebar-content">
+                <p style="margin-top:0; font-size: 11px;">Get new sweeps in your inbox every morning!</p>
+                <input type="text" placeholder="Email Address" style="width: 85%; padding: 5px; margin-bottom: 5px;">
+                <button style="width: 90%; padding: 5px; cursor: pointer;">Subscribe Free</button>
+            </div>
+        </div>
 
-  <!-- START OF NEW LOOK -->
-<div id="sweeps-list" style="max-width: 800px; margin: 20px auto; padding: 15px; border-top: 3px solid #c00000; background: #fff; border-radius: 10px; font-family: sans-serif;">
-  <p style="text-align: center; font-weight: bold; color: #333;">🎰 Loading Today's Latest Sweepstakes...</p>
+        <div class="sidebar-box">
+            <div class="sidebar-head">Browse by Prize</div>
+            <div class="sidebar-content">
+                <ul class="cat-list">
+                    <li><a href="category.html?type=cash">Cash & Gift Cards</a></li>
+                    <li><a href="category.html?type=cars">Cars & Trucks</a></li>
+                    <li><a href="category.html?type=travel">Travel & Vacations</a></li>
+                    <li><a href="category.html?type=electronics">Electronics</a></li>
+                    <li><a href="category.html?type=home">For the Home</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ad-placeholder" style="height: 250px; display: flex; align-items: center; justify-content: center;">
+            Google AdSense Box
+        </div>
+
+    </div>
 </div>
 
 <script>
-  // This grabs the data from your automated scraper
-  fetch('sweeps.json')
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById('sweeps-list');
-      if (!data || data.length === 0) {
-        container.innerHTML = "<p style='text-align:center;'>No sweeps found. Check back in a bit!</p>";
-        return;
-      }
-      // This builds the new, modern list
-      container.innerHTML = data.map(item => `
-        <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 8px; background: #f9f9f9; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: left; display: flex; justify-content: space-between; align-items: center;">
-          <div style="font-weight: bold; color: #333; font-size: 1.1em;">${item.title}</div>
-          <a href="${item.url}" target="_blank" style="background: #28a745; color: white; padding: 8px 18px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.9em;">ENTER</a>
-        </div>
-      `).join('');
-    })
-    .catch(err => {
-      document.getElementById('sweeps-list').innerHTML = "<p style='text-align:center;'>Updating prize vault... please refresh!</p>";
-    });
-</script></div>
-</div>
+    // This script connects your database (JSON) to your homepage
+    fetch('sweepstakes_db.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('sweeps-injection-point');
+            container.innerHTML = ''; // Clear the loading message
 
-<div id="footer">
-  <a href="index.html">Home</a> | <a href="category.html">Sweepstakes</a> | <a href="ending-soon.html">Ending Soon</a> | <a href="winners.html">Winners</a> | <a href="forum.html">Forum</a> | <a href="tips.html">Tips</a> | <a href="submit.html">Submit</a> | <a href="tracker.html">My Tracker</a> | <a href="login.html">Login</a><br><br>
-  © 2026 MySweepstakesHub.com — No purchase necessary. Always read official rules.
-</div>
-</body></html>
+            // Take the 20 most recent entries
+            const latest = data.slice(0, 20);
+
+            latest.forEach(item => {
+                const entry = document.createElement('div');
+                entry.className = 'sweep-entry';
+                entry.innerHTML = `
+                    <a href="${item.url}" class="sweep-title" target="_blank">${item.title}</a>
+                    <div class="sweep-meta">
+                        Added: <strong>${item.date_added}</strong> | 
+                        Category: <span class="cat-tag">${item.category}</span> | 
+                        Source: ${item.source}
+                    </div>
+                `;
+                container.appendChild(entry);
+            });
+        })
+        .catch(err => {
+            console.error("Database error:", err);
+            document.getElementById('sweeps-injection-point').innerHTML = "Check back soon for new sweepstakes!";
+        });
+</script>
+
+<footer style="text-align: center; padding: 40px; color: #999; font-size: 11px; border-top: 1px solid #eee; margin-top: 50px;">
+    &copy; 2026 MySweepstakesHub.com - No purchase necessary. Always read official rules.
+</footer>
+
+</body>
+</html>
+
+
+  

@@ -1,88 +1,77 @@
-import json
-import os
 import requests
 from bs4 import BeautifulSoup
+import json
 from datetime import datetime
 
+# The database file the website looks for
 DB_FILE = 'sweepstakes_db.json'
 
-# --- THE JUNK FILTER ---
-# PCH has been added here so it is blocked forever.
-JUNK_WORDS = [
-    "pch", "publishers clearing house", "survey", "consultation", 
-    "quote", "insurance", "call now", "winner list", "claim your prize", 
-    "urgent", "selected", "act now", "viagra", "money fast", "guaranteed winner"
-]
+def get_category(title):
+    """The Sorting Hat: Decides the category based on words in the title"""
+    t = title.lower()
+    if any(word in t for word in ['cash', '$', 'gift card', 'visa', 'mastercard', 'money']):
+        return 'cash'
+    if any(word in t for word in ['car', 'truck', 'suv', 'vehicle', 'ford', 'tesla', 'toyota']):
+        return 'cars'
+    if any(word in t for word in ['trip', 'vacation', 'travel', 'cruise', 'hotel', 'flight']):
+        return 'travel'
+    if any(word in t for word in ['daily', 'every day', '24 hours']):
+        return 'daily'
+    if any(word in t for word in ['iphone', 'tv', 'laptop', 'computer', 'electronics', 'apple']):
+        return 'electronics'
+    return 'general'
 
-def is_junk(title):
-    """Checks if the title contains any junk keywords."""
-    for word in JUNK_WORDS:
-        if word in title.lower():
-            return True
-    return False
-
-def scrape_sites():
-    print("Starting smart scrape (PCH Blocked)...")
-    new_entries = []
+def scrape_sweeps():
+    all_sweeps = []
     
-    # These are the sites we are watching
+    # List of sites to scrape (You can add more URLs here)
     sources = [
-        "https://www.contestgirl.com",
-        "https://www.infinitesweeps.com",
-        "https://www.sweepstakesadvantage.com"
+        {'name': 'ContestGirl', 'url': 'https://www.contestgirl.com/hot-sweepstakes.php'},
+        {'name': 'InfiniteSweeps', 'url': 'https://infinitesweeps.com/new/'}
     ]
 
-    # TEST: Let's try to add a PCH entry to prove it gets blocked
-    test_entry = {
-        "title": "PCH Superprize Giveaway",
-        "url": "https://pch.com",
-        "source": "PCH",
-        "date_added": datetime.now().strftime("%Y-%m-%d"),
-        "status": "approved"
-    }
-    
-    if is_junk(test_entry["title"]):
-        print(f"BANNED: Skipping {test_entry['title']} because it is PCH.")
-    else:
-        new_entries.append(test_entry)
+    for source in sources:
+        try:
+            print(f"Scraping {source['name']}...")
+            response = requests.get(source['url'], timeout=10)
+            soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Example of a GOOD entry that will pass
-    good_entry = {
-        "title": "Win a New Backyard Grill",
-        "url": "https://example.com/grill",
-        "source": "Contest Girl",
-        "date_added": datetime.now().strftime("%Y-%m-%d"),
-        "status": "approved"
-    }
-    
-    if not is_junk(good_entry["title"]):
-        new_entries.append(good_entry)
+            # This looks for links - adjust based on specific site HTML
+            for link in soup.find_all('a', href=True):
+                title = link.text.strip()
+                url = link['href']
 
-    return new_entries
+                # Only grab links that look like actual prizes
+                if len(title) > 15 and (url.startswith('http') or url.startswith('/')):
+                    # 1. Clean up the URL if it's relative
+                    if url.startswith('/'):
+                        url = source['url'].split('.com')[0] + '.com' + url
+                    
+                    # 2. RUN THE SORTING HAT
+                    category = get_category(title)
 
-def save_to_db(new_entries):
-    if not new_entries:
-        return
+                    # 3. Create the entry
+                    entry = {
+                        "title": title,
+                        "url": url,
+                        "category": category,
+                        "source": source['name'],
+                        "date_added": datetime.now().strftime("%Y-%m-%d")
+                    }
+                    all_sweeps.append(entry)
 
-    if os.path.exists(DB_FILE):
-        with open(DB_FILE, 'r') as f:
-            try:
-                data = json.load(f)
-            except:
-                data = []
-    else:
-        data = []
+        except Exception as e:
+            print(f"Error scraping {source['name']}: {e}")
 
-    existing_titles = [e.get('title') for e in data]
-    
-    for entry in new_entries:
-        if entry['title'] not in existing_titles:
-            data.append(entry)
-            print(f"Added: {entry['title']}")
+    return all_sweeps
 
+def save_to_db(data):
+    # Save the list to your JSON file
     with open(DB_FILE, 'w') as f:
         json.dump(data, f, indent=4)
+    print(f"Successfully saved {len(data)} sweepstakes to {DB_FILE}")
 
 if __name__ == "__main__":
-    results = scrape_sites()
-    save_to_db(results)
+    results = scrape_sweeps()
+    if results:
+        save_to_db(results)

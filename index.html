@@ -2,145 +2,169 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MySweepstakesHub.com - Free Sweepstakes & Giveaways</title>
+    <title>MySweepstakesHub.com - Free Sweepstakes, Contests & Giveaways</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        header { background-color: #28a745; color: white; padding: 20px; text-align: center; }
-        nav { background-color: #333; overflow: hidden; }
-        nav a { float: left; display: block; color: white; text-align: center; padding: 14px 20px; text-decoration: none; }
-        nav a:hover { background-color: #ddd; color: black; }
+        body { font-family: Arial, sans-serif; font-size: 13px; margin: 0; padding: 0; background-color: white; }
+        header { padding: 10px 20px; text-align: center; border-bottom: 2px solid #000080; }
+        .logo { font-family: 'Times New Roman', serif; font-size: 32px; color: #336699; font-style: italic; font-weight: bold; }
+        .sub-logo { color: #666; font-size: 11px; margin-top: -5px; }
         
-        /* THE MAIN LAYOUT FIX */
-        #container { width: 95%; max-width: 1200px; margin: 20px auto; overflow: hidden; }
-        
-        #left { 
-            float: left; 
-            width: 68%; /* Keeps the prizes on the left */
-            padding-right: 2%; 
-        }
-        
-        #right { 
-            float: right; 
-            width: 28%; /* Keeps the sidebar on the far right */
-        }
+        /* Search Bar Area */
+        .search-area { float: right; margin-top: -40px; }
+        .search-area input[type="text"] { padding: 3px; border: 1px solid #ccc; width: 150px; }
+        .search-area input[type="submit"] { padding: 3px 8px; background: #eee; border: 1px solid #999; cursor: pointer; }
 
-        /* This stops the footer from jumping up into the columns */
-        #container::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+        /* Top Blue Navigation */
+        nav { background-color: #f8f8f8; border-top: 1px solid #000080; border-bottom: 1px solid #000080; padding: 5px; text-align: center; }
+        nav a { color: #0000cd; text-decoration: none; font-weight: bold; padding: 0 8px; border-right: 1px solid #ccc; font-size: 11px; }
+        nav a:last-child { border-right: none; }
+        nav a.new { color: #cc0000; }
 
-        .sb-box { background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ddd; }
-        .sb-title { font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #28a745; padding-bottom: 5px; }
+        /* Secondary Nav (Browse by Frequency) */
+        .sub-nav { background: #e6e6fa; padding: 5px; text-align: center; border-bottom: 1px solid #b0c4de; font-size: 11px; }
+        .sub-nav b { color: #000080; }
+        .sub-nav a { color: #0000cd; text-decoration: none; margin: 0 5px; }
+
+        /* MAIN LAYOUT */
+        #main-container { width: 980px; margin: 15px auto; overflow: hidden; }
         
-        #footer { background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 20px; clear: both; }
-        #footer a { color: #28a745; text-decoration: none; }
-        
-        .prize-item { background: white; padding: 20px; margin-bottom: 20px; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .prize-item h3 { margin-top: 0; color: #333; }
-        .btn { background: #28a745; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; }
+        #left-col { float: left; width: 680px; }
+        #right-col { float: right; width: 280px; padding-left: 15px; border-left: 1px solid #eee; }
+
+        /* Titles */
+        .section-title { font-size: 16px; font-weight: bold; border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 3px; }
+        .more-link { float: right; font-size: 11px; font-weight: normal; color: #0000cd; }
+
+        /* The Blue Lists */
+        .list-container { display: flex; gap: 20px; margin-bottom: 20px; }
+        .list-box { flex: 1; }
+        .list-box h3 { font-size: 14px; border-bottom: 1px solid #ccc; margin-bottom: 5px; }
+        .list-box ul { list-style: none; padding: 0; margin: 0; }
+        .list-box li { padding: 3px 0; border-bottom: 1px dotted #eee; }
+        .list-box a { color: #0000cd; text-decoration: none; }
+        .list-box span { color: #888; font-size: 11px; }
+
+        /* Sidebar Boxes */
+        .sb-box { margin-bottom: 20px; }
+        .sb-title { background: #000080; color: white; padding: 4px 8px; font-weight: bold; margin-bottom: 8px; }
+        .sb-content { line-height: 1.5; color: #333; }
+
+        footer { text-align: center; padding: 20px; border-top: 1px solid #ccc; color: #666; font-size: 11px; clear: both; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>MySweepstakesHub.com</h1>
-    <p>Your Daily Destination for Winning!</p>
+    <div class="logo">MySweepstakesHub.com</div>
+    <div class="sub-logo">Your #1 Source for FREE Sweepstakes, Contests & Giveaways — Updated Daily!</div>
+    <div class="search-area">
+        <input type="text" placeholder="Search sweepstakes...">
+        <input type="submit" value="Search">
+    </div>
 </header>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="category.html">Categories</a>
-    <a href="ending-soon.html">Ending Soon</a>
-    <a href="winners.html">Winners</a>
-    <a href="forum.html">Forum</a>
+    <a href="#">Home</a>
+    <a href="#" class="new">New Today</a>
+    <a href="#">Expires Soon</a>
+    <a href="#">Daily Entry</a>
+    <a href="#">Single Entry</a>
+    <a href="#">Weekly Entry</a>
+    <a href="#">Instant Win</a>
+    <a href="#">Cash</a>
+    <a href="#">Cars</a>
+    <a href="#">Travel</a>
+    <a href="#">Electronics</a>
+    <a href="#">By State</a>
+    <a href="#">Winners Circle</a>
+    <a href="#">Forum</a>
+    <a href="#">Tips & FAQ</a>
+    <a href="#">Submit</a>
+    <a href="#">My Tracker</a>
+    <a href="#">Login / Register</a>
 </nav>
-<div style="display: flex; gap: 20px; margin-bottom: 30px;">
-            <div style="flex: 1; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
-                <h3 style="margin-top:0; color: #28a745; border-bottom: 1px solid #eee;">Frequency</h3>
-                <ul style="list-style: none; padding: 0; line-height: 2;">
-                    <li><a href="#">Daily Entry</a></li>
-                    <li><a href="#">Single Entry</a></li>
-                    <li><a href="#">Weekly Entry</a></li>
-                    <li><a href="#">Monthly Entry</a></li>
-                    <li><a href="#">Instant Win</a></li>
-                </ul>
-            </div>
 
-            <div style="flex: 1; background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
-                <h3 style="margin-top:0; color: #28a745; border-bottom: 1px solid #eee;">Prizes</h3>
-                <ul style="list-style: none; padding: 0; line-height: 2;">
-                    <li><a href="#">Cash & Gift Cards</a></li>
-                    <li><a href="#">Cars & Trucks</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">For the Home</a></li>
-                    <li><a href="#">Travel & Vacations</a></li>
+<div class="sub-nav">
+    <b>Browse by frequency:</b> <a href="#" style="color:red; text-decoration:underline;">All</a> <a href="#">Daily Entry</a> <a href="#">Single Entry</a> <a href="#">Weekly Entry</a> <a href="#">Monthly Entry</a> <a href="#">24-Hour Entry</a> <a href="#">Unlimited Entry</a> <a href="#">Instant Win</a><br>
+    <b>Browse by prize:</b> <a href="#">Cash</a> <a href="#">Cars</a> <a href="#">Travel</a> <a href="#">Electronics</a> <a href="#">Gift Cards</a> <a href="#">Home</a> <a href="#">Food</a> <a href="#">More »</a>
+</div>
+
+<div id="main-container">
+    <div id="left-col">
+        <div class="section-title">
+            <a href="#" class="more-link">more</a>
+            New Sweepstakes
+        </div>
+
+        <div class="list-container">
+            <div class="list-box">
+                <h3>Frequency</h3>
+                <ul>
+                    <li><a href="#">Daily Entry</a> <span>(coming soon)</span></li>
+                    <li><a href="#">Single Entry</a> <span>(coming soon)</span></li>
+                    <li><a href="#">Weekly Entry</a> <span>(coming soon)</span></li>
+                    <li><a href="#">Monthly Entry</a> <span>(coming soon)</span></li>
+                    <li><a href="#">Instant Win</a> <span>(coming soon)</span></li>
                 </ul>
             </div>
-        </div><div id="container">
-    <div id="left">
-        <h2 id="dateDisplay"></h2>
-        <div id="sweeps-list">
-            <p style="text-align:center;">Loading the newest prizes...</p>
+            <div class="list-box">
+                <h3>Prizes</h3>
+                <ul>
+                    <li><a href="#">Cash & Gift Cards</a> <span>(coming soon)</span></li>
+                    <li><a href="#">Cars & Trucks</a> <span>(coming soon)</span></li>
+                    <li><a href="#">Electronics</a> <span>(coming soon)</span></li>
+                    <li><a href="#">For the Home</a> <span>(coming soon)</span></li>
+                    <li><a href="#">Travel & Vacations</a> <span>(coming soon)</span></li>
+                </ul>
+            </div>
         </div>
+
+        <div class="section-title">Expires Soon <a href="#" class="more-link">more</a></div>
+        <p style="color:#888; font-style:italic;">Expiring sweepstakes will appear here — check back soon!</p>
+
+        <div class="section-title">Community Forum <a href="#" class="more-link">more</a></div>
+        <ul style="color:#0000cd; line-height:1.6;">
+            <li>Welcome to MySweepstakesHub.com! Introduce yourself here</li>
+            <li>Tips for new members — how to get started</li>
+        </ul>
     </div>
 
-    <div id="right">
+    <div id="right-col">
         <div class="sb-box">
-            <div class="sb-title">My Sweep Tracker</div>
-            <p>Track your entries and daily streaks for free!</p>
-            <a href="tracker.html" class="btn" style="padding: 8px 15px;">Open Tracker</a>
+            <div class="sb-title">Site Stats</div>
+            <div class="sb-content">
+                Sweepstakes: <b>Coming soon!</b><br>
+                Members: <b>Growing!</b><br>
+                Updated: <b>Daily</b>
+            </div>
         </div>
 
         <div class="sb-box">
-            <div class="sb-title">Quick Links</div>
-            <a href="submit.html">Submit a Sweepstakes</a><br><br>
-            <a href="tips.html">Sweeping Tips & FAQ</a><br><br>
-            <a href="forum.html">Community Forum</a><br><br>
-            <a href="winners.html">Winners Circle</a>
+            <div class="sb-title">Free Email Alert</div>
+            <div class="sb-content">
+                Get new sweeps in your inbox every morning!<br>
+                <input type="text" style="width:140px; margin-top:5px;" placeholder="your@email.com"><br>
+                <input type="submit" value="Subscribe Free" style="margin-top:5px; font-size:11px;">
+            </div>
         </div>
-        
+
         <div class="sb-box">
-            <div class="sb-title">Recent Winners</div>
-            <p style="color:#888; font-style:italic; font-size:10px;">Winners will appear here as reported by members!</p>
+            <div class="sb-title">Browse by State</div>
+            <div class="sb-content">
+                <select style="width:100%;">
+                    <option>-- Select State --</option>
+                    <option>Alabama</option>
+                    <option>Alaska</option>
+                </select>
+                <input type="submit" value="Go" style="margin-top:5px;">
+            </div>
         </div>
     </div>
 </div>
 
-<div id="footer">
-    <p>&copy; 2026 MySweepstakesHub.com | <a href="#">About Us</a> | <a href="#">Contact</a> | <a href="#">Privacy Policy</a></p>
-</div>
-
-<script>
-    // DATE SCRIPT
-    const d = new Date();
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    document.getElementById('dateDisplay').textContent = days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-
-    // FETCH PRIZES SCRIPT
-    fetch('sweepstakes_db.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('sweeps-list');
-            if (!data || data.length === 0) {
-                container.innerHTML = "<p style='text-align:center;'>New prizes coming soon! Check back in an hour.</p>";
-                return;
-            }
-            container.innerHTML = data.map(item => `
-                <div class="prize-item">
-                    <h3>${item.title}</h3>
-                    <p>${item.description || 'Enter for your chance to win!'}</p>
-                    <a href="${item.url}" target="_blank" class="btn">Enter Now</a>
-                </div>
-            `).join('');
-        })
-        .catch(err => {
-            document.getElementById('sweeps-list').innerHTML = "<p style='text-align:center;'>Updating our prize vault... Please refresh in a moment.</p>";
-        });
-</script>
+<footer>
+    &copy; 2026 MySweepstakesHub.com | About Us | Contact | Privacy Policy
+</footer>
 
 </body>
 </html>

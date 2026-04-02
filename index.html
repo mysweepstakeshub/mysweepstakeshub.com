@@ -1,25 +1,35 @@
+I’ve got you. To make this as easy as possible, I have merged the cursive font, the sleek featured section, and the directory logic into one single block.
+
+Delete everything in your index.html on GitHub and paste this in:
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Sweepstakes Hub | Daily Giveaways</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* This makes the header font work */
+        .logo-font { font-family: 'Pacifico', cursive; }
+        
+        /* Sleek styling for the page */
         .featured-item { border-left: 4px solid #fbbf24; background: #fffdf5; }
         .directory-card { border: 1px solid #e5e7eb; transition: transform 0.2s; }
         .directory-card:hover { transform: translateY(-2px); border-color: #3b82f6; }
     </style>
 </head>
-<body class="bg-slate-50 font-sans">
+<body class="bg-slate-50 font-sans text-slate-900">
 
-<header class="bg-slate-900 text-white py-6 shadow-md">
-    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-        <h1 class="text-4xl text-blue-400 logo-font tracking-normal">MySweepstakesHub</h1>
-        <span class="bg-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase text-[10px]">Updated April 2026</span>
-    </div>
-</header>
+    <header class="bg-slate-900 text-white py-6 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center text-center md:text-left">
+            <h1 class="text-4xl text-blue-400 logo-font tracking-normal">MySweepstakesHub</h1>
+            <span class="hidden md:inline-block bg-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Updated April 2026</span>
+        </div>
+    </header>
 
     <main class="max-w-6xl mx-auto px-4 py-8">
         
@@ -50,34 +60,42 @@
 
                 sites.forEach(site => {
                     if (site.featured) {
-                        // Sleek, horizontal featured row
+                        // Horizontal Sleek Bar for Top 5
                         fContainer.innerHTML += `
                             <div class="featured-item p-4 rounded-r-lg shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
-                                <div>
+                                <div class="text-center md:text-left">
                                     <h3 class="font-bold text-slate-800">${site.name}</h3>
-                                    <p class="text-xs text-slate-500">${site.description}</p>
+                                    <p class="text-xs text-slate-500">${site.description || 'Official Brand Sweepstakes'}</p>
                                 </div>
-                                <a href="${site.url}" target="_blank" class="bg-slate-800 text-white px-6 py-2 rounded text-xs font-bold hover:bg-slate-700 transition">ENTER NOW</a>
+                                <a href="${site.url}" target="_blank" class="bg-slate-800 text-white px-8 py-2 rounded text-xs font-bold hover:bg-slate-700 transition w-full md:w-auto text-center uppercase tracking-wider">Enter Now</a>
                             </div>`;
                     } else {
-                        // Clean, professional directory card
+                        // Professional Card for Directory
                         dContainer.innerHTML += `
                             <div class="directory-card bg-white p-5 rounded-lg shadow-sm flex flex-col justify-between">
                                 <div>
                                     <div class="flex justify-between items-start mb-2">
                                         <h3 class="font-bold text-slate-900 leading-tight">${site.name}</h3>
-                                        <span class="text-xs font-bold text-blue-600">${site.rating}★</span>
+                                        <span class="text-xs font-bold text-blue-600">${site.rating || '4.5'}★</span>
                                     </div>
                                     <p class="text-xs text-slate-500 mb-4 line-clamp-2">${site.description}</p>
                                 </div>
-                                <a href="${site.url}" target="_blank" class="text-center py-2 border border-slate-200 rounded text-xs font-bold text-slate-700 hover:bg-slate-50 transition">VIEW SITE</a>
+                                <a href="${site.url}" target="_blank" class="text-center py-2 border border-slate-200 rounded text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition">VIEW GIVEAWAY</a>
                             </div>`;
                     }
                 });
-            } catch (e) { console.error(e); }
+            } catch (e) { 
+                console.error("Error loading sites. Ensure sites_db.json is correctly formatted.", e); 
+            }
         }
         loadSites();
     </script>
+
+    <footer class="bg-white border-t border-slate-200 py-10 mt-20">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-slate-400 text-xs">© 2026 MySweepstakesHub - Verified Promotional Directory</p>
+        </div>
+    </footer>
 
 </body>
 </html>

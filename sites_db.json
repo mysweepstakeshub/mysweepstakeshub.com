@@ -2,7 +2,7 @@
   {
     "name": "🥤 Dr Pepper Route 66",
     "url": "https://drpepperroute66.com/",
-    "description": "Win a road trip or instant prizes with Dr Pepper.",
+    "description": "Win a legendary road trip or instant prizes with Dr Pepper.",
     "featured": true
   },
   {
@@ -14,166 +14,145 @@
   {
     "name": "🍋 Mike's Hard Fantasy Life",
     "url": "https://www.mikeshard.com/sweepstakes/fantasylife",
-    "description": "Exclusive experiences and prizes from Mike's Hard.",
+    "description": "Enter for exclusive experiences and prizes from Mike's Hard.",
     "featured": true
   },
   {
     "name": "🧗 Clif Bar: Run The World",
     "url": "https://mondelez-clifruntheworld.shared-a.apollo.prod.aws.eprize.net/login",
-    "description": "Fitness gear and travel experiences from Clif Bar.",
+    "description": "Win fitness gear and world-class travel experiences.",
     "featured": true
   },
   {
     "name": "🍺 Ritas: Cash In",
     "url": "https://v2.playmaker.beer/cashinwithritas",
-    "description": "Win cash and summer essentials from Ritas.",
+    "description": "Win cold hard cash and summer essentials from Ritas.",
     "featured": true
   },
   {
     "name": "Sweepstakes Advantage",
     "url": "https://www.sweepsadvantage.com",
-    "description": "Massive searchable database and community forum.",
-    "rating": "5.0",
-    "pros": ["Huge volume", "Active forum"]
+    "description": "The gold standard with a massive searchable database.",
+    "rating": "5.0"
   },
   {
     "name": "The Freebie Guy",
     "url": "https://thefreebieguy.com/current-sweepstakes-and-giveaways/",
-    "description": "Fastest updates on new brand giveaways.",
-    "rating": "5.0",
-    "pros": ["Real-time", "Mobile friendly"]
+    "description": "Lighting-fast alerts on new brand giveaways and samples.",
+    "rating": "5.0"
   },
   {
     "name": "Contest Girl",
     "url": "https://www.contestgirl.com",
-    "description": "Clean, ad-free organization for daily entries.",
-    "rating": "4.9",
-    "pros": ["No clutter", "Reliable"]
+    "description": "Loved for its clean, ad-free organization and tracking.",
+    "rating": "4.9"
   },
   {
     "name": "Infinite Sweeps",
     "url": "https://www.infinitesweeps.com/",
-    "description": "Endless list of sweepstakes by prize type.",
-    "rating": "4.8",
-    "pros": ["Filters", "High volume"]
+    "description": "An endless list of sweepstakes categorized by prize type.",
+    "rating": "4.8"
   },
   {
     "name": "Sweepstakes Today",
     "url": "https://www.sweepstakestoday.com/",
-    "description": "Every link is manually checked for safety.",
-    "rating": "4.7",
-    "pros": ["Safe", "Newsletter"]
+    "description": "Every link is manually checked for safety and legitimacy.",
+    "rating": "4.7"
   },
   {
     "name": "FreebieShark",
     "url": "https://www.freebieshark.com/",
-    "description": "Specialist in Instant Win games and samples.",
-    "rating": "4.7",
-    "pros": ["Instant win", "Daily samples"]
+    "description": "The specialist in 'Instant Win' games and daily samples.",
+    "rating": "4.7"
   },
   {
     "name": "Sweeties Sweeps",
     "url": "https://sweetiessweeps.com/",
-    "description": "Expert advice on how to win plus curated lists.",
-    "rating": "4.9",
-    "pros": ["Tips", "Vetted"]
+    "description": "Expert advice on how to win plus a highly curated list.",
+    "rating": "4.9"
   },
   {
     "name": "Win Prizes Online",
     "url": "https://www.winprizesonline.com/",
-    "description": "A deep directory featuring a wide variety of prizes.",
-    "rating": "4.9",
-    "pros": ["Variety", "Updated"]
+    "description": "A deep directory with a wide variety of prize categories.",
+    "rating": "4.9"
   },
   {
     "name": "Online Sweepstakes",
     "url": "https://online-sweepstakes.com/",
-    "description": "One of the oldest and most respected communities.",
-    "rating": "4.8",
-    "pros": ["Legacy", "Forum"]
+    "description": "One of the oldest and most respected communities online.",
+    "rating": "4.8"
   },
   {
     "name": "iWinContests",
     "url": "https://iwincontests.com/",
-    "description": "Clean, straightforward list of high-quality giveaways.",
-    "rating": "4.8",
-    "pros": ["Clean UI", "Daily"]
+    "description": "Clean, straightforward list focusing on high-quality prizes.",
+    "rating": "4.8"
   },
   {
     "name": "Giveaway Frenzy",
     "url": "https://giveawayfrenzy.com/",
-    "description": "Promoting the newest giveaways from across the web.",
-    "rating": "4.8",
-    "pros": ["Aggregator", "New"]
+    "description": "Aggregator finding the newest giveaways across the web.",
+    "rating": "4.8"
   },
   {
     "name": "I Love Giveaways",
     "url": "https://ilovegiveaways.com/",
-    "description": "Updated with the latest sweepstakes and samples.",
-    "rating": "4.7",
-    "pros": ["Samples", "Daily"]
+    "description": "Consistently updated with the latest sweepstakes and freebies.",
+    "rating": "4.7"
   },
   {
     "name": "Sweepstakes Lovers",
     "url": "https://www.sweepstakeslovers.com/",
-    "description": "Detailed information for popular national sweepstakes.",
-    "rating": "4.7",
-    "pros": ["Details", "Safe"]
+    "description": "Provides detailed rules for popular national sweepstakes.",
+    "rating": "4.7"
   },
   {
     "name": "Contest Bee",
     "url": "https://www.contestbee.com/",
-    "description": "Well-organized directory for current contests.",
-    "rating": "4.7",
-    "pros": ["Easy", "Safe"]
+    "description": "A well-organized directory that makes it easy to find contests.",
+    "rating": "4.7"
   },
   {
     "name": "Just Free Stuff",
     "url": "https://justfreestuff.com/",
-    "description": "Focuses on free samples and household giveaways.",
-    "rating": "4.7",
-    "pros": ["Samples", "Daily"]
+    "description": "Focuses on free samples and giveaways for household items.",
+    "rating": "4.7"
   },
   {
     "name": "Contest Listing",
     "url": "https://www.contestlisting.com/",
-    "description": "Large database of contests for various countries.",
-    "rating": "4.6",
-    "pros": ["Global", "Volume"]
+    "description": "Features a large database of contests for multiple countries.",
+    "rating": "4.6"
   },
   {
     "name": "Giveaway Machine",
     "url": "https://giveawaymachine.com/",
-    "description": "Focusing on electronics and gaming giveaways.",
-    "rating": "4.6",
-    "pros": ["Tech", "Modern"]
+    "description": "Modern directory focusing on electronics and gaming.",
+    "rating": "4.6"
   },
   {
     "name": "GiveawayBase",
     "url": "https://giveawaybase.com/",
-    "description": "Great for international and gleam-based contests.",
-    "rating": "4.6",
-    "pros": ["Global", "Gleam"]
+    "description": "Great for finding international and gleam-based contests.",
+    "rating": "4.6"
   },
   {
     "name": "SweepstakesBible",
     "url": "https://www.sweepstakesbible.com/",
     "description": "Organized list of free-to-enter US and Canada sweeps.",
-    "rating": "4.9",
-    "pros": ["Vetted", "Simple"]
+    "rating": "4.9"
   },
   {
     "name": "UltraContest",
     "url": "https://www.ultracontest.com/",
-    "description": "High-value prizes without excessive ads.",
-    "rating": "4.8",
-    "pros": ["No Ads", "Simple"]
+    "description": "High-value prizes without the clutter of excessive ads.",
+    "rating": "4.8"
   },
   {
     "name": "PrizeGrab",
     "url": "https://prizegrab.com/",
-    "description": "User-friendly platform with daily cash and tech prizes.",
-    "rating": "4.8",
-    "pros": ["Daily Win", "Easy"]
+    "description": "User-friendly platform with guaranteed daily cash prizes.",
+    "rating": "4.8"
   }
 ]

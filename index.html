@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +35,7 @@ HTML
             <span class="bg-emerald-400/20 text-emerald-300 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-emerald-400/30">Trusted by 50k+ Hunters</span>
             <h2 class="text-4xl md:text-6xl font-black mt-6 mb-4 tracking-tight leading-tight">Your Daily Destination for <span class="gold-text underline">Big Wins.</span></h2>
             <p class="text-emerald-100 text-lg mb-8 max-w-2xl mx-auto opacity-90">We scan the web to find the most legitimate, high-value sweepstakes from brands you trust. Stop searching, start winning.</p>
-            <a href="#directory" class="bg-yellow-500 hover:bg-yellow-400 text-emerald-950 px-8 py-4 rounded-full font-black text-lg shadow-xl transition transform hover:scale-105 inline-block">
+            <a href="#directory" class="bg-yellow-500 hover:bg-yellow-400 text-emerald-950 px-8 py-4 rounded-full font-black text-lg shadow-xl transition transform hover:scale-105 inline-block text-center">
                 BROWSE ALL GIVEAWAYS <i class="fas fa-arrow-down ml-2"></i>
             </a>
         </div>
@@ -71,7 +70,12 @@ HTML
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h3 class="logo-font text-2xl text-white mb-4">MySweepstakesHub</h3>
             <p class="text-sm opacity-60 max-w-xl mx-auto">Disclaimer: We are a third-party directory. Always review official rules on the sponsor's website before entering. Good luck!</p>
-            <p class="mt-8 text-[10px] uppercase tracking-widest font-bold">© 2026 Premium Rewards Network</p>
+            <div class="mt-8 flex justify-center gap-6 text-[10px] uppercase tracking-widest font-bold">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+                <a href="#" class="hover:text-white transition">Contact Us</a>
+            </div>
+            <p class="mt-6 text-[9px] uppercase tracking-widest font-bold opacity-40">© 2026 Premium Rewards Network</p>
         </div>
     </footer>
 
@@ -95,7 +99,7 @@ HTML
                                         <p class="text-xs text-emerald-700 font-medium">${site.description}</p>
                                     </div>
                                 </div>
-                                <a href="${site.url}" target="_blank" class="bg-emerald-800 hover:bg-emerald-700 text-white px-10 py-3 rounded-lg text-sm font-black transition w-full md:w-auto text-center shadow-md">ENTER TO WIN</a>
+                                <a href="${site.url}" target="_blank" class="bg-emerald-800 hover:bg-emerald-700 text-white px-10 py-3 rounded-lg text-sm font-black transition w-full md:w-auto text-center shadow-md uppercase tracking-wider">GO TO SITE</a>
                             </div>`;
                     } else {
                         dContainer.innerHTML += `
@@ -108,7 +112,7 @@ HTML
                                     <h3 class="font-black text-slate-800 text-xl mb-3 leading-tight">${site.name}</h3>
                                     <p class="text-xs text-slate-500 leading-relaxed mb-6">${site.description}</p>
                                 </div>
-                                <a href="${site.url}" target="_blank" class="text-center py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-black text-slate-700 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition">CLAIM GIVEAWAY</a>
+                                <a href="${site.url}" target="_blank" class="text-center py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-black text-slate-700 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition uppercase tracking-wider">GO TO SITE</a>
                             </div>`;
                     }
                 });

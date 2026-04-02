@@ -1,23 +1,52 @@
 [
-    { "name": "Sweepstakes Advantage", "url": "https://www.sweepsadvantage.com", "category": "Mega Directory", "rating": "5.0", "description": "The industry leader with a massive searchable database and active community.", "pros": ["Forum", "Volume"], "payout_type": "Various" },
-    { "name": "The Freebie Guy", "url": "https://thefreebieguy.com/current-sweepstakes-and-giveaways/", "category": "Daily Updates", "rating": "5.0", "description": "Famous for lighting-fast alerts on new brand giveaways and samples.", "pros": ["Fast", "Mobile"], "payout_type": "Prizes" },
-    { "name": "Sweeties Sweeps", "url": "https://sweetiessweeps.com/", "category": "Educational", "rating": "4.9", "description": "Expert advice on how to win plus a highly curated list of local and national sweeps.", "pros": ["Tips", "Vetted"], "payout_type": "Prizes" },
-    { "name": "Win Prizes Online", "url": "https://www.winprizesonline.com/", "category": "Directory", "rating": "4.9", "description": "A deep directory featuring a wide variety of prize categories and entry types.", "pros": ["Variety", "Updated"], "payout_type": "Prizes" },
-    { "name": "Online Sweepstakes", "url": "https://online-sweepstakes.com/", "category": "Community", "rating": "4.8", "description": "One of the oldest and most respected sweepstakes communities on the web.", "pros": ["Legacy", "Forum"], "payout_type": "Various" },
-    { "name": "iWinContests", "url": "https://iwincontests.com/", "category": "Fast Entry", "rating": "4.8", "description": "Clean, straightforward list focusing on high-quality giveaways with easy entry.", "pros": ["Clean UI", "Daily"], "payout_type": "Prizes" },
-    { "name": "Giveaway Frenzy", "url": "https://giveawayfrenzy.com/", "category": "Aggregator", "rating": "4.8", "description": "Specializes in finding and promoting the newest giveaways from across the web.", "pros": ["Aggregator", "New"], "payout_type": "Prizes" },
-    { "name": "I Love Giveaways", "url": "https://ilovegiveaways.com/", "category": "Daily List", "rating": "4.7", "description": "Consistently updated with the latest sweepstakes, contests, and free samples.", "pros": ["Samples", "Daily"], "payout_type": "Prizes" },
-    { "name": "Sweepstakes Lovers", "url": "https://www.sweepstakeslovers.com/", "category": "Curated", "rating": "4.7", "description": "Provides detailed information and rules for the most popular national sweepstakes.", "pros": ["Details", "Safe"], "payout_type": "Prizes" },
-    { "name": "Contest Bee", "url": "https://www.contestbee.com/", "category": "Directory", "rating": "4.7", "description": "A well-organized directory that makes it easy to find and enter current contests.", "pros": ["Easy", "Safe"], "payout_type": "Various" },
-    { "name": "Just Free Stuff", "url": "https://justfreestuff.com/", "category": "Freebies", "rating": "4.7", "description": "Focuses on free samples and giveaways for everyday household items.", "pros": ["Samples", "Daily"], "payout_type": "Freebies" },
-    { "name": "Contest Listing", "url": "https://www.contestlisting.com/", "category": "Global", "rating": "4.6", "description": "Features a large database of contests available to residents in various countries.", "pros": ["Global", "Volume"], "payout_type": "Prizes" },
-    { "name": "Giveaway Machine", "url": "https://giveawaymachine.com/", "category": "New Tech", "rating": "4.6", "description": "Modern directory focusing on electronics, gaming, and tech-related giveaways.", "pros": ["Tech", "Modern"], "payout_type": "Tech" },
-    { "name": "GiveawayBase", "url": "https://giveawaybase.com/", "category": "International", "rating": "4.6", "description": "Great for finding international giveaways and gleam-based contests.", "pros": ["Global", "Gleam"], "payout_type": "Prizes" },
-    { "name": "SweepstakesBible", "url": "https://www.sweepstakesbible.com/", "category": "Directory", "rating": "4.9", "description": "Organized list of free-to-enter US and Canada sweeps.", "pros": ["Vetted", "Simple"], "payout_type": "Prizes" },
-    { "name": "UltraContest", "url": "https://www.ultracontest.com/", "category": "Premium", "rating": "4.8", "description": "Simple experience for finding high-value prizes without excessive ads.", "pros": ["No Ads", "Simple"], "payout_type": "High Value" },
-    { "name": "PrizeGrab", "url": "https://prizegrab.com/", "category": "Daily Sweeps", "rating": "4.8", "description": "User-friendly platform with guaranteed daily cash and tech prizes.", "pros": ["Daily Win", "Easy"], "payout_type": "Cash/Tech" },
-    { "name": "Contest Girl", "url": "https://www.contestgirl.com", "category": "Daily Tracker", "rating": "4.8", "description": "Loved for clean organization and manual entry tracking tools.", "pros": ["Tracker", "Clean"], "payout_type": "Prizes" },
-    { "name": "Sweepstakes Today", "url": "https://www.sweepstakestoday.com/", "category": "Trusted", "rating": "4.7", "description": "A safety-first directory that manually checks every giveaway link.", "pros": ["Secure", "Legacy"], "payout_type": "Verified" },
-    { "name": "FreebieShark", "url": "https://www.freebieshark.com/", "category": "Instant Win", "rating": "4.7", "description": "The best place to find instant-win games and free daily samples.", "pros": ["Instant", "Fun"], "payout_type": "Instant Win" },
-    { "name": "Infinite Sweeps", "url": "https://www.infinitesweeps.com/", "category": "Searchable", "rating": "4.6", "description": "A massive list categorized by prize type and entry requirements.", "pros": ["Search", "Volume"], "payout_type": "Prizes" }
+  {
+    "name": "🥤 Dr Pepper Route 66 Sweepstakes",
+    "url": "https://drpepperroute66.com/",
+    "category": "Travel & Drinks",
+    "rating": "5.0",
+    "description": "Win a legendary road trip or instant prizes with Dr Pepper. Fuel your summer with the ultimate Route 66 experience.",
+    "pros": ["Official Brand", "Instant Win Possible"],
+    "payout_type": "Grand Prize",
+    "featured": true
+  },
+  {
+    "name": "🌽 Fritos Minis Giveaway",
+    "url": "https://fritospromos.com/minis/minis_register/",
+    "category": "Food & Snacks",
+    "rating": "4.9",
+    "description": "Register to win huge prizes with the new Fritos Minis. Quick entry form for snack lovers across the US.",
+    "pros": ["Easy Entry", "Trusted Brand"],
+    "payout_type": "Prizes",
+    "featured": true
+  },
+  {
+    "name": "🍋 Mike's Hard Lemonade Fantasy Life",
+    "url": "https://www.mikeshard.com/sweepstakes/fantasylife",
+    "category": "Lifestyle",
+    "rating": "4.8",
+    "description": "Enter the Fantasy Life sweeps for a chance to win exclusive experiences and prizes from Mike's Hard.",
+    "pros": ["Premium Prizes", "21+ Only"],
+    "payout_type": "Experience",
+    "featured": true
+  },
+  {
+    "name": "🧗 Clif Bar: Run The World",
+    "url": "https://mondelez-clifruntheworld.shared-a.apollo.prod.aws.eprize.net/login",
+    "category": "Fitness",
+    "rating": "5.0",
+    "description": "Clif Bar and Mondelez are giving away fitness gear and world-class travel experiences. Fuel your adventure.",
+    "pros": ["High Value", "Verified Official"],
+    "payout_type": "Gear & Travel",
+    "featured": true
+  },
+  {
+    "name": "🍺 Ritas: Cash In with Ritas",
+    "url": "https://v2.playmaker.beer/cashinwithritas",
+    "category": "Cash",
+    "rating": "4.7",
+    "description": "Win cold hard cash and summer essentials from Ritas. Simple registration to get in the drawing.",
+    "pros": ["Cash Prizes", "Daily Entry"],
+    "payout_type": "Cash",
+    "featured": true
+  }
 ]

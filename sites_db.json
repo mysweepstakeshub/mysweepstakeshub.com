@@ -1,158 +1,100 @@
+json
 [
-  {
-    "name": "🥤 Dr Pepper Route 66",
-    "url": "https://drpepperroute66.com/",
-    "description": "Win a legendary road trip or instant prizes with Dr Pepper.",
-    "featured": true
-  },
-  {
-    "name": "🌽 Fritos Minis Giveaway",
-    "url": "https://fritospromos.com/minis/minis_register/",
-    "description": "Register to win huge prizes with the new Fritos Minis.",
-    "featured": true
-  },
-  {
-    "name": "🍋 Mike's Hard Fantasy Life",
-    "url": "https://www.mikeshard.com/sweepstakes/fantasylife",
-    "description": "Enter for exclusive experiences and prizes from Mike's Hard.",
-    "featured": true
-  },
-  {
-    "name": "🧗 Clif Bar: Run The World",
-    "url": "https://mondelez-clifruntheworld.shared-a.apollo.prod.aws.eprize.net/login",
-    "description": "Win fitness gear and world-class travel experiences.",
-    "featured": true
-  },
-  {
-    "name": "🍺 Ritas: Cash In",
-    "url": "https://v2.playmaker.beer/cashinwithritas",
-    "description": "Win cold hard cash and summer essentials from Ritas.",
-    "featured": true
-  },
-  {
-    "name": "Sweepstakes Advantage",
-    "url": "https://www.sweepsadvantage.com",
-    "description": "The gold standard with a massive searchable database.",
-    "rating": "5.0"
-  },
-  {
-    "name": "The Freebie Guy",
-    "url": "https://thefreebieguy.com/current-sweepstakes-and-giveaways/",
-    "description": "Lighting-fast alerts on new brand giveaways and samples.",
-    "rating": "5.0"
-  },
-  {
-    "name": "Contest Girl",
-    "url": "https://www.contestgirl.com",
-    "description": "Loved for its clean, ad-free organization and tracking.",
-    "rating": "4.9"
-  },
-  {
-    "name": "Infinite Sweeps",
-    "url": "https://www.infinitesweeps.com/",
-    "description": "An endless list of sweepstakes categorized by prize type.",
-    "rating": "4.8"
-  },
-  {
-    "name": "Sweepstakes Today",
-    "url": "https://www.sweepstakestoday.com/",
-    "description": "Every link is manually checked for safety and legitimacy.",
-    "rating": "4.7"
-  },
-  {
-    "name": "FreebieShark",
-    "url": "https://www.freebieshark.com/",
-    "description": "The specialist in 'Instant Win' games and daily samples.",
-    "rating": "4.7"
-  },
-  {
-    "name": "Sweeties Sweeps",
-    "url": "https://sweetiessweeps.com/",
-    "description": "Expert advice on how to win plus a highly curated list.",
-    "rating": "4.9"
-  },
-  {
-    "name": "Win Prizes Online",
-    "url": "https://www.winprizesonline.com/",
-    "description": "A deep directory with a wide variety of prize categories.",
-    "rating": "4.9"
-  },
-  {
-    "name": "Online Sweepstakes",
-    "url": "https://online-sweepstakes.com/",
-    "description": "One of the oldest and most respected communities online.",
-    "rating": "4.8"
-  },
-  {
-    "name": "iWinContests",
-    "url": "https://iwincontests.com/",
-    "description": "Clean, straightforward list focusing on high-quality prizes.",
-    "rating": "4.8"
-  },
-  {
-    "name": "Giveaway Frenzy",
-    "url": "https://giveawayfrenzy.com/",
-    "description": "Aggregator finding the newest giveaways across the web.",
-    "rating": "4.8"
-  },
-  {
-    "name": "I Love Giveaways",
-    "url": "https://ilovegiveaways.com/",
-    "description": "Consistently updated with the latest sweepstakes and freebies.",
-    "rating": "4.7"
-  },
-  {
-    "name": "Sweepstakes Lovers",
-    "url": "https://www.sweepstakeslovers.com/",
-    "description": "Provides detailed rules for popular national sweepstakes.",
-    "rating": "4.7"
-  },
-  {
-    "name": "Contest Bee",
-    "url": "https://www.contestbee.com/",
-    "description": "A well-organized directory that makes it easy to find contests.",
-    "rating": "4.7"
-  },
-  {
-    "name": "Just Free Stuff",
-    "url": "https://justfreestuff.com/",
-    "description": "Focuses on free samples and giveaways for household items.",
-    "rating": "4.7"
-  },
-  {
-    "name": "Contest Listing",
-    "url": "https://www.contestlisting.com/",
-    "description": "Features a large database of contests for multiple countries.",
-    "rating": "4.6"
-  },
-  {
-    "name": "Giveaway Machine",
-    "url": "https://giveawaymachine.com/",
-    "description": "Modern directory focusing on electronics and gaming.",
-    "rating": "4.6"
-  },
-  {
-    "name": "GiveawayBase",
-    "url": "https://giveawaybase.com/",
-    "description": "Great for finding international and gleam-based contests.",
-    "rating": "4.6"
-  },
-  {
-    "name": "SweepstakesBible",
-    "url": "https://www.sweepstakesbible.com/",
-    "description": "Organized list of free-to-enter US and Canada sweeps.",
-    "rating": "4.9"
-  },
-  {
-    "name": "UltraContest",
-    "url": "https://www.ultracontest.com/",
-    "description": "High-value prizes without the clutter of excessive ads.",
-    "rating": "4.8"
-  },
-  {
-    "name": "PrizeGrab",
-    "url": "https://prizegrab.com/",
-    "description": "User-friendly platform with guaranteed daily cash prizes.",
-    "rating": "4.8"
-  }
+    {
+        "title": "$1,000 Amazon Gift Card Giveaway",
+        "url": "https://www.amazon.com",
+        "category": "Gift Cards",
+        "endDate": "06/30/2026",
+        "frequency": "Daily",
+        "addedDate": "05/02/26"
+    },
+    {
+        "title": "Win a $5,000 Home Depot Shopping Spree",
+        "url": "https://www.homedepot.com",
+        "category": "Home & Garden",
+        "endDate": "07/15/2026",
+        "frequency": "Single",
+        "addedDate": "05/02/26"
+    },
+    {
+        "title": "Trip for 2 to Las Vegas - Air & Hotel Included",
+        "url": "#",
+        "category": "Travel",
+        "endDate": "06/15/2026",
+        "frequency": "Daily",
+        "addedDate": "05/01/26"
+    },
+    {
+        "title": "Win the New iPhone 17 Pro Max",
+        "url": "#",
+        "category": "Electronics",
+        "endDate": "08/01/2026",
+        "frequency": "Single",
+        "addedDate": "05/02/26"
+    },
+    {
+        "title": "$500 Target Gift Card - Enter Daily",
+        "url": "#",
+        "category": "Gift Cards",
+        "endDate": "05/31/2026",
+        "frequency": "Daily",
+        "addedDate": "04/30/26"
+    },
+    {
+        "title": "Year Supply of Starbucks Coffee",
+        "url": "#",
+        "category": "Food & Drink",
+        "endDate": "07/01/2026",
+        "frequency": "Monthly",
+        "addedDate": "05/01/26"
+    },
+    {
+        "title": "Disney World Family Vacation Package",
+        "url": "#",
+        "category": "Travel",
+        "endDate": "09/30/2026",
+        "frequency": "Single",
+        "addedDate": "04/29/26"
+    },
+    {
+        "title": "MacBook Pro 2026 + AirPods Bundle",
+        "url": "#",
+        "category": "Electronics",
+        "endDate": "06/30/2026",
+        "frequency": "Daily",
+        "addedDate": "05/02/26"
+    },
+    {
+        "title": "$2,500 Nordstrom Fashion Shopping Spree",
+        "url": "#",
+        "category": "Fashion",
+        "endDate": "06/22/2026",
+        "frequency": "Single",
+        "addedDate": "04/28/26"
+    },
+    {
+        "title": "Ultimate Gaming Setup - PS5 Pro + Games",
+        "url": "#",
+        "category": "Electronics",
+        "endDate": "07/15/2026",
+        "frequency": "Weekly",
+        "addedDate": "05/01/26"
+    },
+    {
+        "title": "$10,000 Cash Prize - Enter Now",
+        "url": "#",
+        "category": "Cash",
+        "endDate": "08/31/2026",
+        "frequency": "Daily",
+        "addedDate": "05/02/26"
+    },
+    {
+        "title": "2026 Honda CR-V Hybrid Giveaway",
+        "url": "#",
+        "category": "Automotive",
+        "endDate": "10/15/2026",
+        "frequency": "Single",
+        "addedDate": "04/27/26"
+    }
 ]
+

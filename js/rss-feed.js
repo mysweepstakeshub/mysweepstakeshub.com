@@ -55,4 +55,67 @@ async function fetchAllFeeds() {
     const allSweeps = [];
     const results = await Promise.allSettled(RSS_FEEDS.map(feed => fetchFeed(feed)));
     results.forEach(result => { if (result.status === 'fulfilled') allSweeps.push(...result.value); });
-    allSweeps.sort((a, b) => { const dateA = new Date(a.pubDate || 0); const dateB = new Date(b.pubDate || 0
+    allSweeps.sort((a, b) => { const dateA = new Date(a.pubDate || 0); const dateB = new Date(b.pubDate || 0); return dateB - dateA; });
+    return allSweeps;
+}
+
+function renderSweepstakes(sweeps, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const tableBody = container.querySelector('tbody');
+    if (!tableBody) return;
+    if (sweeps.length === 0) { tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;">No sweepstakes available. <a href="submit.html">Submit one!</a></td></tr>'; return; }
+    let html = '';
+    sweeps.forEach((sweep, index) => {
+        const rowClass = index % 2 === 0 ? '' : 'row-alt';
+        const isNew = sweep.addedDate === 'Recent';
+        html += `<tr class="${rowClass}"><td><a href="${sweep.link}" target="_blank" rel="noopener">${sweep.title}</a>${isNew?' <span class="new-badge">NEW</span>':''}</td><td><a href="category.html">${sweep.category}</a></td><td>${sweep.endDate}</td><td>${sweep.frequency}</td><td>${sweep.addedDate}</td></tr>`;
+    });
+    tableBody.innerHTML = html;
+    const countElement = document.getElementById('sweeps-count');
+    if (countElement) countElement.textContent = sweeps.length;
+    updateStats(sweeps);
+}
+
+function updateStats(sweeps) {
+    const freqStats = document.getElementById('frequency-stats');
+    if (freqStats) {
+        const counts = { Single: 0, Daily: 0, '24-Hour': 0, Unlimited: 0, Weekly: 0, Monthly: 0, Other: 0, Unknown: 0 };
+        sweeps.forEach(s => { const f = s.frequency; if (counts[f] !== undefined) counts[f]++; else counts['Other']++; });
+        freqStats.innerHTML = `<div>Single Entries: <b>${counts.Single}</b></div><div>Daily Entries: <b>${counts.Daily}</b></div><div>24-Hour Entries: <b>${counts['24-Hour']}</b></div><div>Unlimited Entries: <b>${counts.Unlimited}</b></div><div>Weekly Entries: <b>${counts.Weekly}</b></div><div>Monthly Entries: <b>${counts.Monthly}</b></div><div>Other: <b>${counts.Other}</b></div><div>Unknown: <b>${counts.Unknown}</b></div>`;
+    }
+    const countEl = document.getElementById('total-sweeps');
+    if (countEl) countEl.textContent = sweeps.length;
+    const todayCount = document.getElementById('today-count');
+    if (todayCount) todayCount.textContent = '(' + sweeps.filter(s => s.addedDate === 'Recent').length + ')';
+    const weekCount = document.getElementById('week-count');
+    if (weekCount) weekCount.textContent = '(' + sweeps.length + ')';
+}
+
+async function loadSweepstakes(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const tableBody = container.querySelector('tbody');
+    if (tableBody) tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;">Loading sweepstakes...</td></tr>';
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) { const { data, timestamp } = JSON.parse(cached); if (Date.now() - timestamp < CACHE_TIME) { renderSweepstakes(data, containerId); return; } }
+    const sweeps = await fetchAllFeeds();
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ data: sweeps, timestamp: Date.now() }));
+    renderSweepstakes(sweeps, containerId);
+}
+
+function loadSweepstakesEnding(containerId) {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+        const { data } = JSON.parse(cached);
+        const ending = data.filter(s => s.endDate !== 'Unknown').sort((a, b) => (a.endDate||'').localeCompare(b.endDate||'')).slice(0, 25);
+        renderSweepstakes(ending, containerId);
+    } else {
+        loadSweepstakes(containerId);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('rss-feed-table')) loadSweepstakes('rss-feed-table');
+    document.getElementById('refresh-feed')?.addEventListener('click', (e) => { e.preventDefault(); localStorage.removeItem(CACHE_KEY); loadSweepstakes('rss-feed-table'); });
+});

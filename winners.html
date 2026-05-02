@@ -1,261 +1,189 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Winners Circle – MySweepstakesHub.com</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--red:#c0392b;--red-dark:#96281b;--gold:#e8a020;--gold-light:#f5c842;--navy:#1a2744;--navy-light:#253358;--bg:#f4f1eb;--bg-card:#fff;--text:#222;--text-muted:#666;--border:#d9d3c7;--sidebar-bg:#f9f6f0;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;}
-#topbar{background:var(--navy);color:#ccc;font-size:11.5px;padding:5px 16px;display:flex;justify-content:space-between;}
-#topbar a{color:#aab4cf;text-decoration:none;margin:0 6px;}
-header{background:linear-gradient(135deg,var(--red-dark) 0%,var(--red) 45%,#a93226 100%);box-shadow:0 3px 8px rgba(0,0,0,0.3);}
-.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;}
-.logo-main{font-family:'Oswald',sans-serif;font-size:34px;font-weight:700;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,0.4);line-height:1;text-decoration:none;display:block;}
-.logo-main span{color:var(--gold-light);}.logo-sub{font-family:'Source Serif 4',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,0.75);margin-top:3px;}
-.header-search{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:4px;padding:6px 10px;}
-.header-search input{background:none;border:none;outline:none;color:#fff;font-size:13px;width:220px;}
-.header-search input::placeholder{color:rgba(255,255,255,0.6);}
-.header-search button{background:var(--gold);border:none;color:var(--navy);font-weight:700;font-size:12px;padding:5px 12px;border-radius:3px;cursor:pointer;font-family:'Oswald',sans-serif;text-transform:uppercase;}
-nav{background:var(--navy-light);border-top:2px solid var(--gold);}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;padding:0 16px;gap:2px;flex-wrap:wrap;}
-nav a{color:#c8d0e0;text-decoration:none;font-family:'Oswald',sans-serif;font-size:13.5px;text-transform:uppercase;padding:10px 14px;display:inline-block;transition:background 0.15s,color 0.15s;}
-nav a:hover,nav a.active{background:var(--red);color:#fff;} nav a.hot{color:var(--gold-light);font-weight:600;}
-.page-wrap{max-width:1100px;margin:16px auto;padding:0 16px;display:grid;grid-template-columns:1fr 230px;gap:18px;}
-.section-header{display:flex;align-items:center;background:var(--navy);color:#fff;font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;padding:7px 12px;margin-bottom:10px;border-left:4px solid var(--gold);}
-.section-header .count{margin-left:auto;background:var(--gold);color:var(--navy);font-size:11px;padding:2px 7px;border-radius:10px;font-weight:700;}
-.sidebar-box{background:var(--sidebar-bg);border:1px solid var(--border);border-radius:3px;margin-bottom:14px;overflow:hidden;}
-.sidebar-title{background:var(--navy);color:#fff;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;padding:7px 12px;border-left:3px solid var(--gold);}
-.sidebar-body{padding:10px 12px;}
-.cat-list{list-style:none;} .cat-list li{border-bottom:1px solid var(--border);padding:5px 0;display:flex;justify-content:space-between;} .cat-list li:last-child{border-bottom:none;}
-.cat-list a{color:var(--red-dark);text-decoration:none;font-size:13px;font-weight:500;}
-.cat-list .cnt{background:var(--border);color:#666;font-size:10.5px;padding:1px 6px;border-radius:10px;}
-.tips-list{list-style:none;} .tips-list li{padding:5px 0;border-bottom:1px dotted var(--border);font-size:12.5px;color:#555;} .tips-list li:last-child{border-bottom:none;}
-.newsletter input[type=email]{width:100%;padding:7px 9px;border:1px solid var(--border);border-radius:3px;font-size:13px;margin-bottom:7px;outline:none;}
-.newsletter button{width:100%;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;border:none;padding:8px;border-radius:3px;cursor:pointer;}
-.breadcrumb{font-size:12px;color:var(--text-muted);margin-bottom:12px;}
-.breadcrumb a{color:var(--red-dark);text-decoration:none;}
-footer{background:var(--navy);color:#8899bb;margin-top:24px;padding:22px 16px 14px;font-size:12px;}
-.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px;margin-bottom:16px;}
-.footer-col h4{font-family:'Oswald',sans-serif;font-size:13px;text-transform:uppercase;color:#fff;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:5px;}
-.footer-col ul{list-style:none;} .footer-col ul li{margin-bottom:4px;} .footer-col a{color:#8899bb;text-decoration:none;} .footer-col a:hover{color:var(--gold-light);}
-.footer-bottom{max-width:1100px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-
-/* WINNERS SPECIFIC */
-.trophy-banner{background:linear-gradient(135deg,var(--navy) 0%,#2c3e70 100%);border:2px solid var(--gold);border-radius:4px;padding:20px 24px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden;}
-.trophy-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(232,160,32,0.15) 0%,transparent 70%);pointer-events:none;}
-.trophy-banner h1{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;color:#fff;margin-bottom:6px;}
-.trophy-banner h1 span{color:var(--gold-light);}
-.trophy-banner p{color:#aab4cf;font-size:13.5px;}
-.trophy-stats{display:flex;justify-content:center;gap:30px;margin-top:14px;flex-wrap:wrap;}
-.ts{text-align:center;}
-.ts-num{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:var(--gold-light);line-height:1;}
-.ts-lbl{font-size:11px;color:#aab4cf;text-transform:uppercase;letter-spacing:0.4px;}
-
-/* Featured winner */
-.featured-winner{background:linear-gradient(135deg,var(--navy),#2c3e70);border:2px solid var(--gold);border-radius:4px;padding:20px;margin-bottom:16px;display:flex;gap:20px;align-items:flex-start;}
-.fw-avatar{width:72px;height:72px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;color:var(--navy);flex-shrink:0;border:3px solid var(--gold-light);}
-.fw-content{flex:1;}
-.fw-name{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:2px;}
-.fw-location{font-size:12px;color:var(--gold-light);margin-bottom:8px;}
-.fw-prize{font-family:'Oswald',sans-serif;font-size:32px;font-weight:700;color:var(--gold-light);line-height:1;margin-bottom:4px;}
-.fw-sweep{font-size:13px;color:#aab4cf;margin-bottom:10px;}
-.fw-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6;border-left:3px solid var(--gold);padding-left:12px;}
-
-/* Winner cards grid */
-.winners-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
-.winner-card{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:14px;display:flex;gap:12px;align-items:flex-start;}
-.wc-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#fff;flex-shrink:0;}
-.wc-name{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;color:var(--navy);}
-.wc-location{font-size:11px;color:var(--text-muted);}
-.wc-prize{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:var(--red-dark);margin:4px 0 2px;}
-.wc-sweep{font-size:12px;color:var(--text-muted);}
-.wc-date{font-size:11px;color:#aaa;margin-top:2px;}
-.wc-badge{display:inline-block;background:var(--gold);color:var(--navy);font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;padding:1px 6px;border-radius:2px;text-transform:uppercase;margin-top:4px;}
-
-/* Report win form */
-.report-box{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:4px;padding:16px 20px;margin-bottom:16px;}
-.report-box h3{font-family:'Oswald',sans-serif;font-size:16px;color:#166534;margin-bottom:6px;}
-.report-box p{font-size:13px;color:#15803d;margin-bottom:12px;}
-.report-form{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.report-form input,.report-form select,.report-form textarea{padding:7px 9px;border:1px solid #86efac;border-radius:3px;font-size:13px;font-family:'Inter',sans-serif;outline:none;background:#fff;}
-.report-form .full{grid-column:1/-1;}
-.report-form button{grid-column:1/-1;background:#16a34a;color:#fff;font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;text-transform:uppercase;border:none;padding:9px;border-radius:3px;cursor:pointer;}
-.report-form button:hover{background:#15803d;}
-.pagination{display:flex;gap:4px;margin:12px 0 4px;flex-wrap:wrap;}
-.pagination a,.pagination span{padding:5px 10px;border:1px solid var(--border);background:var(--bg-card);color:var(--navy);font-size:12px;text-decoration:none;border-radius:2px;font-family:'Oswald',sans-serif;}
-.pagination a:hover{background:var(--red);color:#fff;border-color:var(--red);}
-.pagination .current{background:var(--navy);color:#fff;border-color:var(--navy);}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Winners - My Sweepstakes Hub</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div id="topbar">
-  <div><strong>MySweepstakesHub.com</strong> — Updated Daily &nbsp;|&nbsp; <a href="category.html">1,247 Active Sweepstakes</a></div>
-  <div><a href="login.html">Login</a> | <a href="login.html">Register</a> | <a href="submit.html">Submit a Sweepstakes</a></div>
-</div>
-<header>
-  <div class="header-inner">
-    <div><a href="index.html" class="logo-main">My<span>Sweepstakes</span>Hub</a><div class="logo-sub">Your #1 Source for Free Sweepstakes, Contests &amp; Giveaways</div></div>
-    <div class="header-search"><input type="text" placeholder="Search sweepstakes..."><button>Search</button></div>
-  </div>
-</header>
-<nav>
-  <div class="nav-inner">
-    <a href="index.html">Home</a><a href="category.html">New Today</a><a href="#" class="hot">🔥 Hot Picks</a>
-    <a href="category.html">Cash &amp; Gift Cards</a><a href="category.html">Cars &amp; Travel</a>
-    <a href="category.html">Instant Win</a><a href="ending-soon.html">Ending Soon</a>
-    <a href="category.html">By State</a><a href="forum.html">Forum</a><a href="winners.html" class="active">Winners</a><a href="tips.html">Tips</a>
-  </div>
-</nav>
+    <div class="top-utility">
+        <a href="index.html">Home</a> &nbsp;|&nbsp;
+        <a href="#">Login</a> &nbsp;|&nbsp;
+        <a href="#">Register</a> &nbsp;|&nbsp;
+        <a href="forum.html">Forum</a> &nbsp;|&nbsp;
+        <a href="admin.html">Admin</a>
+    </div>
 
-<div class="page-wrap">
-<main>
-  <div class="breadcrumb"><a href="index.html">Home</a> › Winners Circle</div>
+    <div class="main-container">
 
-  <div class="trophy-banner">
-    <div style="font-size:48px;margin-bottom:8px;">🏆</div>
-    <h1>The <span>Winners Circle</span></h1>
-    <p>Real people. Real prizes. These winners entered through MySweepstakesHub — and won!</p>
-    <div class="trophy-stats">
-      <div class="ts"><div class="ts-num">$4.2M+</div><div class="ts-lbl">Total Prizes Won</div></div>
-      <div class="ts"><div class="ts-num">1,847</div><div class="ts-lbl">Verified Winners</div></div>
-      <div class="ts"><div class="ts-num">49</div><div class="ts-lbl">States Represented</div></div>
-      <div class="ts"><div class="ts-num">312</div><div class="ts-lbl">Winners in 2026</div></div>
-    </div>
-  </div>
+        <div class="logo-area">
+            <div class="logo-text">MY SWEEPSTAKES HUB</div>
+            <div class="tagline">~ Your #1 Source for Free Online Sweepstakes ~</div>
+        </div>
 
-  <!-- FEATURED WINNER -->
-  <div class="section-header">⭐ Featured Winner – March 2026</div>
-  <div class="featured-winner">
-    <div class="fw-avatar">L</div>
-    <div class="fw-content">
-      <div class="fw-name">Linda M. — Gainesville, FL</div>
-      <div class="fw-location">📍 Florida • Member Since 2022</div>
-      <div class="fw-prize">$10,000 Best Buy Gift Card</div>
-      <div class="fw-sweep">Best Buy Electronics Shopping Spree Sweepstakes • Won February 2026</div>
-      <div class="fw-quote">"I honestly didn't think I would ever win anything. I'd been entering sweepstakes for about 3 years on this site, mostly just a few minutes a day. Then one morning I got the email — I won $10,000 to Best Buy! My husband thought I was pranked at first. We bought a new TV, laptop, and refrigerator. It was absolutely life-changing. Keep entering, everyone — it REALLY does happen!"</div>
-    </div>
-  </div>
+        <div class="nav-bar">
+            <a href="index.html">Home</a> <span class="nav-separator">|</span>
+            <a href="new.html">New Sweepstakes</a> <span class="nav-separator">|</span>
+            <a href="ending-soon.html">Ending Soon</a> <span class="nav-separator">|</span>
+            <a href="expired.html">Recently Expired</a> <span class="nav-separator">|</span>
+            <a href="category.html">Categories</a> <span class="nav-separator">|</span>
+            <a href="winners.html">Winners</a> <span class="nav-separator">|</span>
+            <a href="submit.html">Submit a Sweep</a> <span class="nav-separator">|</span>
+            <a href="forum.html">Forum</a>
+        </div>
 
-  <!-- WINNERS GRID -->
-  <div class="section-header">🏅 Recent Winners <span class="count">1,847 Total</span></div>
-  <div class="winners-grid">
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#e67e22;">C</div>
-      <div><div class="wc-name">Carlos R.</div><div class="wc-location">San Antonio, TX</div><div class="wc-prize">2025 Ford Mustang</div><div class="wc-sweep">Ford Summer Drive Sweepstakes</div><div class="wc-date">Won: March 2026</div><span class="wc-badge">Vehicle</span></div>
-    </div>
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#27ae60;">S</div>
-      <div><div class="wc-name">Sarah K.</div><div class="wc-location">Columbus, OH</div><div class="wc-prize">Disney Trip for 4</div><div class="wc-sweep">Walt Disney World Family Sweepstakes</div><div class="wc-date">Won: February 2026</div><span class="wc-badge">Travel</span></div>
-    </div>
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#8e44ad;">J</div>
-      <div><div class="wc-name">James P.</div><div class="wc-location">Sacramento, CA</div><div class="wc-prize">$500 Amazon Gift Card</div><div class="wc-sweep">Amazon Instant Win Game</div><div class="wc-date">Won: February 2026</div><span class="wc-badge">Instant Win</span></div>
-    </div>
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#c0392b;">M</div>
-      <div><div class="wc-name">Maria G.</div><div class="wc-location">Miami, FL</div><div class="wc-prize">$25,000 Cash</div><div class="wc-sweep">PCH Sweepstakes January Prize</div><div class="wc-date">Won: January 2026</div><span class="wc-badge">Cash</span></div>
-    </div>
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#2980b9;">R</div>
-      <div><div class="wc-name">Robert H.</div><div class="wc-location">Nashville, TN</div><div class="wc-prize">Cancun Vacation for 2</div><div class="wc-sweep">Tropicana Beach Escape Sweepstakes</div><div class="wc-date">Won: January 2026</div><span class="wc-badge">Travel</span></div>
-    </div>
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#16a34a;">A</div>
-      <div><div class="wc-name">Angela W.</div><div class="wc-location">Charlotte, NC</div><div class="wc-prize">Samsung 75" QLED TV</div><div class="wc-sweep">Best Buy Holiday Instant Win</div><div class="wc-date">Won: December 2025</div><span class="wc-badge">Electronics</span></div>
-    </div>
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#b45309;">D</div>
-      <div><div class="wc-name">Dave T.</div><div class="wc-location">Brooklyn, NY</div><div class="wc-prize">$5,000 Visa Gift Card</div><div class="wc-sweep">Visa Everyday Rewards Sweepstakes</div><div class="wc-date">Won: December 2025</div><span class="wc-badge">Gift Card</span></div>
-    </div>
-    <div class="winner-card">
-      <div class="wc-avatar" style="background:#7c3aed;">P</div>
-      <div><div class="wc-name">Patricia N.</div><div class="wc-location">Phoenix, AZ</div><div class="wc-prize">$2,500 Home Depot Card</div><div class="wc-sweep">Home Depot Fall Renovation Sweeps</div><div class="wc-date">Won: November 2025</div><span class="wc-badge">Home</span></div>
-    </div>
-  </div>
-  <div class="pagination"><span class="current">1</span><a href="#">2</a><a href="#">3</a><a href="#">...</a><a href="#">185</a><a href="#">Next →</a></div>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> &gt; <strong>Recent Winners</strong>
+        </div>
 
-  <!-- REPORT YOUR WIN -->
-  <div class="report-box" style="margin-top:20px;">
-    <h3>🎉 Did You Win? Tell Us!</h3>
-    <p>Did you win a sweepstakes you found on MySweepstakesHub? We'd love to feature your story and inspire other sweepers!</p>
-    <div class="report-form">
-      <input type="text" placeholder="Your first name + last initial (e.g. Linda M.)">
-      <input type="text" placeholder="City, State">
-      <input type="text" placeholder="Prize won (e.g. $10,000 gift card)">
-      <input type="text" placeholder="Sweepstakes name">
-      <select><option>Prize Category</option><option>Cash</option><option>Vehicle</option><option>Travel</option><option>Gift Card</option><option>Electronics</option><option>Home</option><option>Other</option></select>
-      <input type="month" placeholder="Month won">
-      <textarea class="full" rows="3" placeholder="Share your experience in a sentence or two (optional — we may feature your quote!)"></textarea>
-      <button>Submit My Win!</button>
-    </div>
-  </div>
-</main>
+        <table class="three-col">
+            <tr>
 
-<aside>
-  <div class="sidebar-box">
-    <div class="sidebar-title">📊 Winners by State</div>
-    <div class="sidebar-body">
-      <ul class="tips-list">
-        <li>🏆 Florida – 187 winners</li>
-        <li>🏆 California – 164 winners</li>
-        <li>🏆 Texas – 143 winners</li>
-        <li>🏆 New York – 112 winners</li>
-        <li>🏆 Ohio – 98 winners</li>
-        <li>🏆 Pennsylvania – 91 winners</li>
-        <li>🏆 Illinois – 88 winners</li>
-        <li style="color:var(--text-muted);font-size:11.5px;margin-top:4px;">+ 43 more states</li>
-      </ul>
-    </div>
-  </div>
-  <div class="sidebar-box">
-    <div class="sidebar-title">🎁 Top Prize Categories Won</div>
-    <div class="sidebar-body">
-      <ul class="cat-list">
-        <li><a href="category.html">💵 Cash &amp; Money</a><span class="cnt">612</span></li>
-        <li><a href="category.html">🎁 Gift Cards</a><span class="cnt">487</span></li>
-        <li><a href="category.html">✈️ Travel</a><span class="cnt">234</span></li>
-        <li><a href="category.html">📱 Electronics</a><span class="cnt">198</span></li>
-        <li><a href="category.html">🚗 Vehicles</a><span class="cnt">87</span></li>
-        <li><a href="category.html">🏠 Home</a><span class="cnt">72</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="sidebar-box">
-    <div class="sidebar-title">💡 Tips from Winners</div>
-    <div class="sidebar-body">
-      <ul class="tips-list">
-        <li>"Enter every single day — consistency is everything!" — Linda M.</li>
-        <li>"Focus on local and smaller sweepstakes first." — Carlos R.</li>
-        <li>"I keep a dedicated sweeping email address." — Sarah K.</li>
-        <li>"Set reminders — it took me 2 years but I finally won big!" — Maria G.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="sidebar-box">
-    <div class="sidebar-title">📧 Daily Alert</div>
-    <div class="sidebar-body newsletter">
-      <p style="font-size:11.5px;color:#666;margin-bottom:8px;">Enter more, win more — get new sweeps free daily!</p>
-      <input type="email" placeholder="Your email address">
-      <button>Subscribe Free</button>
-    </div>
-  </div>
-</aside>
-</div>
+                <td class="col-left">
+                    <div class="section-box">
+                        <div class="section-header">Winner Archive</div>
+                        <div class="section-body">
+                            <a href="#" class="date-link">May 2011 <span class="count">(47)</span></a>
+                            <a href="#" class="date-link">April 2011 <span class="count">(52)</span></a>
+                            <a href="#" class="date-link">March 2011 <span class="count">(61)</span></a>
+                            <a href="#" class="date-link">February 2011 <span class="count">(38)</span></a>
+                            <a href="#" class="date-link">January 2011 <span class="count">(44)</span></a>
+                            <div class="total-row">242 winners in 2011</div>
+                        </div>
+                    </div>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-col"><h4>MySweepstakesHub.com</h4><p>Your trusted daily resource for free sweepstakes. Updated every day.</p></div>
-    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="category.html">New Sweepstakes</a></li><li><a href="ending-soon.html">Ending Soon</a></li><li><a href="winners.html">Winners Circle</a></li><li><a href="submit.html">Submit</a></li></ul></div>
-    <div class="footer-col"><h4>Community</h4><ul><li><a href="forum.html">Forum</a></li><li><a href="tips.html">Sweeping Tips</a></li><li><a href="winners.html">Winners Stories</a></li></ul></div>
-    <div class="footer-col"><h4>Info</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2026 MySweepstakesHub.com</div>
-    <div>No purchase necessary. Always read official rules before entering.</div>
-  </div>
-</footer>
-</body></html>
+                    <div class="section-box">
+                        <div class="section-header">Top Prize Categories Won</div>
+                        <div class="section-body">
+                            <div>Cash: <b>78</b></div>
+                            <div>Gift Cards: <b>52</b></div>
+                            <div>Electronics: <b>34</b></div>
+                            <div>Travel: <b>28</b></div>
+                            <div>Home &amp; Garden: <b>22</b></div>
+                            <div>Clothing: <b>18</b></div>
+                            <div>Other: <b>10</b></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="col-center">
+                    <div class="page-header">
+                        <h2>🏆 Recent Winners — May 2011</h2>
+                        <p>Congratulations to all our winners! Are you next?</p>
+                    </div>
+
+                    <table class="content-table">
+                        <tr>
+                            <th width="25%">Winner</th>
+                            <th width="40%">Prize</th>
+                            <th width="20%">Sweepstakes</th>
+                            <th width="15%">Date Won</th>
+                        </tr>
+                        <tr>
+                            <td class="winner-name">Linda M. — Texas</td>
+                            <td class="winner-prize">$5,000 Cash</td>
+                            <td>Cash Giveaway</td>
+                            <td>05/26/11</td>
+                        </tr>
+                        <tr class="row-alt">
+                            <td class="winner-name">John D. — Florida</td>
+                            <td class="winner-prize">Dell Laptop Computer</td>
+                            <td>Tech Sweeps</td>
+                            <td>05/25/11</td>
+                        </tr>
+                        <tr>
+                            <td class="winner-name">Sarah K. — Ohio</td>
+                            <td class="winner-prize">$1,000 Amazon Gift Card</td>
+                            <td>Amazon Giveaway</td>
+                            <td>05/24/11</td>
+                        </tr>
+                        <tr class="row-alt">
+                            <td class="winner-name">Michael R. — California</td>
+                            <td class="winner-prize">Trip to Hawaii</td>
+                            <td>Hawaii Sweeps</td>
+                            <td>05/23/11</td>
+                        </tr>
+                        <tr>
+                            <td class="winner-name">Jennifer L. — New York</td>
+                            <td class="winner-prize">iPad 2 + iTunes Card</td>
+                            <td>Apple Giveaway</td>
+                            <td>05/22/11</td>
+                        </tr>
+                        <tr class="row-alt">
+                            <td class="winner-name">Robert T. — Illinois</td>
+                            <td class="winner-prize">$2,500 Home Depot Card</td>
+                            <td>Home Makeover</td>
+                            <td>05/20/11</td>
+                        </tr>
+                        <tr>
+                            <td class="winner-name">Amanda W. — Georgia</td>
+                            <td class="winner-prize">Nintendo Wii Bundle</td>
+                            <td>Gaming Sweeps</td>
+                            <td>05/19/11</td>
+                        </tr>
+                        <tr class="row-alt">
+                            <td class="winner-name">David P. — Washington</td>
+                            <td class="winner-prize">$500 Visa Gift Card</td>
+                            <td>Visa Giveaway</td>
+                            <td>05/18/11</td>
+                        </tr>
+                        <tr>
+                            <td class="winner-name">Jessica H. — Arizona</td>
+                            <td class="winner-prize">Disney World Family Trip</td>
+                            <td>Disney Sweeps</td>
+                            <td>05/17/11</td>
+                        </tr>
+                        <tr class="row-alt">
+                            <td class="winner-name">Chris M. — Oregon</td>
+                            <td class="winner-prize">KitchenAid Mixer + $200</td>
+                            <td>Kitchen Giveaway</td>
+                            <td>05/16/11</td>
+                        </tr>
+                    </table>
+
+                    <div class="pagination">
+                        <a href="#">◄ Previous</a> &nbsp;
+                        <span class="current">1</span> &nbsp;
+                        <a href="#">2</a> &nbsp;
+                        <a href="#">3</a> &nbsp;
+                        <a href="#">4</a> &nbsp;
+                        <a href="#">5</a> &nbsp;
+                        <a href="#">Next ►</a>
+                    </div>
+
+                    <div style="background-color: #FFF3CD; border: 2px solid #FF9900; padding: 10px; margin-top: 15px; text-align: center;">
+                        <strong>Are you a winner?</strong> <a href="#">Let us know</a> and we'll feature you here!
+                    </div>
+                </td>
+
+                <td class="col-right">
+                    <div class="section-box">
+                        <div class="section-header">Quick Links</div>
+                        <div class="section-body links-list">
+                            <a href="new.html">► New Sweepstakes</a>
+                            <a href="ending-soon.html">► Ending Soon</a>
+                            <a href="submit.html">► Submit a Sweep</a>
+                            <a href="forum.html">► Share Your Win</a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+        <div class="footer">
+            <b>My Sweepstakes Hub</b> — Your trusted source for free online sweepstakes.<br>
+            <a href="index.html">Home</a> | 
+            <a href="terms.html">Terms</a> | 
+            <a href="privacy.html">Privacy</a> | 
+            <a href="contact.html">Contact</a><br><br>
+            &copy; 2026 My Sweepstakes Hub. All rights reserved.
+        </div>
+
+    </div>
+
+</body>
+</html>

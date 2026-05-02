@@ -1,970 +1,152 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard — MySweepstakesHub.com</title>
-<style>
-:root {
-  --red: #c0392b; --green: #16a34a; --navy: #1a2744; --gold: #e8a020;
-  --bg: #f0f2f5; --card: #fff; --border: #dde3ed; --text: #1a1a2e;
-  --muted: #6b7280; --sidebar-w: 220px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; display: flex; min-height: 100vh; }
-
-/* ── SIDEBAR ── */
-#sidebar {
-  width: var(--sidebar-w); background: var(--navy); color: #c8d0e0;
-  flex-shrink: 0; display: flex; flex-direction: column; position: fixed;
-  top: 0; left: 0; bottom: 0; z-index: 100; overflow-y: auto;
-}
-#sidebar .logo { padding: 16px 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-#sidebar .logo h1 { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.2; }
-#sidebar .logo span { color: #f5c842; }
-#sidebar .logo p { font-size: 10px; color: #8899bb; margin-top: 2px; }
-.nav-section { padding: 10px 0 4px; }
-.nav-section-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #5566aa; padding: 0 14px 4px; }
-.nav-link {
-  display: flex; align-items: center; gap: 8px; padding: 8px 14px;
-  color: #aab4cf; text-decoration: none; font-size: 12.5px; transition: all 0.15s; cursor: pointer; border: none; background: none; width: 100%; text-align: left;
-}
-.nav-link:hover { background: rgba(255,255,255,0.08); color: #fff; }
-.nav-link.active { background: rgba(255,255,255,0.12); color: #fff; border-left: 3px solid var(--gold); }
-.nav-link .icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
-.nav-badge { margin-left: auto; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px; }
-.nav-badge.green { background: var(--green); }
-#sidebar .footer { margin-top: auto; padding: 12px 14px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #5566aa; }
-#sidebar .footer a { color: #aab4cf; text-decoration: none; display: block; margin-bottom: 3px; }
-
-/* ── MAIN ── */
-#main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-width: 0; }
-
-/* ── TOP BAR ── */
-#topbar {
-  background: #fff; border-bottom: 1px solid var(--border);
-  padding: 10px 20px; display: flex; align-items: center; gap: 12px;
-  position: sticky; top: 0; z-index: 50;
-}
-#topbar h2 { font-size: 16px; font-weight: 700; color: var(--navy); flex: 1; }
-.topbar-stat { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; font-size: 11px; text-align: center; }
-.topbar-stat .n { font-size: 18px; font-weight: 700; color: var(--navy); display: block; line-height: 1; }
-.topbar-stat .l { color: var(--muted); font-size: 10px; }
-#topbar .run-btn { background: var(--navy); color: #fff; border: none; font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
-#topbar .run-btn:hover { background: #253358; }
-
-/* ── CONTENT ── */
-#content { padding: 18px 20px; flex: 1; }
-
-/* ── TABS ── */
-.tab-bar { display: flex; gap: 2px; margin-bottom: 14px; border-bottom: 2px solid var(--border); }
-.tab { padding: 8px 16px; font-size: 12.5px; font-weight: 600; color: var(--muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -2px; display: flex; align-items: center; gap: 5px; }
-.tab.active { color: var(--red); border-bottom-color: var(--red); }
-.tab .cnt { background: #f3f4f6; border-radius: 10px; padding: 1px 6px; font-size: 10px; }
-.tab.active .cnt { background: #fee2e2; color: var(--red); }
-
-/* ── CARDS / PANELS ── */
-.panel { display: none; }
-.panel.active { display: block; }
-
-/* ── FILTER BAR ── */
-.filter-row { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
-.filter-row input[type=text] { flex: 1; min-width: 160px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12.5px; outline: none; }
-.filter-row input:focus { border-color: var(--navy); }
-.filter-row select { padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12.5px; outline: none; background: #fff; }
-.btn { padding: 7px 14px; border-radius: 6px; border: none; font-size: 12px; font-weight: 600; cursor: pointer; }
-.btn-primary { background: var(--navy); color: #fff; }
-.btn-primary:hover { background: #253358; }
-.btn-green { background: var(--green); color: #fff; }
-.btn-green:hover { background: #15803d; }
-.btn-red { background: var(--red); color: #fff; }
-.btn-red:hover { background: #991b1b; }
-.btn-gray { background: #f3f4f6; color: #374151; border: 1px solid var(--border); }
-.btn-gray:hover { background: #e5e7eb; }
-.btn-gold { background: var(--gold); color: var(--navy); }
-.btn-gold:hover { background: #f5c842; }
-.btn-sm { padding: 4px 9px; font-size: 11px; }
-
-/* ── LISTING TABLE ── */
-.listing-table { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.table-head { display: grid; grid-template-columns: 32px 1fr 110px 90px 80px 100px 130px; gap: 0; background: #f8f9fc; border-bottom: 1px solid var(--border); padding: 8px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); }
-.table-row { display: grid; grid-template-columns: 32px 1fr 110px 90px 80px 100px 130px; gap: 0; padding: 9px 12px; border-bottom: 1px solid var(--border); align-items: center; transition: background 0.1s; }
-.table-row:last-child { border-bottom: none; }
-.table-row:hover { background: #f8f9fc; }
-.table-row.selected { background: #eff6ff; }
-.col-check input { width: 14px; height: 14px; cursor: pointer; }
-.col-title .t { font-weight: 600; color: var(--navy); font-size: 12.5px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 380px; }
-.col-title .s { font-size: 11px; color: var(--muted); margin-top: 1px; }
-.prize-val { font-weight: 700; color: var(--navy); font-size: 13px; }
-.date-val { font-size: 11.5px; color: #374151; }
-.date-val.urgent { color: var(--red); font-weight: 700; }
-.cat-pill { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.3px; }
-.cat-cash { background: #dcfce7; color: #15803d; }
-.cat-cars { background: #dbeafe; color: #1d4ed8; }
-.cat-travel { background: #fef9c3; color: #92400e; }
-.cat-home { background: #f3e8ff; color: #7c3aed; }
-.cat-electronics { background: #e0f2fe; color: #075985; }
-.cat-gift_cards { background: #fce7f3; color: #9d174d; }
-.cat-food { background: #ffedd5; color: #c2410c; }
-.cat-sports { background: #d1fae5; color: #065f46; }
-.cat-entertainment { background: #ede9fe; color: #5b21b6; }
-.cat-kids { background: #fef3c7; color: #92400e; }
-.cat-beauty { background: #fce7f3; color: #be185d; }
-.cat-pets { background: #ecfdf5; color: #064e3b; }
-.col-actions { display: flex; gap: 4px; justify-content: flex-end; }
-
-/* ── ENTRY DETAIL MODAL ── */
-#modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
-#modal-overlay.open { display: flex; }
-#modal { background: #fff; border-radius: 10px; width: 620px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-.modal-header { background: var(--navy); color: #fff; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; border-radius: 10px 10px 0 0; }
-.modal-header h3 { font-size: 14px; font-weight: 700; }
-.modal-close { background: none; border: none; color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; line-height: 1; }
-.modal-body { padding: 18px; }
-.field-group { margin-bottom: 14px; }
-.field-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); margin-bottom: 4px; }
-.field-group input, .field-group select, .field-group textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; outline: none; }
-.field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: var(--navy); }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.modal-footer { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; }
-
-/* ── STATS CARDS ── */
-.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
-.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
-.stat-card .num { font-size: 28px; font-weight: 800; color: var(--navy); line-height: 1; }
-.stat-card .lbl { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.stat-card .trend { font-size: 11px; margin-top: 6px; color: var(--green); }
-
-/* ── LOG PANEL ── */
-.log-box { background: #1a1a2e; border-radius: 8px; padding: 14px; font-family: 'Courier New', monospace; font-size: 11.5px; color: #a8ffb0; max-height: 320px; overflow-y: auto; line-height: 1.6; }
-.log-box .log-err { color: #ff6b6b; }
-.log-box .log-warn { color: #ffd93d; }
-.log-box .log-info { color: #a8ffb0; }
-.log-box .log-dim { color: #5566aa; }
-
-/* ── SETUP GUIDE ── */
-.setup-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
-.setup-card h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-.setup-card p { font-size: 12.5px; color: #555; line-height: 1.6; margin-bottom: 8px; }
-.code-block { background: #1a1a2e; color: #a8ffb0; font-family: monospace; font-size: 12px; padding: 10px 12px; border-radius: 6px; line-height: 1.7; overflow-x: auto; white-space: pre; }
-.step-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--navy); color: #fff; border-radius: 50%; font-size: 11px; font-weight: 700; flex-shrink: 0; }
-
-/* ── ADD MANUAL FORM ── */
-.add-form { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; }
-.add-form h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
-
-/* Bulk action bar */
-#bulk-bar { display: none; background: var(--navy); color: #fff; padding: 8px 12px; border-radius: 6px; margin-bottom: 10px; align-items: center; gap: 10px; font-size: 12.5px; }
-#bulk-bar.visible { display: flex; }
-#bulk-bar .n { font-weight: 700; color: var(--gold); }
-
-/* Empty state */
-.empty-state { text-align: center; padding: 40px 20px; color: var(--muted); }
-.empty-state .icon { font-size: 40px; margin-bottom: 10px; }
-.empty-state p { font-size: 13px; }
-
-/* Source badge */
-.source-badge { font-size: 10px; background: #f3f4f6; border: 1px solid #e5e7eb; color: #6b7280; padding: 1px 6px; border-radius: 10px; }
-
-/* Toast notification */
-#toast { position: fixed; bottom: 20px; right: 20px; background: var(--green); color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; z-index: 999; display: none; box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
-#toast.error { background: var(--red); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - My Sweepstakes Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-table td { padding: 8px 10px; border-bottom: 1px solid #E0E0E0; font-size: 11px; }
+        .approve-btn { background: #4CAF50; color: white; border: none; padding: 3px 10px; cursor: pointer; font-size: 10px; }
+        .reject-btn { background: #EF5350; color: white; border: none; padding: 3px 10px; cursor: pointer; font-size: 10px; margin-left: 4px; }
+        .empty-state { text-align: center; padding: 30px; color: #666; }
+    </style>
 </head>
 <body>
-
-<!-- SIDEBAR -->
-<div id="sidebar">
-  <div class="logo">
-    <h1>My<span>Sweepstakes</span>Hub</h1>
-    <p>Admin Dashboard</p>
-  </div>
-
-  <div class="nav-section">
-    <div class="nav-section-label">Overview</div>
-    <button class="nav-link active" onclick="showPanel('dashboard')"><span class="icon">📊</span> Dashboard</button>
-    <button class="nav-link" onclick="showPanel('pending')"><span class="icon">⏳</span> Pending Review <span class="nav-badge" id="sb-pending-cnt">0</span></button>
-    <button class="nav-link" onclick="showPanel('approved')"><span class="icon">✅</span> Approved <span class="nav-badge green" id="sb-approved-cnt">0</span></button>
-    <button class="nav-link" onclick="showPanel('rejected')"><span class="icon">❌</span> Rejected</button>
-  </div>
-
-  <div class="nav-section">
-    <div class="nav-section-label">Tools</div>
-    <button class="nav-link" onclick="showPanel('add')"><span class="icon">➕</span> Add Manually</button>
-    <button class="nav-link" onclick="showPanel('scraper')"><span class="icon">🤖</span> Scraper Status</button>
-    <button class="nav-link" onclick="showPanel('setup')"><span class="icon">⚙️</span> Setup Guide</button>
-  </div>
-
-  <div class="nav-section">
-    <div class="nav-section-label">Site</div>
-    <a href="index.html" class="nav-link" target="_blank"><span class="icon">🌐</span> View Site</a>
-    <button class="nav-link" onclick="exportSiteJSON()"><span class="icon">📤</span> Export Site JSON</button>
-  </div>
-
-  <div class="footer">
-    <a href="index.html" target="_blank">← Back to Site</a>
-    <span>Last scrape: <span id="last-scrape">Never</span></span>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div id="main">
-
-  <!-- TOP BAR -->
-  <div id="topbar">
-    <h2 id="page-title">Dashboard</h2>
-    <div class="topbar-stat"><span class="n" id="tb-approved">0</span><span class="l">Approved</span></div>
-    <div class="topbar-stat"><span class="n" id="tb-pending">0</span><span class="l">Pending</span></div>
-    <div class="topbar-stat"><span class="n" id="tb-total">0</span><span class="l">Total</span></div>
-    <button class="run-btn" onclick="runScraper()">🤖 Run Scraper</button>
-  </div>
-
-  <div id="content">
-
-    <!-- ── DASHBOARD ── -->
-    <div id="panel-dashboard" class="panel active">
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="num" id="dash-approved">0</div>
-          <div class="lbl">Approved Listings</div>
-          <div class="trend">✅ Live on site</div>
-        </div>
-        <div class="stat-card">
-          <div class="num" id="dash-pending">0</div>
-          <div class="lbl">Awaiting Review</div>
-          <div class="trend" style="color:var(--gold);">⏳ Need your attention</div>
-        </div>
-        <div class="stat-card">
-          <div class="num" id="dash-rejected">0</div>
-          <div class="lbl">Rejected</div>
-          <div class="trend" style="color:var(--muted);">❌ Filtered out</div>
-        </div>
-        <div class="stat-card">
-          <div class="num" id="dash-ending">0</div>
-          <div class="lbl">Ending This Week</div>
-          <div class="trend" style="color:var(--red);">🔥 Need refresh</div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-        <!-- Category breakdown -->
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;">
-          <div style="font-weight:700;font-size:13px;color:var(--navy);margin-bottom:10px;">Listings by Category</div>
-          <div id="cat-breakdown"></div>
-        </div>
-        <!-- Source breakdown -->
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;">
-          <div style="font-weight:700;font-size:13px;color:var(--navy);margin-bottom:10px;">Listings by Source</div>
-          <div id="source-breakdown"></div>
-        </div>
-      </div>
-
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-          <div style="font-weight:700;font-size:13px;color:var(--navy);">📋 Recent Pending (Need Review)</div>
-          <button class="btn btn-primary btn-sm" onclick="showPanel('pending')">View All →</button>
-        </div>
-        <div id="dash-recent-pending"></div>
-      </div>
+    <div class="top-utility">
+        <a href="index.html">Home</a> &nbsp;|&nbsp;
+        <a href="#">Login</a> &nbsp;|&nbsp;
+        <a href="#">Register</a> &nbsp;|&nbsp;
+        <a href="forum.html">Forum</a> &nbsp;|&nbsp;
+        <a href="admin.html">Admin</a>
     </div>
-
-    <!-- ── PENDING REVIEW ── -->
-    <div id="panel-pending" class="panel">
-      <div class="filter-row">
-        <input type="text" id="pending-search" placeholder="Search title, sponsor, prize..." oninput="renderPending()">
-        <select id="pending-cat" onchange="renderPending()"><option value="">All Categories</option></select>
-        <button class="btn btn-green" onclick="bulkApprove()">✅ Approve All Visible</button>
-        <button class="btn btn-gold" onclick="showPanel('add')">➕ Add Manually</button>
-      </div>
-      <div id="bulk-bar-pending" class="bulk-bar"></div>
-      <div id="pending-table"></div>
-    </div>
-
-    <!-- ── APPROVED ── -->
-    <div id="panel-approved" class="panel">
-      <div class="filter-row">
-        <input type="text" id="approved-search" placeholder="Search approved listings..." oninput="renderApproved()">
-        <select id="approved-cat" onchange="renderApproved()"><option value="">All Categories</option></select>
-        <select id="approved-sort" onchange="renderApproved()">
-          <option value="newest">Newest First</option>
-          <option value="ending">Ending Soonest</option>
-          <option value="prize">Highest Prize</option>
-        </select>
-        <button class="btn btn-primary" onclick="exportSiteJSON()">📤 Export to Site</button>
-      </div>
-      <div id="approved-table"></div>
-    </div>
-
-    <!-- ── REJECTED ── -->
-    <div id="panel-rejected" class="panel">
-      <div style="margin-bottom:10px;">
-        <button class="btn btn-gray btn-sm" onclick="clearRejected()">🗑 Clear All Rejected</button>
-      </div>
-      <div id="rejected-table"></div>
-    </div>
-
-    <!-- ── ADD MANUALLY ── -->
-    <div id="panel-add" class="panel">
-      <div class="add-form">
-        <h3>➕ Add Sweepstakes Manually</h3>
-        <div class="field-row">
-          <div class="field-group">
-            <label>Sweepstakes Title *</label>
-            <input type="text" id="f-title" placeholder="e.g. Coca-Cola Summer Sweepstakes 2026">
-          </div>
-          <div class="field-group">
-            <label>Sponsor / Company *</label>
-            <input type="text" id="f-sponsor" placeholder="e.g. Coca-Cola">
-          </div>
+    <div class="main-container">
+        <div class="logo-area">
+            <div class="logo-text">MY SWEEPSTAKES HUB</div>
+            <div class="tagline">~ Admin Panel ~</div>
         </div>
-        <div class="field-row">
-          <div class="field-group">
-            <label>Entry URL *</label>
-            <input type="url" id="f-url" placeholder="https://www.sponsor.com/sweepstakes">
-          </div>
-          <div class="field-group">
-            <label>Category</label>
-            <select id="f-cat">
-              <option value="cash">💵 Cash & Money</option>
-              <option value="cars">🚗 Cars & Trucks</option>
-              <option value="travel">✈️ Travel & Vacations</option>
-              <option value="gift_cards">🎁 Gift Cards</option>
-              <option value="electronics">📱 Electronics</option>
-              <option value="home">🏠 Home & Garden</option>
-              <option value="food">🍕 Food & Beverages</option>
-              <option value="sports">⚽ Sports & Outdoors</option>
-              <option value="entertainment">🎬 Entertainment</option>
-              <option value="kids">👶 Kids & Family</option>
-              <option value="beauty">💄 Beauty & Health</option>
-              <option value="pets">🐾 Pets</option>
-            </select>
-          </div>
+        <div class="nav-bar">
+            <a href="index.html">Home</a> <span class="nav-separator">|</span>
+            <a href="new.html">New Sweepstakes</a> <span class="nav-separator">|</span>
+            <a href="ending-soon.html">Ending Soon</a> <span class="nav-separator">|</span>
+            <a href="expired.html">Recently Expired</a> <span class="nav-separator">|</span>
+            <a href="category.html">Categories</a> <span class="nav-separator">|</span>
+            <a href="winners.html">Winners</a> <span class="nav-separator">|</span>
+            <a href="submit.html">Submit a Sweep</a> <span class="nav-separator">|</span>
+            <a href="forum.html">Forum</a>
         </div>
-        <div class="field-row">
-          <div class="field-group">
-            <label>Prize Description</label>
-            <input type="text" id="f-prize" placeholder="e.g. $50,000 Cash">
-          </div>
-          <div class="field-group">
-            <label>Prize Amount (number only)</label>
-            <input type="text" id="f-prize-amt" placeholder="e.g. $50,000">
-          </div>
+        <div class="breadcrumb"><a href="index.html">Home</a> &gt; <strong>Admin Panel</strong></div>
+        <div class="simple-page">
+            <h1>🔧 Admin Panel — Pending Submissions</h1>
+            <p>Review and manage user-submitted sweepstakes before they appear on the site.</p>
+            <div id="pending-container">
+                <div class="empty-state" id="empty-state">No pending submissions. All clear!</div>
+                <table class="content-table" id="pending-table" style="display: none;">
+                    <thead>
+                        <tr><th width="35%">Title</th><th width="15%">Category</th><th width="12%">Ends</th><th width="12%">Freq</th><th width="26%">Actions</th></tr>
+                    </thead>
+                    <tbody id="pending-tbody"></tbody>
+                </table>
+            </div>
+            <hr style="margin: 20px 0; border: 1px solid #E0E0E0;">
+            <h2>Recently Rejected</h2>
+            <div id="rejected-container">
+                <div class="empty-state">No rejected submissions.</div>
+            </div>
+            <hr style="margin: 20px 0; border: 1px solid #E0E0E0;">
+            <h2>Site Statistics</h2>
+            <table class="content-table">
+                <tr><td>Total Sweepstakes Listed</td><td><b id="admin-total">—</b></td></tr>
+                <tr class="row-alt"><td>Pending Review</td><td><b id="admin-pending">—</b></td></tr>
+                <tr><td>Rejected</td><td><b id="admin-rejected">—</b></td></tr>
+                <tr class="row-alt"><td>Last RSS Fetch</td><td><b id="admin-last-fetch">—</b></td></tr>
+            </table>
+            <div style="margin-top: 15px;">
+                <button class="submit-btn" onclick="clearAllData()">Clear All Local Data</button>
+                <button class="submit-btn" style="background: #FF6600; margin-left: 10px;" onclick="refreshRSS()">Force Refresh RSS</button>
+            </div>
         </div>
-        <div class="field-row">
-          <div class="field-group">
-            <label>End Date</label>
-            <input type="date" id="f-end-date">
-          </div>
-          <div class="field-group">
-            <label>Entry Frequency</label>
-            <select id="f-freq">
-              <option>Daily Entry</option>
-              <option>One-Time Entry</option>
-              <option>Weekly Entry</option>
-              <option>2x Daily Entry</option>
-              <option>Instant Win (Daily)</option>
-              <option>See official rules</option>
-            </select>
-          </div>
+        <div class="footer">
+            <b>My Sweepstakes Hub</b> — Admin Panel<br>
+            <a href="index.html">Home</a> | <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a> | <a href="contact.html">Contact</a><br><br>
+            &copy; 2026 My Sweepstakes Hub. All rights reserved.
         </div>
-        <div class="field-row">
-          <div class="field-group">
-            <label>Eligibility</label>
-            <input type="text" id="f-elig" placeholder="e.g. US 18+, US & Canada 21+">
-          </div>
-          <div class="field-group">
-            <label>Status</label>
-            <select id="f-status">
-              <option value="approved">Approved (publish immediately)</option>
-              <option value="pending">Pending (send to review queue)</option>
-            </select>
-          </div>
-        </div>
-        <div class="field-group">
-          <label>Description</label>
-          <textarea id="f-desc" rows="3" placeholder="Brief description of the sweepstakes..."></textarea>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:4px;">
-          <button class="btn btn-primary" onclick="addManual()">➕ Add Sweepstakes</button>
-          <button class="btn btn-gray" onclick="clearForm()">Clear</button>
-        </div>
-      </div>
     </div>
-
-    <!-- ── SCRAPER STATUS ── -->
-    <div id="panel-scraper" class="panel">
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:14px;">
-        <h3 style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;">🤖 Scraper Control</h3>
-        <p style="font-size:12.5px;color:var(--muted);margin-bottom:12px;">The scraper runs automatically on your server. You can also trigger it manually here. Results appear in Pending Review for your approval.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="runScraper()">▶ Run All Scrapers Now</button>
-          <button class="btn btn-gray" onclick="runScraper('sweepsadvantage')">SweepsAdvantage Only</button>
-          <button class="btn btn-gray" onclick="runScraper('pr_wire')">PR Wire Only</button>
-          <button class="btn btn-gray" onclick="runScraper('google_alerts')">Google Alerts Only</button>
-          <button class="btn btn-green" onclick="bulkApproveAll()">✅ Approve All Pending</button>
-        </div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;">
-        <h3 style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;">📋 Scraper Log (Live)</h3>
-        <div class="log-box" id="scraper-log">
-<span class="log-dim">MySweepstakesHub Scraper — Admin Dashboard</span>
-<span class="log-dim">─────────────────────────────────────────</span>
-<span class="log-info">✅ System ready. Click "Run All Scrapers Now" to start.</span>
-<span class="log-dim">Note: In production, scraper.py runs automatically via cron at 6:00 AM daily.</span>
-<span class="log-dim">      Results appear here in Pending Review for your approval.</span>
-<span class="log-info">
-Configured scraper sources:</span>
-<span class="log-info">  • SweepsAdvantage.com</span>
-<span class="log-info">  • OnlineSweepstakes.io</span>
-<span class="log-info">  • Direct sponsor pages (HGTV, Food Network, etc.)</span>
-<span class="log-info">  • Google Alerts RSS feeds</span>
-<span class="log-info">  • PR Newswire / Business Wire press releases</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SETUP GUIDE ── -->
-    <div id="panel-setup" class="panel">
-      <div class="setup-card">
-        <h3><span class="step-num">1</span> Install Python Dependencies</h3>
-        <p>On your server, install the required Python packages for the scraper:</p>
-        <div class="code-block">pip install requests beautifulsoup4 lxml schedule</div>
-      </div>
-      <div class="setup-card">
-        <h3><span class="step-num">2</span> Upload Scraper Files to Your Server</h3>
-        <p>Upload these files to your web server (e.g. via FTP or cPanel File Manager):</p>
-        <div class="code-block">scraper.py          ← The main scraper
-seed_db.py          ← Run once to add demo data
-sweepstakes_db.json ← Approved listings (auto-created)
-pending_review.json ← Pending queue (auto-created)
-rejected.json       ← Rejected entries (auto-created)
-site_sweepstakes.json ← What your website reads</div>
-      </div>
-      <div class="setup-card">
-        <h3><span class="step-num">3</span> Schedule Daily Automatic Scraping (Cron Job)</h3>
-        <p>In cPanel → Cron Jobs, add this to run the scraper every morning at 6 AM:</p>
-        <div class="code-block">0 6 * * * cd /home/yourusername/public_html && python3 scraper.py >> scraper.log 2>&1</div>
-        <p style="margin-top:8px;">Or use the built-in scheduler:</p>
-        <div class="code-block">python3 scraper.py --schedule   # Runs continuously, scrapes at 6 AM daily</div>
-      </div>
-      <div class="setup-card">
-        <h3><span class="step-num">4</span> Set Up Google Alerts RSS (Recommended)</h3>
-        <p>Go to <strong>google.com/alerts</strong> and create alerts for:</p>
-        <div class="code-block">"sweepstakes" "no purchase necessary"
-"enter to win" sweepstakes
-"sweepstakes" site:prnewswire.com</div>
-        <p style="margin-top:8px;">Set delivery to "RSS feed", copy the feed URL, paste into <code>ALERT_RSS_URLS</code> in scraper.py.</p>
-      </div>
-      <div class="setup-card">
-        <h3><span class="step-num">5</span> Connect Your Website to the Database</h3>
-        <p>Your site pages (index.html, category.html, etc.) should fetch <code>site_sweepstakes.json</code> to display live listings. Add this JavaScript to your pages:</p>
-        <div class="code-block">fetch('/site_sweepstakes.json')
-  .then(r => r.json())
-  .then(data => {
-    data.sweepstakes.forEach(sweep => {
-      // Build and insert listing row HTML
-      renderListing(sweep);
-    });
-  });</div>
-      </div>
-      <div class="setup-card">
-        <h3><span class="step-num">6</span> WordPress / PHP Option</h3>
-        <p>If you run WordPress, install the <strong>WP All Import</strong> plugin and point it at site_sweepstakes.json — it will auto-import new listings as posts. Or use a simple PHP file to read the JSON:</p>
-        <div class="code-block">&lt;?php
-$data = json_decode(file_get_contents('site_sweepstakes.json'), true);
-foreach ($data['sweepstakes'] as $sweep) {
-    echo "&lt;div class='listing'&gt;{$sweep['title']}&lt;/div&gt;\n";
-}
-?&gt;</div>
-      </div>
-    </div>
-
-  </div><!-- /content -->
-</div><!-- /main -->
-
-<!-- EDIT MODAL -->
-<div id="modal-overlay">
-  <div id="modal">
-    <div class="modal-header">
-      <h3>✏️ Edit Sweepstakes</h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <input type="hidden" id="edit-id">
-      <div class="field-group">
-        <label>Title *</label>
-        <input type="text" id="edit-title">
-      </div>
-      <div class="field-row">
-        <div class="field-group"><label>Sponsor</label><input type="text" id="edit-sponsor"></div>
-        <div class="field-group">
-          <label>Category</label>
-          <select id="edit-cat">
-            <option value="cash">💵 Cash & Money</option><option value="cars">🚗 Cars</option>
-            <option value="travel">✈️ Travel</option><option value="gift_cards">🎁 Gift Cards</option>
-            <option value="electronics">📱 Electronics</option><option value="home">🏠 Home</option>
-            <option value="food">🍕 Food & Bev</option><option value="sports">⚽ Sports</option>
-            <option value="entertainment">🎬 Entertainment</option><option value="kids">👶 Kids</option>
-            <option value="beauty">💄 Beauty</option><option value="pets">🐾 Pets</option>
-          </select>
-        </div>
-      </div>
-      <div class="field-group"><label>Entry URL</label><input type="url" id="edit-url"></div>
-      <div class="field-row">
-        <div class="field-group"><label>Prize</label><input type="text" id="edit-prize"></div>
-        <div class="field-group"><label>Prize Amount</label><input type="text" id="edit-prize-amt"></div>
-      </div>
-      <div class="field-row">
-        <div class="field-group"><label>End Date</label><input type="date" id="edit-end"></div>
-        <div class="field-group">
-          <label>Entry Frequency</label>
-          <select id="edit-freq">
-            <option>Daily Entry</option><option>One-Time Entry</option><option>Weekly Entry</option>
-            <option>2x Daily Entry</option><option>Instant Win (Daily)</option><option>See official rules</option>
-          </select>
-        </div>
-      </div>
-      <div class="field-group"><label>Eligibility</label><input type="text" id="edit-elig"></div>
-      <div class="field-group"><label>Description</label><textarea id="edit-desc" rows="3"></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-gray" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary" onclick="saveEdit()">💾 Save Changes</button>
-    </div>
-  </div>
-</div>
-
-<div id="toast"></div>
-
-<script>
-// ── STATE ───────────────────────────────────────────────────────────────────
-let DB = { approved: [], pending: [], rejected: [] };
-let editTarget = null; // { list: 'pending'|'approved', id: string }
-
-// ── LOAD DATA ───────────────────────────────────────────────────────────────
-async function loadData() {
-  // Try to fetch from JSON files; fall back to localStorage for demo
-  try {
-    const [appr, pend, rej] = await Promise.all([
-      fetchJSON('sweepstakes_db.json'),
-      fetchJSON('pending_review.json'),
-      fetchJSON('rejected.json'),
-    ]);
-    DB.approved = appr || [];
-    DB.pending  = pend || [];
-    DB.rejected = rej || [];
-  } catch(e) {
-    // Use localStorage as fallback (for demo when files aren't served)
-    DB.approved = JSON.parse(localStorage.getItem('msh_approved') || '[]');
-    DB.pending  = JSON.parse(localStorage.getItem('msh_pending')  || '[]');
-    DB.rejected = JSON.parse(localStorage.getItem('msh_rejected') || '[]');
-    // If completely empty, seed with demo data
-    if (!DB.approved.length && !DB.pending.length) seedDemo();
-  }
-  updateCounts();
-  renderDashboard();
-}
-
-async function fetchJSON(url) {
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`${url} not found`);
-  return r.json();
-}
-
-function saveData() {
-  localStorage.setItem('msh_approved', JSON.stringify(DB.approved));
-  localStorage.setItem('msh_pending',  JSON.stringify(DB.pending));
-  localStorage.setItem('msh_rejected', JSON.stringify(DB.rejected));
-}
-
-// ── DEMO SEED ────────────────────────────────────────────────────────────────
-function seedDemo() {
-  const now = new Date().toISOString();
-  const base = [
-    {title:"Publishers Clearing House $500,000 SuperPrize",sponsor:"PCH",prize:"$500,000",prize_amount:"$500,000",end_date:"2026-04-30",entry_url:"https://www.pch.com",entry_freq:"Daily",eligibility:"US 18+",category:"cash",description:"Enter daily for a chance to win the PCH SuperPrize!",source:"Demo"},
-    {title:"HGTV Dream Home 2026 Sweepstakes",sponsor:"HGTV",prize:"$1,200,000",prize_amount:"$1,200,000",end_date:"2026-03-31",entry_url:"https://www.hgtv.com/sweepstakes",entry_freq:"2x Daily",eligibility:"US 21+",category:"home",description:"Win a fully furnished dream home plus $100K cash!",source:"Demo"},
-    {title:"Coca-Cola Summer of Fun Sweepstakes",sponsor:"Coca-Cola",prize:"$50,000",prize_amount:"$50,000",end_date:"2026-06-30",entry_url:"https://www.coca-cola.com",entry_freq:"Daily",eligibility:"US 18+",category:"cash",description:"Win $50,000 cash this summer from Coca-Cola!",source:"Demo"},
-    {title:"Jeep Wave Grand Cherokee Giveaway",sponsor:"Jeep",prize:"$54,000",prize_amount:"$54,000",end_date:"2026-03-28",entry_url:"https://www.jeep.com",entry_freq:"One-Time",eligibility:"US 18+",category:"cars",description:"Win a brand new 2026 Jeep Grand Cherokee!",source:"SweepsAdvantage"},
-    {title:"Amazon Spring $25,000 Shopping Spree",sponsor:"Amazon",prize:"$25,000",prize_amount:"$25,000",end_date:"2026-04-15",entry_url:"https://www.amazon.com",entry_freq:"Daily",eligibility:"US 18+",category:"gift_cards",description:"Win a $25,000 Amazon shopping spree!",source:"PR Wire"},
-    {title:"Disney World Family Vacation Sweepstakes",sponsor:"Walt Disney World",prize:"$8,500",prize_amount:"$8,500",end_date:"2026-06-15",entry_url:"https://www.disneyworld.com",entry_freq:"Daily",eligibility:"US, Canada 18+",category:"travel",description:"Win a dream family vacation to Walt Disney World!",source:"Demo"},
-    {title:"Best Buy $5,000 Electronics Shopping Spree",sponsor:"Best Buy",prize:"$5,000",prize_amount:"$5,000",end_date:"2026-04-30",entry_url:"https://www.bestbuy.com",entry_freq:"Weekly",eligibility:"US 18+",category:"electronics",description:"Win a $5,000 Best Buy gift card!",source:"Demo"},
-    {title:"Pepsi x NFL Super Bowl VIP Trip",sponsor:"Pepsi / NFL",prize:"$15,000",prize_amount:"$15,000",end_date:"2026-09-01",entry_url:"https://www.pepsi.com",entry_freq:"Daily",eligibility:"US 21+",category:"sports",description:"Win a VIP trip for 2 to Super Bowl LXI!",source:"PR Wire"},
-    {title:"7-Eleven Slurpee Days Instant Win",sponsor:"7-Eleven",prize:"$7,777",prize_amount:"$7,777",end_date:"2026-08-31",entry_url:"https://www.7eleven.com",entry_freq:"Daily Instant Win",eligibility:"US 13+",category:"food",description:"Play the 7-Eleven instant win game daily!",source:"Demo"},
-    {title:"Walmart Weekly $1,000 Shopping Spree",sponsor:"Walmart",prize:"$1,000/week",prize_amount:"$1,000",end_date:"2026-12-31",entry_url:"https://www.walmart.com",entry_freq:"Daily",eligibility:"US 18+",category:"gift_cards",description:"Win $1,000 in Walmart gift cards every week!",source:"Demo"},
-  ].map((e,i) => ({...e, id: btoa(e.title).slice(0,12), scraped_at: now, status: "approved", approved_at: now}));
-
-  const pending = [
-    {title:"PayPal Spring $25,000 Cash Giveaway",sponsor:"PayPal",prize:"$25,000",prize_amount:"$25,000",end_date:"2026-03-29",entry_url:"https://www.paypal.com",entry_freq:"One-Time",eligibility:"US 18+",category:"cash",description:"Win $25,000 from PayPal!",source:"PR Wire",id:"paypal001",scraped_at:now,status:"pending"},
-    {title:"Chase Bank $10,000 Everyday Sweepstakes",sponsor:"Chase Bank",prize:"$10,000",prize_amount:"$10,000",end_date:"2026-04-15",entry_url:"https://www.chase.com",entry_freq:"Weekly",eligibility:"US 18+",category:"cash",description:"Win $10,000 from Chase Bank!",source:"SweepsAdvantage",id:"chase001",scraped_at:now,status:"pending"},
-    {title:"Home Depot Spring Renovation $50,000",sponsor:"Home Depot",prize:"$50,000",prize_amount:"$50,000",end_date:"2026-03-30",entry_url:"https://www.homedepot.com",entry_freq:"Daily",eligibility:"US 18+",category:"home",description:"Win $50,000 in Home Depot store credit!",source:"Google Alerts",id:"homedepot001",scraped_at:now,status:"pending"},
-    {title:"Kellogg's Family Breakfast Giveaway",sponsor:"Kellogg's",prize:"$2,500",prize_amount:"$2,500",end_date:"2026-03-23",entry_url:"https://www.kelloggs.com",entry_freq:"Daily",eligibility:"US 18+",category:"food",description:"Win $2,500 in grocery gift cards from Kellogg's!",source:"PR Wire",id:"kelloggs001",scraped_at:now,status:"pending"},
-    {title:"Fidelity $100,000 Retirement Sweepstakes",sponsor:"Fidelity",prize:"$100,000",prize_amount:"$100,000",end_date:"2026-06-15",entry_url:"https://www.fidelity.com",entry_freq:"One-Time",eligibility:"US 18+",category:"cash",description:"Win $100,000 from Fidelity Investments!",source:"PR Wire",id:"fidelity001",scraped_at:now,status:"pending"},
-  ];
-
-  DB.approved = base;
-  DB.pending  = pending;
-  DB.rejected = [];
-  saveData();
-}
-
-// ── COUNTS & UPDATES ─────────────────────────────────────────────────────────
-function updateCounts() {
-  const a = DB.approved.length, p = DB.pending.length;
-  document.getElementById('tb-approved').textContent = a;
-  document.getElementById('tb-pending').textContent  = p;
-  document.getElementById('tb-total').textContent    = a + p;
-  document.getElementById('sb-pending-cnt').textContent  = p;
-  document.getElementById('sb-approved-cnt').textContent = a;
-  document.getElementById('dash-approved').textContent = a;
-  document.getElementById('dash-pending').textContent  = p;
-  document.getElementById('dash-rejected').textContent = DB.rejected.length;
-  const today = new Date().toISOString().slice(0,10);
-  const weekOut = new Date(Date.now() + 7*86400000).toISOString().slice(0,10);
-  document.getElementById('dash-ending').textContent =
-    DB.approved.filter(e => e.end_date && e.end_date <= weekOut && e.end_date >= today).length;
-}
-
-// ── PANEL NAV ────────────────────────────────────────────────────────────────
-function showPanel(name) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-  document.getElementById('panel-' + name)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',pending:'Pending Review',approved:'Approved Listings',rejected:'Rejected',add:'Add Manually',scraper:'Scraper Status',setup:'Setup Guide'};
-  document.getElementById('page-title').textContent = titles[name] || name;
-  // Render panel content
-  if (name === 'pending')  renderPending();
-  if (name === 'approved') renderApproved();
-  if (name === 'rejected') renderRejected();
-}
-
-// ── DASHBOARD ────────────────────────────────────────────────────────────────
-function renderDashboard() {
-  // Category breakdown
-  const cats = {};
-  DB.approved.forEach(e => { cats[e.category] = (cats[e.category]||0)+1; });
-  const catEl = document.getElementById('cat-breakdown');
-  catEl.innerHTML = Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([c,n]) =>
-    `<div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px dotted #eee;">
-      <span class="cat-pill cat-${c}" style="min-width:80px;">${catLabel(c)}</span>
-      <div style="flex:1;background:#f3f4f6;border-radius:3px;height:8px;overflow:hidden;">
-        <div style="background:var(--navy);height:100%;width:${Math.round(n/DB.approved.length*100)}%"></div>
-      </div>
-      <span style="font-size:11px;font-weight:700;color:var(--navy);min-width:24px;text-align:right;">${n}</span>
-    </div>`
-  ).join('');
-
-  // Source breakdown
-  const srcs = {};
-  DB.approved.forEach(e => { const s = e.source||'Manual'; srcs[s] = (srcs[s]||0)+1; });
-  const srcEl = document.getElementById('source-breakdown');
-  srcEl.innerHTML = Object.entries(srcs).sort((a,b)=>b[1]-a[1]).map(([s,n]) =>
-    `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dotted #eee;font-size:12px;">
-      <span>${s}</span><span style="font-weight:700;color:var(--navy);">${n}</span>
-    </div>`
-  ).join('');
-
-  // Recent pending
-  const recEl = document.getElementById('dash-recent-pending');
-  if (!DB.pending.length) {
-    recEl.innerHTML = '<div class="empty-state"><div class="icon">✅</div><p>No pending listings — you\'re all caught up!</p></div>';
-    return;
-  }
-  recEl.innerHTML = DB.pending.slice(0,5).map(e => `
-    <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-      <span class="cat-pill cat-${e.category}">${catLabel(e.category)}</span>
-      <div style="flex:1;min-width:0;">
-        <div style="font-weight:600;font-size:12.5px;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${e.title}</div>
-        <div style="font-size:11px;color:var(--muted);">${e.sponsor} · ${e.prize_amount}</div>
-      </div>
-      <button class="btn btn-green btn-sm" onclick="approveEntry('${e.id}')">✅ Approve</button>
-      <button class="btn btn-red btn-sm" onclick="rejectEntry('${e.id}')">❌</button>
-    </div>`
-  ).join('') + `<div style="text-align:right;margin-top:6px;"><button class="btn btn-primary btn-sm" onclick="showPanel('pending')">View all ${DB.pending.length} pending →</button></div>`;
-}
-
-// ── RENDER TABLES ────────────────────────────────────────────────────────────
-function catLabel(c) {
-  const labels = {cash:'💵 Cash',cars:'🚗 Cars',travel:'✈️ Travel',gift_cards:'🎁 Gift Cards',electronics:'📱 Electronics',home:'🏠 Home',food:'🍕 Food',sports:'⚽ Sports',entertainment:'🎬 Entertain.',kids:'👶 Kids',beauty:'💄 Beauty',pets:'🐾 Pets'};
-  return labels[c] || c;
-}
-
-function isUrgent(d) {
-  if (!d) return false;
-  const diff = (new Date(d) - new Date()) / 86400000;
-  return diff >= 0 && diff <= 7;
-}
-
-function buildTableHeader() {
-  return `<div class="listing-table">
-    <div class="table-head">
-      <div></div><div>Title / Sponsor</div><div>Prize</div>
-      <div>Ends</div><div>Category</div><div>Source</div><div>Actions</div>
-    </div>`;
-}
-
-function buildRow(e, listType) {
-  const urgent = isUrgent(e.end_date);
-  return `<div class="table-row" id="row-${e.id}">
-    <div class="col-check"><input type="checkbox" onchange="selectionChanged()"></div>
-    <div class="col-title">
-      <span class="t">${e.title}</span>
-      <span class="s">${e.sponsor||'—'}</span>
-    </div>
-    <div class="prize-val">${e.prize_amount||e.prize||'—'}</div>
-    <div class="date-val ${urgent?'urgent':''}">${e.end_date||'—'}</div>
-    <div><span class="cat-pill cat-${e.category||'cash'}">${catLabel(e.category||'cash')}</span></div>
-    <div><span class="source-badge">${e.source||'Manual'}</span></div>
-    <div class="col-actions">
-      ${listType==='pending' ? `<button class="btn btn-green btn-sm" title="Approve" onclick="approveEntry('${e.id}')">✅</button>` : ''}
-      ${listType==='rejected' ? `<button class="btn btn-gold btn-sm" title="Restore" onclick="restoreEntry('${e.id}')">↩</button>` : ''}
-      <button class="btn btn-gray btn-sm" title="Edit" onclick="openEdit('${e.id}','${listType}')">✏️</button>
-      <a href="${e.entry_url||'#'}" target="_blank" class="btn btn-gray btn-sm" title="Visit">🔗</a>
-      ${listType!=='rejected' ? `<button class="btn btn-red btn-sm" title="Delete" onclick="rejectEntry('${e.id}')">❌</button>` : ''}
-    </div>
-  </div>`;
-}
-
-function renderPending() {
-  const q = (document.getElementById('pending-search')?.value||'').toLowerCase();
-  const cat = document.getElementById('pending-cat')?.value||'';
-  let items = DB.pending.filter(e =>
-    (!q || e.title.toLowerCase().includes(q) || (e.sponsor||'').toLowerCase().includes(q)) &&
-    (!cat || e.category === cat)
-  );
-  const el = document.getElementById('pending-table');
-  if (!items.length) {
-    el.innerHTML = '<div class="empty-state"><div class="icon">🎉</div><p>No pending listings! All caught up.</p></div>';
-    return;
-  }
-  el.innerHTML = buildTableHeader() + items.map(e => buildRow(e,'pending')).join('') + '</div>';
-  populateCatFilter('pending-cat', DB.pending);
-}
-
-function renderApproved() {
-  const q = (document.getElementById('approved-search')?.value||'').toLowerCase();
-  const cat = document.getElementById('approved-cat')?.value||'';
-  const sort = document.getElementById('approved-sort')?.value||'newest';
-  let items = DB.approved.filter(e =>
-    (!q || e.title.toLowerCase().includes(q) || (e.sponsor||'').toLowerCase().includes(q)) &&
-    (!cat || e.category === cat)
-  );
-  if (sort === 'ending') items.sort((a,b) => (a.end_date||'9').localeCompare(b.end_date||'9'));
-  else if (sort === 'prize') items.sort((a,b) => parseFloat((b.prize_amount||'0').replace(/\D/g,'')) - parseFloat((a.prize_amount||'0').replace(/\D/g,'')));
-  else items.sort((a,b) => (b.approved_at||'').localeCompare(a.approved_at||''));
-  const el = document.getElementById('approved-table');
-  if (!items.length) {
-    el.innerHTML = '<div class="empty-state"><div class="icon">📋</div><p>No approved listings yet.</p></div>';
-    return;
-  }
-  el.innerHTML = buildTableHeader() + items.map(e => buildRow(e,'approved')).join('') + '</div>';
-  populateCatFilter('approved-cat', DB.approved);
-}
-
-function renderRejected() {
-  const el = document.getElementById('rejected-table');
-  if (!DB.rejected.length) {
-    el.innerHTML = '<div class="empty-state"><div class="icon">✅</div><p>No rejected entries.</p></div>';
-    return;
-  }
-  el.innerHTML = buildTableHeader() + DB.rejected.map(e => buildRow(e,'rejected')).join('') + '</div>';
-}
-
-function populateCatFilter(id, list) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const cur = el.value;
-  const cats = [...new Set(list.map(e => e.category).filter(Boolean))];
-  el.innerHTML = '<option value="">All Categories</option>' + cats.map(c => `<option value="${c}" ${c===cur?'selected':''}>${catLabel(c)}</option>`).join('');
-}
-
-// ── APPROVE / REJECT ──────────────────────────────────────────────────────────
-function approveEntry(id) {
-  const idx = DB.pending.findIndex(e => e.id === id);
-  if (idx === -1) return;
-  const entry = { ...DB.pending[idx], status:'approved', approved_at: new Date().toISOString() };
-  DB.approved.push(entry);
-  DB.pending.splice(idx, 1);
-  saveData(); updateCounts(); renderDashboard();
-  renderPending();
-  toast(`✅ Approved: ${entry.title.slice(0,40)}...`);
-}
-
-function rejectEntry(id) {
-  // Check pending first, then approved
-  let idx = DB.pending.findIndex(e => e.id === id);
-  let list = 'pending';
-  if (idx === -1) { idx = DB.approved.findIndex(e => e.id === id); list = 'approved'; }
-  if (idx === -1) return;
-  const entry = { ...(list==='pending'?DB.pending:DB.approved)[idx], status:'rejected', rejected_at: new Date().toISOString() };
-  DB.rejected.push(entry);
-  if (list==='pending') DB.pending.splice(idx,1); else DB.approved.splice(idx,1);
-  saveData(); updateCounts(); renderDashboard();
-  if (list==='pending') renderPending(); else renderApproved();
-  toast(`❌ Removed: ${entry.title.slice(0,40)}...`, true);
-}
-
-function restoreEntry(id) {
-  const idx = DB.rejected.findIndex(e => e.id === id);
-  if (idx === -1) return;
-  const entry = { ...DB.rejected[idx], status:'pending' };
-  delete entry.rejected_at;
-  DB.pending.push(entry);
-  DB.rejected.splice(idx, 1);
-  saveData(); updateCounts(); renderRejected();
-  toast('↩ Restored to pending review');
-}
-
-function bulkApprove() {
-  const count = DB.pending.length;
-  const now = new Date().toISOString();
-  DB.pending.forEach(e => DB.approved.push({...e, status:'approved', approved_at: now}));
-  DB.pending = [];
-  saveData(); updateCounts(); renderPending(); renderDashboard();
-  toast(`✅ Approved all ${count} pending listings!`);
-}
-
-function bulkApproveAll() { bulkApprove(); showPanel('pending'); }
-
-function clearRejected() {
-  if (!confirm(`Clear all ${DB.rejected.length} rejected entries?`)) return;
-  DB.rejected = [];
-  saveData(); renderRejected();
-  toast('Rejected list cleared');
-}
-
-// ── EDIT MODAL ────────────────────────────────────────────────────────────────
-function openEdit(id, listType) {
-  const list = listType === 'approved' ? DB.approved : (listType === 'rejected' ? DB.rejected : DB.pending);
-  const entry = list.find(e => e.id === id);
-  if (!entry) return;
-  editTarget = { list: listType, id };
-  document.getElementById('edit-id').value = id;
-  document.getElementById('edit-title').value   = entry.title||'';
-  document.getElementById('edit-sponsor').value  = entry.sponsor||'';
-  document.getElementById('edit-cat').value      = entry.category||'cash';
-  document.getElementById('edit-url').value      = entry.entry_url||'';
-  document.getElementById('edit-prize').value    = entry.prize||'';
-  document.getElementById('edit-prize-amt').value= entry.prize_amount||'';
-  document.getElementById('edit-end').value      = entry.end_date||'';
-  document.getElementById('edit-freq').value     = entry.entry_freq||'Daily Entry';
-  document.getElementById('edit-elig').value     = entry.eligibility||'';
-  document.getElementById('edit-desc').value     = entry.description||'';
-  document.getElementById('modal-overlay').classList.add('open');
-}
-
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  editTarget = null;
-}
-
-function saveEdit() {
-  const id = document.getElementById('edit-id').value;
-  const { list } = editTarget;
-  const arr = list === 'approved' ? DB.approved : (list === 'rejected' ? DB.rejected : DB.pending);
-  const idx = arr.findIndex(e => e.id === id);
-  if (idx === -1) return;
-  arr[idx] = { ...arr[idx],
-    title:       document.getElementById('edit-title').value,
-    sponsor:     document.getElementById('edit-sponsor').value,
-    category:    document.getElementById('edit-cat').value,
-    entry_url:   document.getElementById('edit-url').value,
-    prize:       document.getElementById('edit-prize').value,
-    prize_amount:document.getElementById('edit-prize-amt').value,
-    end_date:    document.getElementById('edit-end').value,
-    entry_freq:  document.getElementById('edit-freq').value,
-    eligibility: document.getElementById('edit-elig').value,
-    description: document.getElementById('edit-desc').value,
-    edited_at:   new Date().toISOString(),
-  };
-  saveData(); updateCounts();
-  if (list==='approved') renderApproved();
-  else if (list==='pending') renderPending();
-  else renderRejected();
-  closeModal();
-  toast('💾 Changes saved!');
-}
-
-// ── ADD MANUAL ────────────────────────────────────────────────────────────────
-function addManual() {
-  const title = document.getElementById('f-title').value.trim();
-  const url   = document.getElementById('f-url').value.trim();
-  if (!title || !url) { toast('Title and URL are required', true); return; }
-  const now = new Date().toISOString();
-  const status = document.getElementById('f-status').value;
-  const entry = {
-    id:          btoa(title + url).slice(0,12).replace(/[^a-zA-Z0-9]/g,''),
-    title,
-    sponsor:     document.getElementById('f-sponsor').value||'',
-    entry_url:   url,
-    category:    document.getElementById('f-cat').value,
-    prize:       document.getElementById('f-prize').value,
-    prize_amount:document.getElementById('f-prize-amt').value,
-    end_date:    document.getElementById('f-end-date').value,
-    entry_freq:  document.getElementById('f-freq').value,
-    eligibility: document.getElementById('f-elig').value,
-    description: document.getElementById('f-desc').value,
-    source:      'Manual',
-    scraped_at:  now,
-    status,
-  };
-  if (status === 'approved') { entry.approved_at = now; DB.approved.push(entry); }
-  else DB.pending.push(entry);
-  saveData(); updateCounts(); clearForm();
-  toast(`✅ Added: ${title.slice(0,40)}... (${status})`);
-}
-
-function clearForm() {
-  ['f-title','f-sponsor','f-url','f-prize','f-prize-amt','f-end-date','f-elig','f-desc']
-    .forEach(id => document.getElementById(id).value = '');
-}
-
-// ── SCRAPER (simulated in browser demo) ──────────────────────────────────────
-function runScraper(source) {
-  const log = document.getElementById('scraper-log');
-  if (!log) return;
-  showPanel('scraper');
-  const now = new Date().toLocaleString();
-  log.innerHTML += `\n<span class="log-dim">─────────────────────────────────────────</span>
-<span class="log-info">▶ Scraper started — ${now}</span>
-<span class="log-info">  Source: ${source||'All scrapers'}</span>
-<span class="log-warn">  Note: Full scraping runs via scraper.py on your server.</span>
-<span class="log-warn">  This dashboard shows results from your JSON database files.</span>
-<span class="log-info">  To run: python3 scraper.py${source?' --source '+source:''}</span>
-<span class="log-info">✅ Check pending_review.json for new results after scraper runs.</span>`;
-  log.scrollTop = log.scrollHeight;
-  document.getElementById('last-scrape').textContent = new Date().toLocaleTimeString();
-  toast('🤖 Scraper command logged. Run scraper.py on your server.');
-}
-
-// ── EXPORT ────────────────────────────────────────────────────────────────────
-function exportSiteJSON() {
-  const data = {
-    generated_at: new Date().toISOString(),
-    total: DB.approved.length,
-    sweepstakes: DB.approved,
-  };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'site_sweepstakes.json';
-  a.click();
-  toast('📤 site_sweepstakes.json downloaded! Upload to your server root.');
-}
-
-// ── TOAST ─────────────────────────────────────────────────────────────────────
-function toast(msg, isError=false) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className = isError ? 'error' : '';
-  el.style.display = 'block';
-  setTimeout(() => el.style.display = 'none', 3500);
-}
-
-function selectionChanged() { /* future bulk select */ }
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-loadData();
-</script>
+    <script>
+        function loadAdmin() {
+            const pending = JSON.parse(localStorage.getItem('pending_sweeps') || '[]');
+            const rejected = JSON.parse(localStorage.getItem('rejected_sweeps') || '[]');
+            const cache = JSON.parse(localStorage.getItem('sweepstakes_rss_cache') || '{}');
+            const tbody = document.getElementById('pending-tbody');
+            const table = document.getElementById('pending-table');
+            const emptyState = document.getElementById('empty-state');
+            document.getElementById('admin-pending').textContent = pending.length;
+            document.getElementById('admin-rejected').textContent = rejected.length;
+            document.getElementById('admin-total').textContent = (cache.data ? cache.data.length : '—');
+            document.getElementById('admin-last-fetch').textContent = cache.timestamp ? new Date(cache.timestamp).toLocaleString() : 'Never';
+            if (pending.length === 0) {
+                table.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                table.style.display = '';
+                emptyState.style.display = 'none';
+                tbody.innerHTML = pending.map((s, i) => `
+                    <tr class="${i % 2 === 0 ? '' : 'row-alt'}">
+                        <td><a href="${s.url}" target="_blank">${s.title}</a></td>
+                        <td>${s.category}</td>
+                        <td>${s.endDate}</td>
+                        <td>${s.frequency}</td>
+                        <td>
+                            <button class="approve-btn" onclick="approveSweep(${i})">Approve</button>
+                            <button class="reject-btn" onclick="rejectSweep(${i})">Reject</button>
+                        </td>
+                    </tr>`).join('');
+            }
+            const rejectedContainer = document.getElementById('rejected-container');
+            if (rejected.length > 0) {
+                rejectedContainer.innerHTML = '<table class="content-table"><thead><tr><th>Title</th><th>Category</th><th>Rejected</th></tr></thead><tbody>' +
+                    rejected.map(s => `<tr><td>${s.title}</td><td>${s.category}</td><td>${new Date(s.rejected).toLocaleDateString()}</td></tr>`).join('') +
+                    '</tbody></table>';
+            }
+        }
+        function approveSweep(index) {
+            let pending = JSON.parse(localStorage.getItem('pending_sweeps') || '[]');
+            const approved = pending.splice(index, 1)[0];
+            localStorage.setItem('pending_sweeps', JSON.stringify(pending));
+            let approvedList = JSON.parse(localStorage.getItem('approved_sweeps') || '[]');
+            approvedList.push({ ...approved, approved: new Date().toISOString() });
+            localStorage.setItem('approved_sweeps', JSON.stringify(approvedList));
+            loadAdmin();
+            alert('Sweepstakes approved! It will appear on the site.');
+        }
+        function rejectSweep(index) {
+            let pending = JSON.parse(localStorage.getItem('pending_sweeps') || '[]');
+            const rejected = pending.splice(index, 1)[0];
+            localStorage.setItem('pending_sweeps', JSON.stringify(pending));
+            let rejectedList = JSON.parse(localStorage.getItem('rejected_sweeps') || '[]');
+            rejectedList.push({ ...rejected, rejected: new Date().toISOString() });
+            localStorage.setItem('rejected_sweeps', JSON.stringify(rejectedList));
+            loadAdmin();
+        }
+        function clearAllData() {
+            if (confirm('Clear ALL local data? This cannot be undone.')) {
+                localStorage.clear();
+                loadAdmin();
+                alert('All data cleared.');
+            }
+        }
+        function refreshRSS() {
+            localStorage.removeItem('sweepstakes_rss_cache');
+            alert('RSS cache cleared. Reload the homepage to fetch fresh data.');
+            window.location.href = 'index.html';
+        }
+        document.addEventListener('DOMContentLoaded', loadAdmin);
+    </script>
 </body>
 </html>
+
+ 
+       
+    
+    
